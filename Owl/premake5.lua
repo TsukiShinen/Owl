@@ -2,9 +2,13 @@ project "Owl"
     kind "StaticLib"
 	language "C++"
 	cppdialect "C++20"
+	staticruntime "off"
 
 	targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
+
+	pchheader "opch.h"
+	pchsource "src/opch.cpp"
 
 	files
 	{
