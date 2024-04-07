@@ -2,9 +2,15 @@
 
 #include <memory>
 
+#ifdef OWL_DEBUG
+	#define OWL_ENABLE_ASSERTS
+#else
+	#define OWL_DEBUGBREAK()
+#endif
+
 #define BIT(x) (1 << x)
 
-#define HZ_BIND_EVENT_FN(fn) [this](auto&&... args) -> decltype(auto) { return this->fn(std::forward<decltype(args)>(args)...); }
+#define OWL_BIND_EVENT_FN(fn) [this](auto&&... args) -> decltype(auto) { return this->fn(std::forward<decltype(args)>(args)...); }
 
 namespace Owl {
 
@@ -27,3 +33,4 @@ namespace Owl {
 }
 
 #include "Owl/Core/Log.h"
+#include "Owl/Core/Assert.h"

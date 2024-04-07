@@ -12,10 +12,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Owl/src/opch.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Owl/src/opch.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Assert.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Window.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsWindow.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsWindow.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/vendor/glfw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dependencies.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Dependencies.lua" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/premake5.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/premake5.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Base.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Base.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/opch.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/opch.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/premake5.lua" beforeDir="false" afterPath="$PROJECT_DIR$/premake5.lua" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +34,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.39.33519/include/memory" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -149,7 +162,7 @@
       <updated>1712503035327</updated>
       <workItem from="1712503036516" duration="4346000" />
       <workItem from="1712507761957" duration="956000" />
-      <workItem from="1712513301468" duration="2852000" />
+      <workItem from="1712513301468" duration="5638000" />
     </task>
     <servers />
   </component>

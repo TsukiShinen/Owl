@@ -1,3 +1,6 @@
 [submodule "Owl/vendor/spdlog"]
 	path = Owl/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Owl/vendor/glfw"]
+	path = Owl/vendor/glfw
+	url = https://github.com/TheCherno/glfw.git

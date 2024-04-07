@@ -25,10 +25,20 @@ project "Owl"
 	{
 		"src",
 		"vendor/spdlog/include",
+		"%{IncludeDir.GLFW}",
     }
+
+	links {
+		"GLFW",
+		"opengl32.lib",
+	}
 
 	filter "system:windows"
 		systemversion "latest"
+
+		defines {
+			"OWL_PLATFORM_WINDOWS"
+		}
 
 	filter "configurations:Debug"
 		defines "OWL_DEBUG"

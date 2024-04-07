@@ -18,6 +18,10 @@ workspace "Owl"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+group "Dependencies"
+	include "Owl/vendor/GLFW"
+group ""
+
 group "Core"
 	include "Owl"
 group ""

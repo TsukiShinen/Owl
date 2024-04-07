@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "Base.h"
+#include "Window.h"
 
 namespace Owl
 {
@@ -11,6 +12,10 @@ namespace Owl
 		virtual ~Application();
 
 		void Run();
+		
+	private:
+		Scope<Window> m_Window;
+		bool m_IsRunning = true;
 	};
 
 	// To be defined in client
