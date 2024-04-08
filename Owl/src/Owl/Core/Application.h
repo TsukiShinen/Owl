@@ -2,6 +2,7 @@
 
 #include "Base.h"
 #include "Window.h"
+#include "Owl/Events/ApplicationEvent.h"
 
 namespace Owl
 {
@@ -12,8 +13,11 @@ namespace Owl
 		virtual ~Application();
 
 		void Run();
-		
+
+		void OnEvent(Event& pEvent);
 	private:
+		bool OnWindowClose(WindowCloseEvent& pCloseEvent);
+		
 		Scope<Window> m_Window;
 		bool m_IsRunning = true;
 	};
