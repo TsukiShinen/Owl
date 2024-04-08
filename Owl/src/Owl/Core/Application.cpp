@@ -21,6 +21,10 @@ namespace Owl
 		{
 			glClearColor(.1f, .1f, .1f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			for (Layer* layer : m_LayerStack)
+				layer->OnUpdate();
+			
 			m_Window->OnUpdate();
 		}
 	}
@@ -29,6 +33,23 @@ namespace Owl
 	{
 		EventDispatcher dispatcher(pEvent);
 		dispatcher.Dispatch<WindowCloseEvent>(OWL_BIND_EVENT_FN(OnWindowClose));
+
+		for (auto iterator = m_LayerStack.end(); iterator != m_LayerStack.begin(); )
+		{
+			(*--iterator)->OnEvent(pEvent);
+			if (pEvent.IsHandled)
+				break;
+		}
+	}
+
+	void Application::PushLayer(Layer* pLayer)
+	{
+		m_LayerStack.PushLayer(pLayer);
+	}
+
+	void Application::PushOverlay(Layer* pOverlay)
+	{
+		m_LayerStack.PushOverlay(pOverlay);
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& pCloseEvent)

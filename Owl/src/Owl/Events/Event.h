@@ -47,6 +47,8 @@ namespace Owl
 		friend class EventDispatcher;
 
 	public:
+		bool IsHandled = false;
+		
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
@@ -56,9 +58,6 @@ namespace Owl
 		{
 			return GetCategoryFlags() & pCategory;
 		}
-
-	protected:
-		bool m_IsHandled = false;
 	};
 
 	class EventDispatcher
@@ -78,7 +77,7 @@ namespace Owl
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.m_IsHandled = pFunction(*static_cast<T*>(&m_Event));
+				m_Event.IsHandled = pFunction(*static_cast<T*>(&m_Event));
 				return true;
 			}
 			return false;
