@@ -19,6 +19,7 @@ project "Owl"
 	defines
 	{
 		"_CRT_SECURE_NO_WARNINGS",
+		"GLFW_INCLUDE_NONE"
 	}
     
 	includedirs
@@ -26,10 +27,12 @@ project "Owl"
 		"src",
 		"vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
     }
 
 	links {
 		"GLFW",
+		"Glad",
 		"opengl32.lib",
 	}
 

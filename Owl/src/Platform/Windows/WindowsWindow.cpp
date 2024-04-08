@@ -5,6 +5,8 @@
 #include "Owl/Events/KeyEvent.h"
 #include "Owl/Events/MouseEvent.h"
 
+#include <glad/glad.h>
+
 namespace Owl
 {
 	static bool s_GLFWInitialized = false;
@@ -68,6 +70,8 @@ namespace Owl
 
 		m_Window = glfwCreateWindow(static_cast<int>(m_Data.Width), static_cast<int>(m_Data.Height), m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+		const int status = gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress));
+		OWL_CORE_ASSERT(status, "Failed to initialize Glad!")
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 

@@ -12,16 +12,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Layer.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Layer.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/LayerStack.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/LayerStack.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Events/Event.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Events/Event.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sandbox/src/Sandbox.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sandbox/src/Sandbox.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dependencies.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Dependencies.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/premake5.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/premake5.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsWindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsWindow.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/premake5.lua" beforeDir="false" afterPath="$PROJECT_DIR$/premake5.lua" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,6 +156,7 @@
       <workItem from="1712507761957" duration="956000" />
       <workItem from="1712513301468" duration="5927000" />
       <workItem from="1712588460992" duration="2900000" />
+      <workItem from="1712606095420" duration="764000" />
     </task>
     <servers />
   </component>
