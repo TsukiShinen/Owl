@@ -33,6 +33,8 @@ namespace Owl
 		virtual void SetEventCallback(const EventCallbackFunction& pCallback) = 0;
 		virtual void SetVSync(bool pEnabled) = 0;
 		virtual bool IsVSync() const = 0;
+		
+		virtual void* GetNativeWindow() = 0;
 
 		static Window* Create(const WindowProps& pProps = WindowProps());
 	};

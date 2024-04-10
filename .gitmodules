@@ -4,3 +4,6 @@
 [submodule "Owl/vendor/glfw"]
 	path = Owl/vendor/glfw
 	url = https://github.com/TheCherno/glfw.git
+[submodule "Owl/vendor/imgui"]
+	path = Owl/vendor/imgui
+	url = https://github.com/TsukiShinen/imgui.git

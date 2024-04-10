@@ -8,6 +8,8 @@
 #include "Owl/Core/Layer.h"
 #include "Owl/Core/Log.h"
 
+#include "Owl/ImGui/ImGuiLayer.h"
+
 // -- Entry Point -------------------
 #include "Owl/Core/EntryPoint.h"
 // ----------------------------------

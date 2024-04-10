@@ -21,6 +21,8 @@ namespace Owl
 		void SetVSync(bool pEnabled) override;
 		bool IsVSync() const override;
 
+		void* GetNativeWindow() override { return m_Window; }
+
 	protected:
 		virtual void Init(const WindowProps& pProps);
 		virtual void Shutdown();
