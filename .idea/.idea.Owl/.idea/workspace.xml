@@ -12,11 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Input.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsInput.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsInput.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/vendor/glm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sandbox/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Sandbox/imgui.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +28,9 @@
     <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.39.33519/include/memory" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Owl/vendor/imgui/backends/imgui_impl_opengl3.h" root0="SKIP_HIGHLIGHTING" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="Toolset" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -41,29 +42,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;C++ Project.Sandbox.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C++&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "C++ Project.Sandbox.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "do_not_show_solution_notification": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C++",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\TsukiShinen\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\TsukiShinen\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\TsukiShinen\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\TsukiShinen\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
+      "C:\\Users\\TsukiShinen\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
+      "C:\\Users\\TsukiShinen\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="C++ Project.Sandbox">
     <configuration name="Owl" type="CppProject" factoryName="C++ Project">
       <configuration_1>
@@ -168,6 +170,7 @@
       <workItem from="1712732446864" duration="1828000" />
       <workItem from="1712734456688" duration="1191000" />
       <workItem from="1712770579262" duration="2706000" />
+      <workItem from="1712850615973" duration="506000" />
     </task>
     <servers />
   </component>
