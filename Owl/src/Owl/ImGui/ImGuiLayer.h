@@ -12,8 +12,10 @@ namespace Owl
 
 		void OnAttach() override;
 		void OnDetach() override;
-		void OnUpdate() override;
-		void OnEvent(Event& pEvent) override;
+		void OnImGuiRender() override;
+
+		void Begin();
+		void End();
 	private:
 		float m_Time = 0.0f;
 	};

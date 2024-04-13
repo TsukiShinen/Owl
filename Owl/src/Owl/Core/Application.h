@@ -4,6 +4,7 @@
 #include "LayerStack.h"
 #include "Window.h"
 #include "Owl/Events/ApplicationEvent.h"
+#include "Owl/ImGui/ImGuiLayer.h"
 
 namespace Owl
 {
@@ -28,6 +29,7 @@ namespace Owl
 		bool OnWindowClose(WindowCloseEvent& pCloseEvent);
 		
 		Scope<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_IsRunning = true;
 		LayerStack m_LayerStack;
 

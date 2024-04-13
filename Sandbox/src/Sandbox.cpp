@@ -1,5 +1,7 @@
 ﻿#include <Owl.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public Owl::Layer
 {
 public:
@@ -14,6 +16,13 @@ public:
 		
 	}
 
+	void OnImGuiRender() override
+	{
+		ImGui::Begin("Example");
+		ImGui::Text("Test");
+		ImGui::End();
+	}
+
 	void OnEvent(Owl::Event& pEvent) override
 	{
 		
@@ -26,7 +35,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushLayer(new Owl::ImGuiLayer());
 	}
 
 	~Sandbox()

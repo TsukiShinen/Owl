@@ -6,7 +6,7 @@ namespace Owl
 	class LayerStack
 	{
 	public:
-		LayerStack();
+		LayerStack() = default;
 		~LayerStack();
 
 		void PushLayer(Layer* pLayer);
@@ -18,6 +18,6 @@ namespace Owl
 		std::vector<Layer*>::iterator end() { return m_Layers.end(); }
 	private:
 		std::vector<Layer*> m_Layers;
-		std::vector<Layer*>::iterator m_LayersInsert;
+		unsigned int m_LayerInsertIndex = 0;
 	};
 }

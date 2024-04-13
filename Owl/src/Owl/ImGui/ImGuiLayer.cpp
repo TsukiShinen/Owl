@@ -55,19 +55,25 @@ namespace Owl
 		ImGui::DestroyContext();
 	}
 
-	void ImGuiLayer::OnUpdate()
+	void ImGuiLayer::OnImGuiRender()
+	{
+		static bool show = true;
+		ImGui::ShowDemoWindow(&show);
+	}
+
+	void ImGuiLayer::Begin()
 	{
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
+	}
 
+	void ImGuiLayer::End()
+	{
 		ImGuiIO& io = ImGui::GetIO();
 		const Application& app = Application::Get();
 		io.DisplaySize = ImVec2(static_cast<float>(app.GetWindow().GetWidth()),
-		                        static_cast<float>(app.GetWindow().GetHeight()));
-
-		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
+								static_cast<float>(app.GetWindow().GetHeight()));
 		
 		// Rendering
 		ImGui::Render();
@@ -80,12 +86,5 @@ namespace Owl
 			ImGui::RenderPlatformWindowsDefault();
 			glfwMakeContextCurrent(backupCurrentContext);
 		}
-	}
-
-	void ImGuiLayer::OnEvent(Event& pEvent)
-	{
-		const ImGuiIO& io = ImGui::GetIO();
-		pEvent.IsHandled |= pEvent.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse;
-		pEvent.IsHandled |= pEvent.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard;
 	}
 }
