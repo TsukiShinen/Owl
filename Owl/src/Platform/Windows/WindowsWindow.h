@@ -4,6 +4,8 @@
 
 #include <GLFW/glfw3.h>
 
+#include "Owl/Renderer/GraphicsContext.h"
+
 namespace Owl
 {
 	class WindowsWindow : public Window
@@ -29,6 +31,8 @@ namespace Owl
 
 	private:
 		GLFWwindow* m_Window;
+
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{

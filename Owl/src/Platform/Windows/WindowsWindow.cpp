@@ -5,7 +5,7 @@
 #include "Owl/Events/KeyEvent.h"
 #include "Owl/Events/MouseEvent.h"
 
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Owl
 {
@@ -34,7 +34,7 @@ namespace Owl
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffer();
 	}
 
 	void WindowsWindow::SetVSync(const bool pEnabled)
@@ -69,9 +69,10 @@ namespace Owl
 		}
 
 		m_Window = glfwCreateWindow(static_cast<int>(m_Data.Width), static_cast<int>(m_Data.Height), m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		const int status = gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress));
-		OWL_CORE_ASSERT(status, "Failed to initialize Glad!")
+		
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+		
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
