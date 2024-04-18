@@ -40,6 +40,35 @@ namespace Owl
 
 		unsigned int indices[3] = { 0, 1, 2 };
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+		std::string vertexSource = R"(
+#version 330 core
+
+layout(location = 0) in vec3 inPosition;
+
+out vec3 v_Position;
+
+void main() 
+{
+	v_Position = inPosition;
+	gl_Position = vec4(inPosition, 1.0);
+}
+		)";
+		
+		std::string fragmentSource = R"(
+#version 330 core
+
+layout(location = 0) out vec4 outColor;
+
+in vec3 v_Position;
+
+void main() 
+{
+	outColor = vec4(v_Position * 0.5 + 0.5, 1.0);
+}
+		)";
+
+		m_Shader = CreateScope<Shader>(vertexSource, fragmentSource);
 	}
 
 	Application::~Application()
@@ -53,6 +82,7 @@ namespace Owl
 			glClearColor(.1f, .1f, .1f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
+			m_Shader->Bind();
 			glBindVertexArray(m_VertexArray);
 			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 			

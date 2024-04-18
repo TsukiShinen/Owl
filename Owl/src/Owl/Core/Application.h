@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "Owl/Events/ApplicationEvent.h"
 #include "Owl/ImGui/ImGuiLayer.h"
+#include "Owl/Renderer/Shader.h"
 
 namespace Owl
 {
@@ -36,6 +37,7 @@ namespace Owl
 		unsigned int m_VertexArray;
 		unsigned int m_VertexBuffer;
 		unsigned int m_IndexBuffer;
+		Scope<Shader> m_Shader;
 
 	private:
 		static Application* s_Instance;
