@@ -13,7 +13,7 @@ namespace Owl
 			OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported!")
 			return nullptr;
 		case RendererApi::OpenGL:
-			return new OpenGLVertexBuffer(pVertices, pSize);
+			return new OpenGlVertexBuffer(pVertices, pSize);
 		}
 
 		OWL_CORE_ASSERT(false, "Unknow RendererApi!")
@@ -27,7 +27,7 @@ namespace Owl
 			OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported !")
 			return nullptr;
 		case RendererApi::OpenGL:
-			return new OpenGLIndexBuffer(pIndices, pCount);
+			return new OpenGlIndexBuffer(pIndices, pCount);
 		}
 
 		OWL_CORE_ASSERT(false, "Unknow RendererApi!")

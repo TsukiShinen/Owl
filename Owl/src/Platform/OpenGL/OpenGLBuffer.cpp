@@ -6,30 +6,30 @@
 namespace Owl
 {
 	// ========== VERTEX ===========
-	OpenGLVertexBuffer::OpenGLVertexBuffer(const float* pVertices, const uint32_t pSize)
+	OpenGlVertexBuffer::OpenGlVertexBuffer(const float* pVertices, const uint32_t pSize)
 	{
 		glCreateBuffers(1, &m_RendererId);
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererId);
 		glBufferData(GL_ARRAY_BUFFER, pSize, pVertices, GL_STATIC_DRAW);
 	}
 
-	OpenGLVertexBuffer::~OpenGLVertexBuffer()
+	OpenGlVertexBuffer::~OpenGlVertexBuffer()
 	{
 		glDeleteBuffers(1, &m_RendererId);
 	}
 
-	void OpenGLVertexBuffer::Bind() const
+	void OpenGlVertexBuffer::Bind() const
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererId);
 	}
 
-	void OpenGLVertexBuffer::UnBind() const
+	void OpenGlVertexBuffer::UnBind() const
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
 	// ========== INDEX ===========
-	OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* pIndices, uint32_t pCount)
+	OpenGlIndexBuffer::OpenGlIndexBuffer(uint32_t* pIndices, uint32_t pCount)
 		: m_Count(pCount)
 	{
 		glCreateBuffers(1, &m_RendererId);
@@ -37,17 +37,17 @@ namespace Owl
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, pCount * sizeof(uint32_t), pIndices, GL_STATIC_DRAW);
 	}
 
-	OpenGLIndexBuffer::~OpenGLIndexBuffer()
+	OpenGlIndexBuffer::~OpenGlIndexBuffer()
 	{
 		glDeleteBuffers(1, &m_RendererId);
 	}
 
-	void OpenGLIndexBuffer::Bind() const
+	void OpenGlIndexBuffer::Bind() const
 	{
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererId);
 	}
 
-	void OpenGLIndexBuffer::UnBind() const
+	void OpenGlIndexBuffer::UnBind() const
 	{
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
