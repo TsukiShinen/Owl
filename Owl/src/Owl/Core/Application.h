@@ -7,6 +7,7 @@
 #include "Owl/ImGui/ImGuiLayer.h"
 #include "Owl/Renderer/Buffer.h"
 #include "Owl/Renderer/Shader.h"
+#include "Owl/Renderer/VertexArray.h"
 
 namespace Owl
 {
@@ -35,11 +36,11 @@ namespace Owl
 		bool m_IsRunning = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArray;
-		Scope<VertexBuffer> m_VertexBuffer;
-		Scope<IndexBuffer> m_IndexBuffer;
-		Scope<Shader> m_Shader;
-
+		Ref<VertexArray> m_TriangleVertexArray;
+		Ref<Shader> m_Shader;
+		
+		Ref<VertexArray> m_SquareVertexArray;
+		Ref<Shader> m_BlueShader;
 	private:
 		static Application* s_Instance;
 	};
