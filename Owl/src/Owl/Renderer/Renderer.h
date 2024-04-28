@@ -1,19 +1,17 @@
 ﻿#pragma once
+#include "RendererApi.h"
 
 namespace Owl
 {
-	enum class RendererApi
-	{
-		None = 0,
-		OpenGL = 1,
-	};
-
 	class Renderer
 	{
 	public:
-		static RendererApi GetApi() { return s_RendererApi; }
-	private:
-		static RendererApi s_RendererApi;
+		static void BeginScene();
+		static void EndScene();
+
+		static void Submit(const Ref<VertexArray>& pVertexArray);
+		
+		static RendererApi::Api GetApi() { return RendererApi::GetApi(); }
 	};
 	
 }

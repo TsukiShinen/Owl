@@ -1,7 +1,8 @@
 ﻿#include "opch.h"
 #include "Application.h"
 
-#include <glad/glad.h>
+#include "Owl/Renderer/RenderCommand.h"
+#include "Owl/Renderer/Renderer.h"
 
 namespace Owl
 {
@@ -121,16 +122,18 @@ void main()
 	{
 		while (m_IsRunning)
 		{
-			glClearColor(.1f, .1f, .1f, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor({ .1f, .1f, .1f, 1 });
+			RenderCommand::Clear();
 
-			m_BlueShader->Bind();
-			m_SquareVertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_SquareVertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
-
-			m_Shader->Bind();
-			m_TriangleVertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_TriangleVertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::BeginScene();
+			{
+				m_BlueShader->Bind();
+				Renderer::Submit(m_SquareVertexArray);
+			
+				m_Shader->Bind();
+				Renderer::Submit(m_TriangleVertexArray);
+			}
+			Renderer::EndScene();
 			
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();

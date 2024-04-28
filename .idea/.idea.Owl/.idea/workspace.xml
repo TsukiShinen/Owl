@@ -12,12 +12,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/VertexArray.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/VertexArray.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlVertexArray.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlVertexArray.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RenderCommand.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RenderCommand.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RendererApi.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RendererApi.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Buffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Buffer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/VertexArray.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/VertexArray.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,6 +192,7 @@
       <workItem from="1713809127700" duration="1381000" />
       <workItem from="1713899830597" duration="2305000" />
       <workItem from="1714072272534" duration="2669000" />
+      <workItem from="1714330122731" duration="1800000" />
     </task>
     <servers />
   </component>

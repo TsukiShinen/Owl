@@ -5,7 +5,6 @@
 #include "Window.h"
 #include "Owl/Events/ApplicationEvent.h"
 #include "Owl/ImGui/ImGuiLayer.h"
-#include "Owl/Renderer/Buffer.h"
 #include "Owl/Renderer/Shader.h"
 #include "Owl/Renderer/VertexArray.h"
 

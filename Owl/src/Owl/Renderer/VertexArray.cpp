@@ -9,10 +9,10 @@ namespace Owl
 	VertexArray* VertexArray::Create()
 	{
 		switch (Renderer::GetApi()) {
-		case RendererApi::None:
+		case RendererApi::Api::None:
 			OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported!")
 			return nullptr;
-		case RendererApi::OpenGL:
+		case RendererApi::Api::OpenGl:
 			return new OpenGlVertexArray();
 		}
 
