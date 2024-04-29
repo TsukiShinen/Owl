@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "Owl/Events/ApplicationEvent.h"
 #include "Owl/ImGui/ImGuiLayer.h"
+#include "Owl/Renderer/OrthographicCamera.h"
 #include "Owl/Renderer/Shader.h"
 #include "Owl/Renderer/VertexArray.h"
 
@@ -40,6 +41,8 @@ namespace Owl
 		
 		Ref<VertexArray> m_SquareVertexArray;
 		Ref<Shader> m_BlueShader;
+
+		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};

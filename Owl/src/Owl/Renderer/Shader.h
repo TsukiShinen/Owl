@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "glm/glm.hpp"
 
 namespace Owl
 {
@@ -10,6 +11,8 @@ namespace Owl
 
 		void Bind() const;
 		void UnBind() const;
+
+		void UploadUniformMat4(const std::string& pName, const glm::mat4& pMatrix);
 	private:
 		uint32_t m_RendererID;
 	};

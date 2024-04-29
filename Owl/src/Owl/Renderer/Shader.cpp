@@ -2,6 +2,7 @@
 #include "Shader.h"
 
 #include "glad/glad.h"
+#include "glm/gtc/type_ptr.hpp"
 
 namespace Owl
 {
@@ -104,5 +105,11 @@ namespace Owl
 	void Shader::UnBind() const
 	{
 		glUseProgram(0);
+	}
+
+	void Shader::UploadUniformMat4(const std::string& pName, const glm::mat4& pMatrix)
+	{
+		const GLint location = glGetUniformLocation(m_RendererID, pName.c_str());
+		glUniformMatrix4fv(location, 1, GL_FALSE, value_ptr(pMatrix));
 	}
 }
