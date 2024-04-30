@@ -109,21 +109,21 @@ void main()
 		m_BlueShader = Owl::CreateScope<Owl::Shader>(vertexSourceBlue, fragmentSourceBlue);
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Owl::Timestep pTimestep) override
 	{
 		if (Owl::Input::IsKeyPressed(Owl::Key::Left))
-			m_CameraPosition.x -= m_CameraMoveSpeed;
+			m_CameraPosition.x -= m_CameraMoveSpeed * pTimestep;
 		if (Owl::Input::IsKeyPressed(Owl::Key::Right))
-			m_CameraPosition.x += m_CameraMoveSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * pTimestep;
 		if (Owl::Input::IsKeyPressed(Owl::Key::Up))
-			m_CameraPosition.y += m_CameraMoveSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * pTimestep;
 		if (Owl::Input::IsKeyPressed(Owl::Key::Down))
-			m_CameraPosition.y -= m_CameraMoveSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * pTimestep;
 		
 		if (Owl::Input::IsKeyPressed(Owl::Key::A))
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * pTimestep;
 		if (Owl::Input::IsKeyPressed(Owl::Key::D))
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * pTimestep;
 		
 		Owl::RenderCommand::SetClearColor({ .1f, .1f, .1f, 1 });
 		Owl::RenderCommand::Clear();
@@ -157,10 +157,10 @@ private:
 	Owl::OrthographicCamera m_Camera;
 	
 	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 0.1f;
+	float m_CameraMoveSpeed = 5.0f;
 	
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 0.1f;
+	float m_CameraRotationSpeed = 180.0f;
 };
 
 class Sandbox : public Owl::Application

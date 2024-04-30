@@ -1,6 +1,8 @@
 ﻿#include "opch.h"
 #include "Application.h"
 
+#include "GLFW/glfw3.h"
+
 namespace Owl
 {
 	Application* Application::s_Instance = nullptr;
@@ -12,6 +14,7 @@ namespace Owl
 		
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(OWL_BIND_EVENT_FN(OnEvent));
+		m_Window->SetVSync(false);
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
@@ -25,8 +28,12 @@ namespace Owl
 	{
 		while (m_IsRunning)
 		{
+			const float time = static_cast<float>(glfwGetTime());
+			Timestep timestep = time - m_LastFrameTime;
+			m_LastFrameTime = time;
+			
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(timestep);
 			
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)

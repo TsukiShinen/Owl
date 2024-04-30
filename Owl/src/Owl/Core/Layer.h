@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "Timestep.h"
 #include "Owl/Events/Event.h"
 
 namespace Owl
@@ -11,7 +12,7 @@ namespace Owl
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep pTimestep) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& pEvent) {}
 

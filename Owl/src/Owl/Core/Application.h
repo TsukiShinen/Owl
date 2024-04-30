@@ -2,6 +2,7 @@
 
 #include "Base.h"
 #include "LayerStack.h"
+#include "Timestep.h"
 #include "Window.h"
 #include "Owl/Events/ApplicationEvent.h"
 #include "Owl/ImGui/ImGuiLayer.h"
@@ -27,11 +28,12 @@ namespace Owl
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& pCloseEvent);
-		
+	private:
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_IsRunning = true;
 		LayerStack m_LayerStack;
+		float m_LastFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
 	};
