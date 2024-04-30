@@ -5,9 +5,6 @@
 #include "Window.h"
 #include "Owl/Events/ApplicationEvent.h"
 #include "Owl/ImGui/ImGuiLayer.h"
-#include "Owl/Renderer/OrthographicCamera.h"
-#include "Owl/Renderer/Shader.h"
-#include "Owl/Renderer/VertexArray.h"
 
 namespace Owl
 {
@@ -35,14 +32,6 @@ namespace Owl
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_IsRunning = true;
 		LayerStack m_LayerStack;
-
-		Ref<VertexArray> m_TriangleVertexArray;
-		Ref<Shader> m_Shader;
-		
-		Ref<VertexArray> m_SquareVertexArray;
-		Ref<Shader> m_BlueShader;
-
-		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};

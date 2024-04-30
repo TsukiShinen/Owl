@@ -12,6 +12,17 @@
 
 #include "Owl/ImGui/ImGuiLayer.h"
 
+// -- Renderer ----------------------
+#include "Owl/Renderer/RenderCommand.h"
+#include "Owl/Renderer/Renderer.h"
+
+#include "Owl/Renderer/Buffer.h"
+#include "Owl/Renderer/Shader.h"
+#include "Owl/Renderer/VertexArray.h"
+
+#include "Owl/Renderer/OrthographicCamera.h"
+// ----------------------------------
+
 // -- Entry Point -------------------
 #include "Owl/Core/EntryPoint.h"
 // ----------------------------------

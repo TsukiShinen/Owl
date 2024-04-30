@@ -1,15 +1,11 @@
 ﻿#include "opch.h"
 #include "Application.h"
 
-#include "Owl/Renderer/RenderCommand.h"
-#include "Owl/Renderer/Renderer.h"
-
 namespace Owl
 {
 	Application* Application::s_Instance = nullptr;
 	
 	Application::Application()
-		: m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
 	{
 		OWL_CORE_ASSERT(!s_Instance, "Application already exists!")
 		s_Instance = this;
@@ -19,104 +15,6 @@ namespace Owl
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
-
-		m_TriangleVertexArray.reset(VertexArray::Create());
-
-		float vertices[3 * 7] = {
-			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
-			 0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
-		};
-
-		Ref<VertexBuffer> triangleVertexBuffer;
-		triangleVertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
-		triangleVertexBuffer->SetLayout({
-			{ ShaderDataType::Float3, "in_Position" },
-			{ ShaderDataType::Float4, "in_Color" }
-		});
-		m_TriangleVertexArray->AddVertexBuffer(triangleVertexBuffer);
-
-		unsigned int indices[3] = { 0, 1, 2 };
-		Ref<IndexBuffer> triangleIndexBuffer;
-		triangleIndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-		m_TriangleVertexArray->SetIndexBuffer(triangleIndexBuffer);
-		
-		m_SquareVertexArray.reset(VertexArray::Create());
-		float squareVertices[3 * 4] = {
-			-0.75f, -0.75f, 0.0f,
-			 0.75f, -0.75f, 0.0f,
-			 0.75f,  0.75f, 0.0f,
-			-0.75f,  0.75f, 0.0f,
-		};
-		Ref<VertexBuffer> squareVertexBuffer;
-		squareVertexBuffer.reset(VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
-		squareVertexBuffer->SetLayout({
-			{ ShaderDataType::Float3, "in_Position" }
-		});
-		m_SquareVertexArray->AddVertexBuffer(squareVertexBuffer);
-		
-		unsigned int squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		Ref<IndexBuffer> squareIndexBuffer;
-		squareIndexBuffer.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
-		m_SquareVertexArray->SetIndexBuffer(squareIndexBuffer);
-
-		std::string vertexSource = R"(
-#version 330 core
-
-layout(location = 0) in vec3 in_Position;
-layout(location = 1) in vec4 in_Color;
-
-uniform mat4 u_ViewProjection;
-
-out vec4 v_Color;
-
-void main() 
-{
-	v_Color = in_Color;
-	gl_Position = u_ViewProjection * vec4(in_Position, 1.0);
-}
-		)";
-		
-		std::string fragmentSource = R"(
-#version 330 core
-
-layout(location = 0) out vec4 out_Color;
-
-in vec4 v_Color;
-
-void main() 
-{
-	out_Color = v_Color;
-}
-		)";
-
-		m_Shader = CreateScope<Shader>(vertexSource, fragmentSource);
-
-		std::string vertexSourceBlue = R"(
-#version 330 core
-
-layout(location = 0) in vec3 in_Position;
-
-uniform mat4 u_ViewProjection;
-
-void main() 
-{
-	gl_Position = u_ViewProjection * vec4(in_Position, 1.0);
-}
-		)";
-		
-		std::string fragmentSourceBlue = R"(
-#version 330 core
-
-layout(location = 0) out vec4 out_Color;
-
-void main() 
-{
-	out_Color = vec4(0.2, 0.2, 0.8, 1.0);
-}
-		)";
-
-		m_BlueShader = CreateScope<Shader>(vertexSourceBlue, fragmentSourceBlue);
 	}
 
 	Application::~Application()
@@ -127,16 +25,6 @@ void main()
 	{
 		while (m_IsRunning)
 		{
-			RenderCommand::SetClearColor({ .1f, .1f, .1f, 1 });
-			RenderCommand::Clear();
-
-			Renderer::BeginScene(m_Camera);
-			{
-				Renderer::Submit(m_SquareVertexArray, m_BlueShader);
-				Renderer::Submit(m_TriangleVertexArray, m_Shader);
-			}
-			Renderer::EndScene();
-			
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 			
