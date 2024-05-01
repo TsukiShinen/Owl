@@ -11,7 +11,7 @@ namespace Owl
 		static void BeginScene(const OrthographicCamera& pCamera);
 		static void EndScene();
 
-		static void Submit(const Ref<VertexArray>& pVertexArray, const Ref<Shader>& pShader);
+		static void Submit(const Ref<VertexArray>& pVertexArray, const Ref<Shader>& pShader, const glm::mat4& pTransform = glm::mat4(1.0f));
 		
 		static RendererApi::Api GetApi() { return RendererApi::GetApi(); }
 	private:

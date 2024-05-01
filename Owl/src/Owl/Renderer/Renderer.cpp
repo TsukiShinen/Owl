@@ -16,10 +16,12 @@ namespace Owl
 	{
 	}
 
-	void Renderer::Submit(const Ref<VertexArray>& pVertexArray, const Ref<Shader>& pShader)
+	void Renderer::Submit(const Ref<VertexArray>& pVertexArray, const Ref<Shader>& pShader, const glm::mat4& pTransform)
 	{
 		pShader->Bind();
 		pShader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		pShader->UploadUniformMat4("u_Transform", pTransform);
+		
 		pVertexArray->Bind();
 		RenderCommand::DrawIndexed(pVertexArray);
 	}

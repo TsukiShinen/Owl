@@ -1,5 +1,6 @@
 ﻿#include <Owl.h>
 
+#include "glm/gtc/matrix_transform.hpp"
 #include "imgui/imgui.h"
 #include "Owl/Core/Input.h"
 #include "Owl/Events/KeyEvent.h"
@@ -8,7 +9,8 @@ class ExampleLayer : public Owl::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f),
+		m_SquarePosition(0.0f)
 	{
 		m_TriangleVertexArray.reset(Owl::VertexArray::Create());
 
@@ -57,13 +59,14 @@ layout(location = 0) in vec3 in_Position;
 layout(location = 1) in vec4 in_Color;
 
 uniform mat4 u_ViewProjection;
+uniform mat4 u_Transform;
 
 out vec4 v_Color;
 
 void main() 
 {
 	v_Color = in_Color;
-	gl_Position = u_ViewProjection * vec4(in_Position, 1.0);
+	gl_Position = u_ViewProjection * u_Transform * vec4(in_Position, 1.0);
 }
 		)";
 		
@@ -88,10 +91,11 @@ void main()
 layout(location = 0) in vec3 in_Position;
 
 uniform mat4 u_ViewProjection;
+uniform mat4 u_Transform;
 
 void main() 
 {
-	gl_Position = u_ViewProjection * vec4(in_Position, 1.0);
+	gl_Position = u_ViewProjection * u_Transform * vec4(in_Position, 1.0);
 }
 		)";
 		
@@ -125,6 +129,15 @@ void main()
 		if (Owl::Input::IsKeyPressed(Owl::Key::D))
 			m_CameraRotation -= m_CameraRotationSpeed * pTimestep;
 		
+		if (Owl::Input::IsKeyPressed(Owl::Key::J))
+			m_SquarePosition.x -= m_SquareMoveSpeed * pTimestep;
+		if (Owl::Input::IsKeyPressed(Owl::Key::L))
+			m_SquarePosition.x += m_SquareMoveSpeed * pTimestep;
+		if (Owl::Input::IsKeyPressed(Owl::Key::I))
+			m_SquarePosition.y += m_SquareMoveSpeed * pTimestep;
+		if (Owl::Input::IsKeyPressed(Owl::Key::K))
+			m_SquarePosition.y -= m_SquareMoveSpeed * pTimestep;
+		
 		Owl::RenderCommand::SetClearColor({ .1f, .1f, .1f, 1 });
 		Owl::RenderCommand::Clear();
 
@@ -133,7 +146,17 @@ void main()
 
 		Owl::Renderer::BeginScene(m_Camera);
 		{
-			Owl::Renderer::Submit(m_SquareVertexArray, m_BlueShader);
+			static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.05f));
+
+			for (int y = 0; y < 20; ++y)
+			{
+				for (int x = 0; x < 20; ++x)
+				{
+					glm::vec3 pos(x * 0.12f, y * 0.12f, 0.0f);
+					glm::mat4 squareTransform = translate(glm::mat4(1.0f), pos) * scale;
+					Owl::Renderer::Submit(m_SquareVertexArray, m_BlueShader, squareTransform);
+				}
+			}
 			Owl::Renderer::Submit(m_TriangleVertexArray, m_Shader);
 		}
 		Owl::Renderer::EndScene();
@@ -161,6 +184,9 @@ private:
 	
 	float m_CameraRotation = 0.0f;
 	float m_CameraRotationSpeed = 180.0f;
+
+	glm::vec3 m_SquarePosition;
+	float m_SquareMoveSpeed = 2.5f;
 };
 
 class Sandbox : public Owl::Application
