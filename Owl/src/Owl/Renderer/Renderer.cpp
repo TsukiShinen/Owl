@@ -2,6 +2,7 @@
 #include "Renderer.h"
 
 #include "RenderCommand.h"
+#include "Platform/OpenGL/OpenGlShader.h"
 
 namespace Owl
 {
@@ -19,8 +20,8 @@ namespace Owl
 	void Renderer::Submit(const Ref<VertexArray>& pVertexArray, const Ref<Shader>& pShader, const glm::mat4& pTransform)
 	{
 		pShader->Bind();
-		pShader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
-		pShader->UploadUniformMat4("u_Transform", pTransform);
+		std::dynamic_pointer_cast<OpenGlShader>(pShader)->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		std::dynamic_pointer_cast<OpenGlShader>(pShader)->UploadUniformMat4("u_Transform", pTransform);
 		
 		pVertexArray->Bind();
 		RenderCommand::DrawIndexed(pVertexArray);

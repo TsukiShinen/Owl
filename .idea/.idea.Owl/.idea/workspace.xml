@@ -12,9 +12,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Shader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Shader.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Shader.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Shader.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sandbox/src/Sandbox.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sandbox/src/Sandbox.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -190,6 +193,9 @@
       <workItem from="1714503544920" duration="1403000" />
       <workItem from="1714508845112" duration="936000" />
       <workItem from="1714560599892" duration="837000" />
+      <workItem from="1714594017770" duration="60000" />
+      <workItem from="1714594208451" duration="12000" />
+      <workItem from="1714926653235" duration="3472000" />
     </task>
     <servers />
   </component>

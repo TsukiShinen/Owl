@@ -1,9 +1,11 @@
 ﻿#include <Owl.h>
 
 #include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
 #include "imgui/imgui.h"
 #include "Owl/Core/Input.h"
 #include "Owl/Events/KeyEvent.h"
+#include "Platform/OpenGL/OpenGlShader.h"
 
 class ExampleLayer : public Owl::Layer
 {
@@ -83,9 +85,9 @@ void main()
 }
 		)";
 
-		m_Shader = Owl::CreateScope<Owl::Shader>(vertexSource, fragmentSource);
+		m_Shader.reset(Owl::Shader::Create(vertexSource, fragmentSource));
 
-		std::string vertexSourceBlue = R"(
+		std::string vertexSourceFlatColor = R"(
 #version 330 core
 
 layout(location = 0) in vec3 in_Position;
@@ -99,18 +101,20 @@ void main()
 }
 		)";
 		
-		std::string fragmentSourceBlue = R"(
+		std::string fragmentSourceFlatColor = R"(
 #version 330 core
 
 layout(location = 0) out vec4 out_Color;
 
+uniform vec3 u_Color;
+
 void main() 
 {
-	out_Color = vec4(0.2, 0.2, 0.8, 1.0);
+	out_Color = vec4(u_Color, 1.0);
 }
 		)";
 
-		m_BlueShader = Owl::CreateScope<Owl::Shader>(vertexSourceBlue, fragmentSourceBlue);
+		m_FlatColorShader.reset(Owl::Shader::Create(vertexSourceFlatColor, fragmentSourceFlatColor));
 	}
 
 	void OnUpdate(Owl::Timestep pTimestep) override
@@ -148,13 +152,16 @@ void main()
 		{
 			static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.05f));
 
+			std::dynamic_pointer_cast<Owl::OpenGlShader>(m_FlatColorShader)->Bind();
+			std::dynamic_pointer_cast<Owl::OpenGlShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+			
 			for (int y = 0; y < 20; ++y)
 			{
 				for (int x = 0; x < 20; ++x)
 				{
 					glm::vec3 pos(x * 0.12f, y * 0.12f, 0.0f);
 					glm::mat4 squareTransform = translate(glm::mat4(1.0f), pos) * scale;
-					Owl::Renderer::Submit(m_SquareVertexArray, m_BlueShader, squareTransform);
+					Owl::Renderer::Submit(m_SquareVertexArray, m_FlatColorShader, squareTransform);
 				}
 			}
 			Owl::Renderer::Submit(m_TriangleVertexArray, m_Shader);
@@ -164,7 +171,11 @@ void main()
 
 	void OnImGuiRender() override
 	{
-
+		ImGui::Begin("Settings");
+		{
+			ImGui::ColorEdit3("Square Color", value_ptr(m_SquareColor));
+		}
+		ImGui::End();
 	}
 
 	void OnEvent(Owl::Event& pEvent) override
@@ -175,7 +186,7 @@ private:
 	Owl::Ref<Owl::Shader> m_Shader;
 		
 	Owl::Ref<Owl::VertexArray> m_SquareVertexArray;
-	Owl::Ref<Owl::Shader> m_BlueShader;
+	Owl::Ref<Owl::Shader> m_FlatColorShader;
 
 	Owl::OrthographicCamera m_Camera;
 	
@@ -187,6 +198,8 @@ private:
 
 	glm::vec3 m_SquarePosition;
 	float m_SquareMoveSpeed = 2.5f;
+
+	glm::vec3 m_SquareColor = {1.0f, 1.0f, 1.0f};
 };
 
 class Sandbox : public Owl::Application
