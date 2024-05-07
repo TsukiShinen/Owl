@@ -14,6 +14,8 @@ project "Owl"
 	{
 		"src/**.h",
 		"src/**.cpp",
+		"vendor/stb_image/**.h",
+		"vendor/stb_image/**.cpp",
 		"vendor/glm/glm/**.hpp",
 		"vendor/glm/glm/**.inl",
     }
@@ -32,6 +34,7 @@ project "Owl"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}",
     }
 
 	links {

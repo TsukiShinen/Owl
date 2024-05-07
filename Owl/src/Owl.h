@@ -22,6 +22,7 @@
 
 #include "Owl/Renderer/Buffer.h"
 #include "Owl/Renderer/Shader.h"
+#include "Owl/Renderer/Texture.h"
 #include "Owl/Renderer/VertexArray.h"
 
 #include "Owl/Renderer/OrthographicCamera.h"
