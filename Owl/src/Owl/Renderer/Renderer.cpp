@@ -7,7 +7,12 @@
 namespace Owl
 {
 	Renderer::SceneData* Renderer::m_SceneData = new SceneData();
-	
+
+	void Renderer::Init()
+	{
+		RenderCommand::Init();
+	}
+
 	void Renderer::BeginScene(const OrthographicCamera& pCamera)
 	{
 		m_SceneData->ViewProjectionMatrix = pCamera.GetViewProjectionMatrix();

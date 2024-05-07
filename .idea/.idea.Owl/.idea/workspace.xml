@@ -12,17 +12,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Texture.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Texture.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlTexture.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlTexture.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Owl/vendor/stb_image/stb_image.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Owl/vendor/stb_image/stb_image.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dependencies.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Dependencies.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/premake5.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/premake5.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sandbox/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Sandbox/imgui.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RenderCommand.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RenderCommand.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RendererApi.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RendererApi.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlTexture.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlTexture.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sandbox/src/Sandbox.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sandbox/src/Sandbox.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -201,7 +199,7 @@
       <workItem from="1714594017770" duration="60000" />
       <workItem from="1714594208451" duration="12000" />
       <workItem from="1714926653235" duration="3472000" />
-      <workItem from="1715109445268" duration="2863000" />
+      <workItem from="1715109445268" duration="3835000" />
     </task>
     <servers />
   </component>

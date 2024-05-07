@@ -151,8 +151,9 @@ void main()
 		)";
 
 		m_TextureShader.reset(Owl::Shader::Create(vertexSourceTexture, fragmentSourceTexture));
-
+		
 		m_Texture = Owl::Texture2D::Create("Assets/Textures/Checkerboard.png");
+		m_TheChernoLogoTexture = Owl::Texture2D::Create("Assets/Textures/ChernoLogo.png");
 		
 		std::dynamic_pointer_cast<Owl::OpenGlShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<Owl::OpenGlShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
@@ -209,6 +210,9 @@ void main()
 			m_Texture->Bind();
 			Owl::Renderer::Submit(m_SquareVertexArray, m_TextureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
+			m_TheChernoLogoTexture->Bind();
+			Owl::Renderer::Submit(m_SquareVertexArray, m_TextureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
 			// Triangle
 			// Owl::Renderer::Submit(m_TriangleVertexArray, m_Shader);
 		}
@@ -234,7 +238,7 @@ private:
 	Owl::Ref<Owl::VertexArray> m_SquareVertexArray;
 	Owl::Ref<Owl::Shader> m_FlatColorShader, m_TextureShader;
 
-	Owl::Ref<Owl::Texture2D> m_Texture;
+	Owl::Ref<Owl::Texture2D> m_Texture, m_TheChernoLogoTexture;
 
 	Owl::OrthographicCamera m_Camera;
 	

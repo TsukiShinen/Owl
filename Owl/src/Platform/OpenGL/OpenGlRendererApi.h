@@ -6,6 +6,8 @@ namespace Owl
 	class OpenGlRendererApi : public RendererApi
 	{
 	public:
+		void Init() override;
+		
 		void SetClearColor(const glm::vec4& pColor) override;
 		void Clear() override;
 		

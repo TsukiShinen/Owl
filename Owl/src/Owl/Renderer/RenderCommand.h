@@ -6,6 +6,11 @@ namespace Owl
 	class RenderCommand
 	{
 	public:
+		static void Init()
+		{
+			s_RendererApi->Init();
+		}
+		
 		static void SetClearColor(const glm::vec4& pColor)
 		{
 			s_RendererApi->SetClearColor(pColor);

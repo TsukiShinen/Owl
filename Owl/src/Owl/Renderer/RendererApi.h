@@ -7,13 +7,16 @@ namespace Owl
 	class RendererApi
 	{
 	public:
-		virtual ~RendererApi() = default;
 
 		enum class Api
 		{
 			None = 0, OpenGl = 1
 		};
 	public:
+		virtual ~RendererApi() = default;
+		
+		virtual void Init() = 0;
+		
 		virtual void SetClearColor(const glm::vec4& pColor) = 0;
 		virtual void Clear() = 0;
 
