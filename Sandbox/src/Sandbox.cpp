@@ -53,76 +53,16 @@ public:
 		Owl::Ref<Owl::IndexBuffer> squareIndexBuffer;
 		squareIndexBuffer.reset(Owl::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVertexArray->SetIndexBuffer(squareIndexBuffer);
-
-		std::string vertexSource = R"(
-#version 330 core
-
-layout(location = 0) in vec3 in_Position;
-layout(location = 1) in vec4 in_Color;
-
-uniform mat4 u_ViewProjection;
-uniform mat4 u_Transform;
-
-out vec4 v_Color;
-
-void main() 
-{
-	v_Color = in_Color;
-	gl_Position = u_ViewProjection * u_Transform * vec4(in_Position, 1.0);
-}
-		)";
 		
-		std::string fragmentSource = R"(
-#version 330 core
-
-layout(location = 0) out vec4 out_Color;
-
-in vec4 v_Color;
-
-void main() 
-{
-	out_Color = v_Color;
-}
-		)";
-
-		m_Shader.reset(Owl::Shader::Create(vertexSource, fragmentSource));
-
-		std::string vertexSourceFlatColor = R"(
-#version 330 core
-
-layout(location = 0) in vec3 in_Position;
-
-uniform mat4 u_ViewProjection;
-uniform mat4 u_Transform;
-
-void main() 
-{
-	gl_Position = u_ViewProjection * u_Transform * vec4(in_Position, 1.0);
-}
-		)";
-		
-		std::string fragmentSourceFlatColor = R"(
-#version 330 core
-
-layout(location = 0) out vec4 out_Color;
-
-uniform vec3 u_Color;
-
-void main() 
-{
-	out_Color = vec4(u_Color, 1.0);
-}
-		)";
-
-		m_FlatColorShader.reset(Owl::Shader::Create(vertexSourceFlatColor, fragmentSourceFlatColor));
-		
-		m_TextureShader.reset(Owl::Shader::Create("Assets/Shaders/Texture.glsl"));
+		m_ShaderLibrary.Load("Assets/Shaders/VertexPositionColor.glsl");
+		m_ShaderLibrary.Load("Assets/Shaders/FlatColor.glsl");
+		auto textureShader = m_ShaderLibrary.Load("Assets/Shaders/Texture.glsl");
 		
 		m_Texture = Owl::Texture2D::Create("Assets/Textures/Checkerboard.png");
 		m_TheChernoLogoTexture = Owl::Texture2D::Create("Assets/Textures/ChernoLogo.png");
 		
-		std::dynamic_pointer_cast<Owl::OpenGlShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<Owl::OpenGlShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<Owl::OpenGlShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Owl::OpenGlShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Owl::Timestep pTimestep) override
@@ -160,8 +100,8 @@ void main()
 		{
 			static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.08f));
 
-			std::dynamic_pointer_cast<Owl::OpenGlShader>(m_FlatColorShader)->Bind();
-			std::dynamic_pointer_cast<Owl::OpenGlShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+			std::dynamic_pointer_cast<Owl::OpenGlShader>(m_ShaderLibrary.Get("FlatColor"))->Bind();
+			std::dynamic_pointer_cast<Owl::OpenGlShader>(m_ShaderLibrary.Get("FlatColor"))->UploadUniformFloat3("u_Color", m_SquareColor);
 			
 			for (int y = 0; y < 20; ++y)
 			{
@@ -169,15 +109,15 @@ void main()
 				{
 					glm::vec3 pos(x * 0.1f, y * 0.1f, 0.0f);
 					glm::mat4 squareTransform = translate(glm::mat4(1.0f), pos) * scale;
-					Owl::Renderer::Submit(m_SquareVertexArray, m_FlatColorShader, squareTransform);
+					Owl::Renderer::Submit(m_SquareVertexArray, m_ShaderLibrary.Get("FlatColor"), squareTransform);
 				}
 			}
 
 			m_Texture->Bind();
-			Owl::Renderer::Submit(m_SquareVertexArray, m_TextureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+			Owl::Renderer::Submit(m_SquareVertexArray, m_ShaderLibrary.Get("Texture"), glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 			m_TheChernoLogoTexture->Bind();
-			Owl::Renderer::Submit(m_SquareVertexArray, m_TextureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+			Owl::Renderer::Submit(m_SquareVertexArray, m_ShaderLibrary.Get("Texture"), glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 			// Triangle
 			// Owl::Renderer::Submit(m_TriangleVertexArray, m_Shader);
@@ -198,11 +138,10 @@ void main()
 	{
 	}
 private:
+	Owl::ShaderLibrary m_ShaderLibrary;
+	
 	Owl::Ref<Owl::VertexArray> m_TriangleVertexArray;
-	Owl::Ref<Owl::Shader> m_Shader;
-		
 	Owl::Ref<Owl::VertexArray> m_SquareVertexArray;
-	Owl::Ref<Owl::Shader> m_FlatColorShader, m_TextureShader;
 
 	Owl::Ref<Owl::Texture2D> m_Texture, m_TheChernoLogoTexture;
 

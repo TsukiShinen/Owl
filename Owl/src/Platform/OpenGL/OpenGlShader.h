@@ -12,8 +12,10 @@ namespace Owl
 	{
 	public:
 		OpenGlShader(const std::string& pFilePath);
-		OpenGlShader(const std::string& pVertexSource, const std::string& pFragmentSource);
+		OpenGlShader(const std::string& pName, const std::string& pVertexSource, const std::string& pFragmentSource);
 		~OpenGlShader() override;
+		
+		const std::string& GetName() const override { return m_Name; }
 
 		void Bind() const override;
 		void UnBind() const override;
@@ -32,8 +34,10 @@ namespace Owl
 		static std::string ReadFile(const std::string& pFilePath);
 		static std::unordered_map<GLenum, std::string> PreProcess(const std::string& pSource);
 		void Compile(const std::unordered_map<GLenum, std::string>& pShaderSources);
+
 	private:
 		uint32_t m_RendererID;
+		std::string m_Name;
 	};
 	
 }

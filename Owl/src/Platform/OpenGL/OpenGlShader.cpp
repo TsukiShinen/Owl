@@ -22,15 +22,22 @@ namespace Owl
 		const std::string source = ReadFile(pFilePath);
 		const auto shaderSources = PreProcess(source);
 		Compile(shaderSources);
+
+		// Extract Name from file path
+		auto lastSlash = pFilePath.find_last_of("/\\");
+		lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
+		auto lastDot = pFilePath.rfind('.');
+		auto count = lastDot == std::string::npos ? pFilePath.size() - lastSlash : lastDot - lastSlash;
+		m_Name = pFilePath.substr(lastSlash, count);
 	}
 
-	OpenGlShader::OpenGlShader(const std::string& pVertexSource, const std::string& pFragmentSource)
+	OpenGlShader::OpenGlShader(const std::string& pName, const std::string& pVertexSource, const std::string& pFragmentSource)
+		: m_Name(pName)
 	{
-		std::unordered_map<GLenum, std::string> sources{
+		Compile({
 			{ GL_VERTEX_SHADER, pVertexSource },
 			{ GL_FRAGMENT_SHADER, pFragmentSource },
-		};
-		Compile(sources);
+		});
 	}
 
 	OpenGlShader::~OpenGlShader()
@@ -93,7 +100,7 @@ namespace Owl
 	std::string OpenGlShader::ReadFile(const std::string& pFilePath)
 	{
 		std::string result;
-		std::ifstream in(pFilePath, std::ios::in, std::ios::binary);
+		std::ifstream in(pFilePath, std::ios::in | std::ios::binary);
 		if (in)
 		{
 			in.seekg(0, std::ios::end);
@@ -138,7 +145,8 @@ namespace Owl
 	void OpenGlShader::Compile(const std::unordered_map<GLenum, std::string>& pShaderSources)
 	{
 		const GLint program = glCreateProgram();
-		std::vector<GLenum> glShaderIds(pShaderSources.size());
+		std::vector<GLenum> glShaderIds;
+		glShaderIds.reserve(pShaderSources.size());
 
 		for (auto& kv : pShaderSources)
 		{
