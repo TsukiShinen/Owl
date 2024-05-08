@@ -1,12 +1,17 @@
 ﻿#pragma once
+
 #include "glm/glm.hpp"
 #include "Owl/Renderer/Shader.h"
+
+//TODO : Remove
+using GLenum = unsigned int;
 
 namespace Owl
 {
 	class OpenGlShader : public Shader
 	{
 	public:
+		OpenGlShader(const std::string& pFilePath);
 		OpenGlShader(const std::string& pVertexSource, const std::string& pFragmentSource);
 		~OpenGlShader() override;
 
@@ -23,6 +28,10 @@ namespace Owl
 		void UploadUniformMat3(const std::string& pName, const glm::mat3& pMatrix) const;
 		void UploadUniformMat4(const std::string& pName, const glm::mat4& pMatrix) const;
 
+	private:
+		static std::string ReadFile(const std::string& pFilePath);
+		static std::unordered_map<GLenum, std::string> PreProcess(const std::string& pSource);
+		void Compile(const std::unordered_map<GLenum, std::string>& pShaderSources);
 	private:
 		uint32_t m_RendererID;
 	};

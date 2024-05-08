@@ -3,8 +3,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 #include "imgui/imgui.h"
-#include "Owl/Core/Input.h"
-#include "Owl/Events/KeyEvent.h"
+
 #include "Platform/OpenGL/OpenGlShader.h"
 
 class ExampleLayer : public Owl::Layer
@@ -116,41 +115,8 @@ void main()
 		)";
 
 		m_FlatColorShader.reset(Owl::Shader::Create(vertexSourceFlatColor, fragmentSourceFlatColor));
-
-		std::string vertexSourceTexture = R"(
-#version 330 core
-
-layout(location = 0) in vec3 in_Position;
-layout(location = 1) in vec2 in_TexCoord;
-
-uniform mat4 u_ViewProjection;
-uniform mat4 u_Transform;
-
-out vec2 v_TexCoord;
-
-void main() 
-{
-	v_TexCoord = in_TexCoord;
-	gl_Position = u_ViewProjection * u_Transform * vec4(in_Position, 1.0);
-}
-		)";
 		
-		std::string fragmentSourceTexture = R"(
-#version 330 core
-
-layout(location = 0) out vec4 out_Color;
-
-in vec2 v_TexCoord;
-
-uniform sampler2D u_Texture;
-
-void main() 
-{
-	out_Color = texture(u_Texture, v_TexCoord);
-}
-		)";
-
-		m_TextureShader.reset(Owl::Shader::Create(vertexSourceTexture, fragmentSourceTexture));
+		m_TextureShader.reset(Owl::Shader::Create("Assets/Shaders/Texture.glsl"));
 		
 		m_Texture = Owl::Texture2D::Create("Assets/Textures/Checkerboard.png");
 		m_TheChernoLogoTexture = Owl::Texture2D::Create("Assets/Textures/ChernoLogo.png");
