@@ -16,6 +16,7 @@ namespace Owl
 		virtual ~RendererApi() = default;
 		
 		virtual void Init() = 0;
+		virtual void SetViewport(int pI, int pY, uint32_t pWidth, uint32_t pUint32) = 0;
 		
 		virtual void SetClearColor(const glm::vec4& pColor) = 0;
 		virtual void Clear() = 0;

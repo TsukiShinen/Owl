@@ -10,6 +10,11 @@ namespace Owl
 		{
 			s_RendererApi->Init();
 		}
+
+		static void SetViewport(const int pX, const int pY, const uint32_t pWidth, const uint32_t pHeight)
+		{
+			s_RendererApi->SetViewport(pX, pY, pWidth, pHeight);
+		}
 		
 		static void SetClearColor(const glm::vec4& pColor)
 		{

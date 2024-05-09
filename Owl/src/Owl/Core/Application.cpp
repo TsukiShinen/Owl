@@ -33,9 +33,10 @@ namespace Owl
 			const float time = static_cast<float>(glfwGetTime());
 			DeltaTime timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
-			
-			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate(timestep);
+
+			if (!m_IsMinimized)
+				for (Layer* layer : m_LayerStack)
+					layer->OnUpdate(timestep);
 			
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
@@ -50,6 +51,7 @@ namespace Owl
 	{
 		EventDispatcher dispatcher(pEvent);
 		dispatcher.Dispatch<WindowCloseEvent>(OWL_BIND_EVENT_FN(OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(OWL_BIND_EVENT_FN(OnWindowResize));
 
 		for (auto iterator = m_LayerStack.end(); iterator != m_LayerStack.begin(); )
 		{
@@ -69,9 +71,23 @@ namespace Owl
 		m_LayerStack.PushOverlay(pOverlay);
 	}
 
-	bool Application::OnWindowClose(WindowCloseEvent& pCloseEvent)
+	bool Application::OnWindowClose(WindowCloseEvent& pEvent)
 	{
 		m_IsRunning = false;
 		return true;
+	}
+
+	bool Application::OnWindowResize(WindowResizeEvent& pEvent)
+	{
+		if (pEvent.GetWidth() == 0 || pEvent.GetHeight() == 0)
+		{
+			m_IsMinimized = true;
+			return false;
+		}
+
+		m_IsMinimized = false;
+		Renderer::OnWindowResize(pEvent.GetWidth(), pEvent.GetHeight());
+		
+		return false;
 	}
 }

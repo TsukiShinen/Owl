@@ -9,6 +9,7 @@ namespace Owl
 	{
 	public:
 		static void Init();
+		static void OnWindowResize(uint32_t pWidth, uint32_t pHeight);
 		
 		static void BeginScene(const OrthographicCamera& pCamera);
 		static void EndScene();

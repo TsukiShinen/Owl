@@ -27,11 +27,13 @@ namespace Owl
 		static Application& Get() { return *s_Instance; }
 
 	private:
-		bool OnWindowClose(WindowCloseEvent& pCloseEvent);
+		bool OnWindowClose(WindowCloseEvent& pEvent);
+		bool OnWindowResize(WindowResizeEvent& pEvent);
 	private:
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_IsRunning = true;
+		bool m_IsMinimized = false;
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f;
 	private:

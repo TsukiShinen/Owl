@@ -16,6 +16,9 @@ namespace Owl
 
 		OrthographicCamera& GetCamera() { return m_Camera; }
 		const OrthographicCamera& GetCamera() const { return m_Camera; }
+
+		void SetZoomLevel(const float pLevel) { m_ZoomLevel = pLevel; }
+		float GetZoomLevel() const { return m_ZoomLevel; }
 	private:
 		bool OnMouseScrolled(const MouseScrolledEvent& pEvent);
 		bool OnWindowResized(const WindowResizeEvent& pEvent);

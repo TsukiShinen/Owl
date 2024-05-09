@@ -35,8 +35,8 @@ namespace Owl
 	void OrthographicCameraController::OnEvent(Event& pEvent)
 	{
 		EventDispatcher dispatcher(pEvent);
-		dispatcher.Dispatch<MouseScrolledEvent>(OWL_BIND_EVENT_FN(OrthographicCameraController::OnMouseScrolled));
-		dispatcher.Dispatch<WindowResizeEvent>(OWL_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
+		dispatcher.Dispatch<MouseScrolledEvent>(OWL_BIND_EVENT_FN(OnMouseScrolled));
+		dispatcher.Dispatch<WindowResizeEvent>(OWL_BIND_EVENT_FN(OnWindowResized));
 	}
 
 	bool OrthographicCameraController::OnMouseScrolled(const MouseScrolledEvent& pEvent)

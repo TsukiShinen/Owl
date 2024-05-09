@@ -11,6 +11,11 @@ namespace Owl
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
+	void OpenGlRendererApi::SetViewport(const int pX, const int pY, const uint32_t pWidth, const uint32_t pHeight)
+	{
+		glViewport(pX, pY, pWidth, pHeight);
+	}
+
 	void OpenGlRendererApi::SetClearColor(const glm::vec4& pColor)
 	{
 		glClearColor(pColor.r, pColor.g, pColor.b, pColor.a);

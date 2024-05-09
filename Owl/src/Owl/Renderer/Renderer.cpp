@@ -13,6 +13,11 @@ namespace Owl
 		RenderCommand::Init();
 	}
 
+	void Renderer::OnWindowResize(uint32_t pWidth, uint32_t pHeight)
+	{
+		RenderCommand::SetViewport(0, 0, pWidth, pHeight);
+	}
+
 	void Renderer::BeginScene(const OrthographicCamera& pCamera)
 	{
 		m_SceneData->ViewProjectionMatrix = pCamera.GetViewProjectionMatrix();
