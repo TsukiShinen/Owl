@@ -11,6 +11,12 @@ namespace Owl
 		m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;
 	}
 
+	void OrthographicCamera::SetProjection(const float pLeft, const float pRight, const float pBottom, const float pTop)
+	{
+		m_ProjectionMatrix = glm::ortho(pLeft, pRight, pBottom, pTop, -1.0f, 1.0f);
+		m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;
+	}
+
 	void OrthographicCamera::RecalculateViewMatrix()
 	{
 		const glm::mat4 transform = translate(glm::mat4(1.0f), m_Position)

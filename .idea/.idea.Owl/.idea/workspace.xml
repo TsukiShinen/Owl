@@ -12,9 +12,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Shader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Shader.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Shader.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Shader.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/OrthographicCameraController.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/OrthographicCameraController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Layer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Layer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Timestep.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/DeltaTime.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/OrthographicCamera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/OrthographicCamera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/OrthographicCamera.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/OrthographicCamera.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sandbox/src/Sandbox.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sandbox/src/Sandbox.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,6 +203,8 @@
       <workItem from="1715109445268" duration="3835000" />
       <workItem from="1715161007113" duration="2070000" />
       <workItem from="1715178294452" duration="693000" />
+      <workItem from="1715191403442" duration="2358000" />
+      <workItem from="1715242746809" duration="2449000" />
     </task>
     <servers />
   </component>

@@ -10,7 +10,7 @@ class ExampleLayer : public Owl::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f),
+		: Layer("Example"), m_CameraController(1280.0f / 780.0f),
 		m_SquarePosition(0.0f)
 	{
 		m_TriangleVertexArray.reset(Owl::VertexArray::Create());
@@ -65,38 +65,23 @@ public:
 		std::dynamic_pointer_cast<Owl::OpenGlShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
-	void OnUpdate(Owl::Timestep pTimestep) override
+	void OnUpdate(const Owl::DeltaTime pDeltaTime) override
 	{
-		if (Owl::Input::IsKeyPressed(Owl::Key::Left))
-			m_CameraPosition.x -= m_CameraMoveSpeed * pTimestep;
-		if (Owl::Input::IsKeyPressed(Owl::Key::Right))
-			m_CameraPosition.x += m_CameraMoveSpeed * pTimestep;
-		if (Owl::Input::IsKeyPressed(Owl::Key::Up))
-			m_CameraPosition.y += m_CameraMoveSpeed * pTimestep;
-		if (Owl::Input::IsKeyPressed(Owl::Key::Down))
-			m_CameraPosition.y -= m_CameraMoveSpeed * pTimestep;
-		
-		if (Owl::Input::IsKeyPressed(Owl::Key::A))
-			m_CameraRotation += m_CameraRotationSpeed * pTimestep;
-		if (Owl::Input::IsKeyPressed(Owl::Key::D))
-			m_CameraRotation -= m_CameraRotationSpeed * pTimestep;
+		m_CameraController.OnUpdate(pDeltaTime);
 		
 		if (Owl::Input::IsKeyPressed(Owl::Key::J))
-			m_SquarePosition.x -= m_SquareMoveSpeed * pTimestep;
+			m_SquarePosition.x -= m_SquareMoveSpeed * pDeltaTime;
 		if (Owl::Input::IsKeyPressed(Owl::Key::L))
-			m_SquarePosition.x += m_SquareMoveSpeed * pTimestep;
+			m_SquarePosition.x += m_SquareMoveSpeed * pDeltaTime;
 		if (Owl::Input::IsKeyPressed(Owl::Key::I))
-			m_SquarePosition.y += m_SquareMoveSpeed * pTimestep;
+			m_SquarePosition.y += m_SquareMoveSpeed * pDeltaTime;
 		if (Owl::Input::IsKeyPressed(Owl::Key::K))
-			m_SquarePosition.y -= m_SquareMoveSpeed * pTimestep;
+			m_SquarePosition.y -= m_SquareMoveSpeed * pDeltaTime;
 		
 		Owl::RenderCommand::SetClearColor({ .1f, .1f, .1f, 1 });
 		Owl::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
-
-		Owl::Renderer::BeginScene(m_Camera);
+		Owl::Renderer::BeginScene(m_CameraController.GetCamera());
 		{
 			static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.08f));
 
@@ -136,6 +121,7 @@ public:
 
 	void OnEvent(Owl::Event& pEvent) override
 	{
+		m_CameraController.OnEvent(pEvent);
 	}
 private:
 	Owl::ShaderLibrary m_ShaderLibrary;
@@ -145,13 +131,7 @@ private:
 
 	Owl::Ref<Owl::Texture2D> m_Texture, m_TheChernoLogoTexture;
 
-	Owl::OrthographicCamera m_Camera;
-	
-	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 5.0f;
-	
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 180.0f;
+	Owl::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquarePosition;
 	float m_SquareMoveSpeed = 2.5f;

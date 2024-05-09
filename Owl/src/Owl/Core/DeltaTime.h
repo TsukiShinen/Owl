@@ -2,10 +2,10 @@
 
 namespace Owl
 {
-	class Timestep
+	class DeltaTime
 	{
 	public:
-		Timestep(float pTime = 0.0f)
+		DeltaTime(float pTime = 0.0f)
 			: m_Time(pTime)
 		{
 			

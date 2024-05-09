@@ -31,7 +31,7 @@ namespace Owl
 		while (m_IsRunning)
 		{
 			const float time = static_cast<float>(glfwGetTime());
-			Timestep timestep = time - m_LastFrameTime;
+			DeltaTime timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 			
 			for (Layer* layer : m_LayerStack)
