@@ -28,7 +28,3 @@
 
 #include "Owl/Renderer/OrthographicCamera.h"
 // ----------------------------------
-
-// -- Entry Point -------------------
-#include "Owl/Core/EntryPoint.h"
-// ----------------------------------
