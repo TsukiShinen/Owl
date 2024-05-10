@@ -10,10 +10,10 @@ namespace Owl
 		unsigned int Width;
 		unsigned int Height;
 
-		WindowProps(std::string pTitle = "Owl Engine", const unsigned int pWidth = 1280, const unsigned int pHeight = 720)
+		WindowProps(std::string pTitle = "Owl Engine", const unsigned int pWidth = 1280,
+		            const unsigned int pHeight = 720)
 			: Title(std::move(pTitle)), Width(pWidth), Height(pHeight)
 		{
-			
 		}
 	};
 
@@ -33,7 +33,7 @@ namespace Owl
 		virtual void SetEventCallback(const EventCallbackFunction& pCallback) = 0;
 		virtual void SetVSync(bool pEnabled) = 0;
 		virtual bool IsVSync() const = 0;
-		
+
 		virtual void* GetNativeWindow() = 0;
 
 		static Window* Create(const WindowProps& pProps = WindowProps());

@@ -8,8 +8,11 @@ namespace Owl
 	{
 	public:
 		WindowResizeEvent(const unsigned int pWidth, const unsigned int pHeight)
-			: m_Width(pWidth), m_Height(pHeight) {}
-		virtual ~WindowResizeEvent() = default;
+			: m_Width(pWidth), m_Height(pHeight)
+		{
+		}
+
+		~WindowResizeEvent() override = default;
 
 		unsigned int GetWidth() const { return m_Width; }
 		unsigned int GetHeight() const { return m_Height; }
@@ -23,6 +26,7 @@ namespace Owl
 
 		EVENT_CLASS_TYPE(WindowResize)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+
 	private:
 		unsigned int m_Width, m_Height;
 	};
@@ -31,7 +35,7 @@ namespace Owl
 	{
 	public:
 		WindowCloseEvent() = default;
-		virtual ~WindowCloseEvent() = default;
+		~WindowCloseEvent() override = default;
 
 		EVENT_CLASS_TYPE(WindowClose)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
@@ -41,7 +45,7 @@ namespace Owl
 	{
 	public:
 		AppTickEvent() = default;
-		virtual ~AppTickEvent() = default;
+		~AppTickEvent() override = default;
 
 		EVENT_CLASS_TYPE(AppTick)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
@@ -51,7 +55,7 @@ namespace Owl
 	{
 	public:
 		AppUpdateEvent() = default;
-		virtual ~AppUpdateEvent() = default;
+		~AppUpdateEvent() override = default;
 
 		EVENT_CLASS_TYPE(AppUpdate)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
@@ -61,7 +65,7 @@ namespace Owl
 	{
 	public:
 		AppRenderEvent() = default;
-		virtual ~AppRenderEvent() = default;
+		~AppRenderEvent() override = default;
 
 		EVENT_CLASS_TYPE(AppRender)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)

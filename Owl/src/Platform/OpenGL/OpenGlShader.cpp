@@ -31,12 +31,13 @@ namespace Owl
 		m_Name = pFilePath.substr(lastSlash, count);
 	}
 
-	OpenGlShader::OpenGlShader(const std::string& pName, const std::string& pVertexSource, const std::string& pFragmentSource)
+	OpenGlShader::OpenGlShader(const std::string& pName, const std::string& pVertexSource,
+	                           const std::string& pFragmentSource)
 		: m_Name(pName)
 	{
 		Compile({
-			{ GL_VERTEX_SHADER, pVertexSource },
-			{ GL_FRAGMENT_SHADER, pFragmentSource },
+			{GL_VERTEX_SHADER, pVertexSource},
+			{GL_FRAGMENT_SHADER, pFragmentSource},
 		});
 	}
 

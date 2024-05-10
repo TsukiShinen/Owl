@@ -48,9 +48,9 @@ namespace Owl
 
 	public:
 		virtual ~Event() = default;
-		
+
 		bool IsHandled = false;
-		
+
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
@@ -68,10 +68,9 @@ namespace Owl
 		EventDispatcher(Event& pEvent)
 			: m_Event(pEvent)
 		{
-			
 		}
 
-		template<typename T, typename F>
+		template <typename T, typename F>
 		bool Dispatch(const F& pFunction)
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
@@ -81,7 +80,7 @@ namespace Owl
 			}
 			return false;
 		}
-		
+
 	private:
 		Event& m_Event;
 	};

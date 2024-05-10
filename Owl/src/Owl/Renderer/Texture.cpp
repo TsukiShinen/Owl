@@ -8,7 +8,8 @@ namespace Owl
 {
 	Ref<Texture2D> Texture2D::Create(const std::string& pPath)
 	{
-		switch (Renderer::GetApi()) {
+		switch (Renderer::GetApi())
+		{
 		case RendererApi::Api::None:
 			OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported!")
 			return nullptr;

@@ -28,6 +28,7 @@ namespace Owl
 
 	void OpenGlRendererApi::DrawIndexed(const Ref<VertexArray>& pVertexArray)
 	{
-		glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(pVertexArray->GetIndexBuffer()->GetCount()), GL_UNSIGNED_INT, nullptr);
+		glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(pVertexArray->GetIndexBuffer()->GetCount()), GL_UNSIGNED_INT,
+		               nullptr);
 	}
 }

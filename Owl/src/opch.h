@@ -15,9 +15,9 @@
 
 #include "Owl/Core/Base.h"
 
-#include "Owl/Core/Log.h"
 #include "Owl/Core/Assert.h"
+#include "Owl/Core/Log.h"
 
 #ifdef OWL_PLATFORM_WINDOWS
-	#include <Windows.h>
+#include <Windows.h>
 #endif

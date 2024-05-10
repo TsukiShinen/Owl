@@ -15,17 +15,17 @@ namespace Owl
 		{
 			s_RendererApi->SetViewport(pX, pY, pWidth, pHeight);
 		}
-		
+
 		static void SetClearColor(const glm::vec4& pColor)
 		{
 			s_RendererApi->SetClearColor(pColor);
 		}
-		
+
 		static void Clear()
 		{
 			s_RendererApi->Clear();
 		}
-		
+
 		static void DrawIndexed(const Ref<VertexArray>& pVertexArray)
 		{
 			s_RendererApi->DrawIndexed(pVertexArray);
@@ -34,5 +34,4 @@ namespace Owl
 	private:
 		static Scope<RendererApi> s_RendererApi;
 	};
-	
 }

@@ -31,12 +31,14 @@ namespace Owl
 		OWL_CORE_ASSERT(internalFormat & dataFormat, "Format not supported!")
 
 		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererId);
-		glTextureStorage2D(m_RendererId, 1, internalFormat, static_cast<GLsizei>(m_Width), static_cast<GLsizei>(m_Height));
+		glTextureStorage2D(m_RendererId, 1, internalFormat, static_cast<GLsizei>(m_Width),
+		                   static_cast<GLsizei>(m_Height));
 
 		glTextureParameteri(m_RendererId, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTextureParameteri(m_RendererId, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-		glTextureSubImage2D(m_RendererId, 0, 0, 0,static_cast<GLsizei>(m_Width), static_cast<GLsizei>(m_Height), dataFormat, GL_UNSIGNED_BYTE, data);
+		glTextureSubImage2D(m_RendererId, 0, 0, 0, static_cast<GLsizei>(m_Width), static_cast<GLsizei>(m_Height),
+		                    dataFormat, GL_UNSIGNED_BYTE, data);
 
 		stbi_image_free(data);
 	}

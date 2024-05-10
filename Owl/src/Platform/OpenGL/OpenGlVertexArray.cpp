@@ -28,7 +28,7 @@ namespace Owl
 		OWL_CORE_ASSERT(false, "Unknown ShaderDataType!")
 		return 0;
 	}
-	
+
 	OpenGlVertexArray::OpenGlVertexArray()
 	{
 		glCreateVertexArrays(1, &m_RendererId);
@@ -52,7 +52,7 @@ namespace Owl
 	void OpenGlVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& pVertexBuffer)
 	{
 		OWL_CORE_ASSERT(!pVertexBuffer->GetLayout().GetElements().empty(), "Vertex buffer has no layout!")
-		
+
 		glBindVertexArray(m_RendererId);
 		pVertexBuffer->Bind();
 
@@ -61,11 +61,11 @@ namespace Owl
 		{
 			glEnableVertexAttribArray(m_VertexBufferIndex);
 			glVertexAttribPointer(m_VertexBufferIndex,
-				static_cast<GLint>(element.GetComponentCount()),
-				ShaderDataTypeToOpenGlBaseType(element.Type),
-				element.Normalized ? GL_TRUE : GL_FALSE,
-				static_cast<GLsizei>(layout.GetStride()),
-				(const void*)(uintptr_t)element.Offset);
+			                      static_cast<GLint>(element.GetComponentCount()),
+			                      ShaderDataTypeToOpenGlBaseType(element.Type),
+			                      element.Normalized ? GL_TRUE : GL_FALSE,
+			                      static_cast<GLsizei>(layout.GetStride()),
+			                      (const void*)static_cast<uintptr_t>(element.Offset));
 			m_VertexBufferIndex++;
 		}
 

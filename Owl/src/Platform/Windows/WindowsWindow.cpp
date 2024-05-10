@@ -15,7 +15,7 @@ namespace Owl
 	{
 		OWL_CORE_ERROR("GLFW Error ({0}) : {1}", pError, pDescription);
 	}
-	
+
 	Window* Window::Create(const WindowProps& pProps)
 	{
 		return new WindowsWindow(pProps);
@@ -68,12 +68,13 @@ namespace Owl
 			glfwSetErrorCallback(GLFWErrorCallback);
 		}
 
-		m_Window = glfwCreateWindow(static_cast<int>(m_Data.Width), static_cast<int>(m_Data.Height), m_Data.Title.c_str(), nullptr, nullptr);
+		m_Window = glfwCreateWindow(static_cast<int>(m_Data.Width), static_cast<int>(m_Data.Height),
+		                            m_Data.Title.c_str(), nullptr, nullptr);
 		++s_GlfwWindowCount;
-		
+
 		m_Context = CreateScope<OpenGLContext>(m_Window);
 		m_Context->Init();
-		
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -119,7 +120,7 @@ namespace Owl
 					data.EventCallback(event);
 					break;
 				}
-			default:;
+			default: ;
 			}
 		});
 
@@ -141,7 +142,7 @@ namespace Owl
 					data.EventCallback(event);
 					break;
 				}
-			default:;
+			default: ;
 			}
 		});
 

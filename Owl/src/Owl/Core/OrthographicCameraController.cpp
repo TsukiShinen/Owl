@@ -6,7 +6,9 @@
 namespace Owl
 {
 	OrthographicCameraController::OrthographicCameraController(const float pRatioAspect, const bool pEnableRotation)
-		: m_AspectRatio(pRatioAspect), m_Camera(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel), m_IsRotationEnabled(pEnableRotation)
+		: m_AspectRatio(pRatioAspect),
+		  m_Camera(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel),
+		  m_IsRotationEnabled(pEnableRotation)
 	{
 	}
 
@@ -45,7 +47,7 @@ namespace Owl
 				m_CameraRotation -= 360.0f;
 			else if (m_CameraRotation <= -180.0f)
 				m_CameraRotation += 360.0f;
-			
+
 			m_Camera.SetRotation(m_CameraRotation);
 		}
 	}
@@ -62,7 +64,7 @@ namespace Owl
 		m_ZoomLevel -= pEvent.GetYOffset() * 0.25f;
 		m_ZoomLevel = std::max(m_ZoomLevel, 0.25f);
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
-		
+
 		return false;
 	}
 
@@ -70,7 +72,7 @@ namespace Owl
 	{
 		m_AspectRatio = static_cast<float>(pEvent.GetWidth()) / static_cast<float>(pEvent.GetHeight());
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
-		
+
 		return false;
 	}
 }

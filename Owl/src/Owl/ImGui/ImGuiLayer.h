@@ -17,5 +17,4 @@ namespace Owl
 		void Begin();
 		void End();
 	};
-	
 }

@@ -11,17 +11,17 @@ namespace Owl
 	{
 		switch (pType)
 		{
-		case ShaderDataType::Float:    return 4;
-		case ShaderDataType::Float2:   return 4 * 2;
-		case ShaderDataType::Float3:   return 4 * 3;
-		case ShaderDataType::Float4:   return 4 * 4;
-		case ShaderDataType::Mat3:     return 4 * 3 * 3;
-		case ShaderDataType::Mat4:     return 4 * 4 * 4;
-		case ShaderDataType::Int:      return 4;
-		case ShaderDataType::Int2:     return 4 * 2;
-		case ShaderDataType::Int3:     return 4 * 3;
-		case ShaderDataType::Int4:     return 4 * 4;
-		case ShaderDataType::Bool:     return 1;
+		case ShaderDataType::Float: return 4;
+		case ShaderDataType::Float2: return 4 * 2;
+		case ShaderDataType::Float3: return 4 * 3;
+		case ShaderDataType::Float4: return 4 * 4;
+		case ShaderDataType::Mat3: return 4 * 3 * 3;
+		case ShaderDataType::Mat4: return 4 * 4 * 4;
+		case ShaderDataType::Int: return 4;
+		case ShaderDataType::Int2: return 4 * 2;
+		case ShaderDataType::Int3: return 4 * 3;
+		case ShaderDataType::Int4: return 4 * 4;
+		case ShaderDataType::Bool: return 1;
 		case ShaderDataType::None:
 			OWL_CORE_ASSERT(false, "ShaderDataType::None is not supported!")
 			break;
@@ -30,7 +30,7 @@ namespace Owl
 		OWL_CORE_ASSERT(false, "Unknow ShaderDataType!")
 		return 0;
 	}
-	
+
 	struct BufferElement
 	{
 		std::string Name;
@@ -40,29 +40,29 @@ namespace Owl
 		bool Normalized;
 
 		BufferElement() = default;
+
 		BufferElement(const ShaderDataType pType, std::string pName, const bool pNormalized = false)
 			: Name(std::move(pName)), Type(pType), Size(ShaderDataTypeSize(pType)), Offset(0), Normalized(pNormalized)
 		{
-			
 		}
 
 		uint32_t GetComponentCount() const
 		{
 			switch (Type)
 			{
-			case ShaderDataType::Float:   return 1;
-			case ShaderDataType::Float2:  return 2;
-			case ShaderDataType::Float3:  return 3;
-			case ShaderDataType::Float4:  return 4;
-			case ShaderDataType::Mat3:    return 3 * 3;
-			case ShaderDataType::Mat4:    return 4 * 4;
-			case ShaderDataType::Int:     return 1;
-			case ShaderDataType::Int2:    return 2;
-			case ShaderDataType::Int3:    return 3;
-			case ShaderDataType::Int4:    return 4;
-			case ShaderDataType::Bool:    return 1;
+			case ShaderDataType::Float: return 1;
+			case ShaderDataType::Float2: return 2;
+			case ShaderDataType::Float3: return 3;
+			case ShaderDataType::Float4: return 4;
+			case ShaderDataType::Mat3: return 3 * 3;
+			case ShaderDataType::Mat4: return 4 * 4;
+			case ShaderDataType::Int: return 1;
+			case ShaderDataType::Int2: return 2;
+			case ShaderDataType::Int3: return 3;
+			case ShaderDataType::Int4: return 4;
+			case ShaderDataType::Bool: return 1;
 			case ShaderDataType::None:
-			OWL_CORE_ASSERT(false, "ShaderDataType::None is not supported!")
+				OWL_CORE_ASSERT(false, "ShaderDataType::None is not supported!")
 				break;
 			}
 
@@ -70,17 +70,18 @@ namespace Owl
 			return 0;
 		}
 	};
-	
+
 	class BufferLayout
 	{
 	public:
 		BufferLayout() = default;
+
 		BufferLayout(const std::initializer_list<BufferElement>& pElements)
 			: m_Elements(pElements)
 		{
 			CalculateOffsetsAndStride();
 		}
-		
+
 		uint32_t GetStride() const { return m_Stride; }
 		const std::vector<BufferElement>& GetElements() const { return m_Elements; }
 
@@ -88,6 +89,7 @@ namespace Owl
 		std::vector<BufferElement>::iterator end() { return m_Elements.end(); }
 		std::vector<BufferElement>::const_iterator begin() const { return m_Elements.begin(); }
 		std::vector<BufferElement>::const_iterator end() const { return m_Elements.end(); }
+
 	private:
 		void CalculateOffsetsAndStride()
 		{
@@ -100,16 +102,16 @@ namespace Owl
 				m_Stride += element.Size;
 			}
 		}
-	private:
+
 		std::vector<BufferElement> m_Elements;
 		uint32_t m_Stride;
 	};
-	
+
 	class VertexBuffer
 	{
 	public:
 		virtual ~VertexBuffer() = default;
-		
+
 		virtual void Bind() const = 0;
 		virtual void UnBind() const = 0;
 
@@ -118,12 +120,12 @@ namespace Owl
 
 		static Ref<VertexBuffer> Create(const float* pVertices, uint32_t pSize);
 	};
-	
+
 	class IndexBuffer
 	{
 	public:
 		virtual ~IndexBuffer() = default;
-		
+
 		virtual void Bind() const = 0;
 		virtual void UnBind() const = 0;
 

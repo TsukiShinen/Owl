@@ -10,11 +10,11 @@ namespace Owl
 		int GetKeyCode() const { return m_KeyCode; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
+
 	protected:
 		KeyEvent(const uint16_t pKeyCode)
 			: m_KeyCode(pKeyCode)
 		{
-			
 		}
 
 		KeyCode m_KeyCode;
@@ -26,7 +26,6 @@ namespace Owl
 		KeyPressedEvent(const uint16_t pKeyCode, const int pRepeatCount)
 			: KeyEvent(pKeyCode), m_RepeatCount(pRepeatCount)
 		{
-			
 		}
 
 		int GetRepeatCount() const { return m_RepeatCount; }
@@ -39,6 +38,7 @@ namespace Owl
 		}
 
 		EVENT_CLASS_TYPE(KeyPressed)
+
 	private:
 		int m_RepeatCount;
 	};
@@ -49,7 +49,6 @@ namespace Owl
 		KeyReleasedEvent(const uint16_t pKeyCode)
 			: KeyEvent(pKeyCode)
 		{
-			
 		}
 
 		std::string ToString() const override

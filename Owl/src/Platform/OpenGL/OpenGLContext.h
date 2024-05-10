@@ -9,11 +9,11 @@ namespace Owl
 	{
 	public:
 		OpenGLContext(GLFWwindow* pWindowHandle);
-		
+
 		void Init() override;
 		void SwapBuffer() override;
+
 	private:
 		GLFWwindow* m_WindowHandle;
 	};
-	
 }

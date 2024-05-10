@@ -9,11 +9,11 @@ namespace Owl
 	{
 	public:
 		virtual ~Texture() = default;
-		
+
 		virtual uint32_t GetWidth() const = 0;
 		virtual uint32_t GetHeight() const = 0;
 
-		virtual void Bind(const uint32_t pSlot = 0) const = 0;
+		virtual void Bind(uint32_t pSlot = 0) const = 0;
 	};
 
 	class Texture2D : public Texture

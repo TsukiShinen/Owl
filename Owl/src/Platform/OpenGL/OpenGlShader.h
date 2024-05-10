@@ -14,12 +14,12 @@ namespace Owl
 		OpenGlShader(const std::string& pFilePath);
 		OpenGlShader(const std::string& pName, const std::string& pVertexSource, const std::string& pFragmentSource);
 		~OpenGlShader() override;
-		
+
 		const std::string& GetName() const override { return m_Name; }
 
 		void Bind() const override;
 		void UnBind() const override;
-		
+
 		void UploadUniformInt(const std::string& pName, int pValue) const;
 
 		void UploadUniformFloat(const std::string& pName, float pValue) const;
@@ -35,9 +35,7 @@ namespace Owl
 		static std::unordered_map<GLenum, std::string> PreProcess(const std::string& pSource);
 		void Compile(const std::unordered_map<GLenum, std::string>& pShaderSources);
 
-	private:
 		uint32_t m_RendererID;
 		std::string m_Name;
 	};
-	
 }

@@ -8,7 +8,8 @@ namespace Owl
 {
 	Ref<VertexArray> VertexArray::Create()
 	{
-		switch (Renderer::GetApi()) {
+		switch (Renderer::GetApi())
+		{
 		case RendererApi::Api::None:
 			OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported!")
 			return nullptr;

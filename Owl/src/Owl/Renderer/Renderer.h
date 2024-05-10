@@ -10,12 +10,13 @@ namespace Owl
 	public:
 		static void Init();
 		static void OnWindowResize(uint32_t pWidth, uint32_t pHeight);
-		
+
 		static void BeginScene(const OrthographicCamera& pCamera);
 		static void EndScene();
 
-		static void Submit(const Ref<VertexArray>& pVertexArray, const Ref<Shader>& pShader, const glm::mat4& pTransform = glm::mat4(1.0f));
-		
+		static void Submit(const Ref<VertexArray>& pVertexArray, const Ref<Shader>& pShader,
+		                   const glm::mat4& pTransform = glm::mat4(1.0f));
+
 		static RendererApi::Api GetApi() { return RendererApi::GetApi(); }
 
 	private:
@@ -26,5 +27,4 @@ namespace Owl
 
 		static Scope<SceneData> s_SceneData;
 	};
-	
 }

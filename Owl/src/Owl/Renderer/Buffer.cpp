@@ -8,7 +8,8 @@ namespace Owl
 {
 	Ref<VertexBuffer> VertexBuffer::Create(const float* pVertices, const uint32_t pSize)
 	{
-		switch (Renderer::GetApi()) {
+		switch (Renderer::GetApi())
+		{
 		case RendererApi::Api::None:
 			OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported!")
 			return nullptr;
@@ -22,7 +23,8 @@ namespace Owl
 
 	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* pIndices, const uint32_t pCount)
 	{
-		switch (Renderer::GetApi()) {
+		switch (Renderer::GetApi())
+		{
 		case RendererApi::Api::None:
 			OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported !")
 			return nullptr;

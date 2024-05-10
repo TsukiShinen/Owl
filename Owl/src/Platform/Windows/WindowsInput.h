@@ -6,8 +6,8 @@ namespace Owl
 	class WindowsInput : public Input
 	{
 	public:
-		virtual ~WindowsInput() = default;
-		
+		~WindowsInput() override = default;
+
 	protected:
 		bool IsKeyPressedImpl(KeyCode pKeyCode) override;
 		bool IsMouseButtonPressedImpl(MouseCode pMouseCode) override;
@@ -15,5 +15,4 @@ namespace Owl
 		float GetCursorYImpl() override;
 		std::pair<float, float> GetCursorPositionImpl() override;
 	};
-	
 }

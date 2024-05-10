@@ -21,7 +21,8 @@ namespace Owl
 		return nullptr;
 	}
 
-	Ref<Shader> Shader::Create(const std::string& pName, const std::string& pVertexSource, const std::string& pFragmentSource)
+	Ref<Shader> Shader::Create(const std::string& pName, const std::string& pVertexSource,
+	                           const std::string& pFragmentSource)
 	{
 		switch (Renderer::GetApi())
 		{

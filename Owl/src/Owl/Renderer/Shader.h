@@ -13,7 +13,8 @@ namespace Owl
 		virtual const std::string& GetName() const = 0;
 
 		static Ref<Shader> Create(const std::string& pFilePath);
-		static Ref<Shader> Create(const std::string& pName, const std::string& pVertexSource, const std::string& pFragmentSource);
+		static Ref<Shader> Create(const std::string& pName, const std::string& pVertexSource,
+		                          const std::string& pFragmentSource);
 	};
 
 	class ShaderLibrary
@@ -27,6 +28,7 @@ namespace Owl
 		Ref<Shader> Get(const std::string& pName);
 
 		bool Exists(const std::string& pName) const;
+
 	private:
 		std::unordered_map<std::string, Ref<Shader>> m_Shaders;
 	};

@@ -30,9 +30,10 @@ namespace Owl
 	void Renderer::Submit(const Ref<VertexArray>& pVertexArray, const Ref<Shader>& pShader, const glm::mat4& pTransform)
 	{
 		pShader->Bind();
-		std::dynamic_pointer_cast<OpenGlShader>(pShader)->UploadUniformMat4("u_ViewProjection", s_SceneData->ViewProjectionMatrix);
+		std::dynamic_pointer_cast<OpenGlShader>(pShader)->UploadUniformMat4(
+			"u_ViewProjection", s_SceneData->ViewProjectionMatrix);
 		std::dynamic_pointer_cast<OpenGlShader>(pShader)->UploadUniformMat4("u_Transform", pTransform);
-		
+
 		pVertexArray->Bind();
 		RenderCommand::DrawIndexed(pVertexArray);
 	}

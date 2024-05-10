@@ -7,12 +7,12 @@
 namespace Owl
 {
 	Application* Application::s_Instance = nullptr;
-	
+
 	Application::Application()
 	{
 		OWL_CORE_ASSERT(!s_Instance, "Application already exists!")
 		s_Instance = this;
-		
+
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(OWL_BIND_EVENT_FN(OnEvent));
 
@@ -33,12 +33,12 @@ namespace Owl
 			if (!m_IsMinimized)
 				for (Layer* layer : m_LayerStack)
 					layer->OnUpdate(deltaTime);
-			
+
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
 				layer->OnImGuiRender();
 			m_ImGuiLayer->End();
-			
+
 			m_Window->OnUpdate();
 		}
 	}
@@ -49,7 +49,7 @@ namespace Owl
 		dispatcher.Dispatch<WindowCloseEvent>(OWL_BIND_EVENT_FN(OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(OWL_BIND_EVENT_FN(OnWindowResize));
 
-		for (auto iterator = m_LayerStack.end(); iterator != m_LayerStack.begin(); )
+		for (auto iterator = m_LayerStack.end(); iterator != m_LayerStack.begin();)
 		{
 			(*--iterator)->OnEvent(pEvent);
 			if (pEvent.IsHandled)
@@ -83,7 +83,7 @@ namespace Owl
 
 		m_IsMinimized = false;
 		Renderer::OnWindowResize(pEvent.GetWidth(), pEvent.GetHeight());
-		
+
 		return false;
 	}
 }
