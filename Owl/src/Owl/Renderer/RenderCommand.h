@@ -32,7 +32,7 @@ namespace Owl
 		}
 
 	private:
-		static RendererApi* s_RendererApi;
+		static Scope<RendererApi> s_RendererApi;
 	};
 	
 }

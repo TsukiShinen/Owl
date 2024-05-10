@@ -13,7 +13,7 @@ public:
 		: Layer("Example"), m_CameraController(1280.0f / 780.0f),
 		m_SquarePosition(0.0f)
 	{
-		m_TriangleVertexArray.reset(Owl::VertexArray::Create());
+		m_TriangleVertexArray = Owl::VertexArray::Create();
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
@@ -21,8 +21,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
 		};
 
-		Owl::Ref<Owl::VertexBuffer> triangleVertexBuffer;
-		triangleVertexBuffer.reset(Owl::VertexBuffer::Create(vertices, sizeof(vertices)));
+		Owl::Ref<Owl::VertexBuffer> triangleVertexBuffer = Owl::VertexBuffer::Create(vertices, sizeof(vertices));
 		triangleVertexBuffer->SetLayout({
 			{ Owl::ShaderDataType::Float3, "in_Position" },
 			{ Owl::ShaderDataType::Float4, "in_Color" }
@@ -30,19 +29,17 @@ public:
 		m_TriangleVertexArray->AddVertexBuffer(triangleVertexBuffer);
 
 		unsigned int indices[3] = { 0, 1, 2 };
-		Owl::Ref<Owl::IndexBuffer> triangleIndexBuffer;
-		triangleIndexBuffer.reset(Owl::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		Owl::Ref<Owl::IndexBuffer> triangleIndexBuffer = Owl::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_TriangleVertexArray->SetIndexBuffer(triangleIndexBuffer);
 		
-		m_SquareVertexArray.reset(Owl::VertexArray::Create());
+		m_SquareVertexArray = Owl::VertexArray::Create();
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
 			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
 			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f,
 		};
-		Owl::Ref<Owl::VertexBuffer> squareVertexBuffer;
-		squareVertexBuffer.reset(Owl::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		Owl::Ref<Owl::VertexBuffer> squareVertexBuffer = Owl::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 		squareVertexBuffer->SetLayout({
 			{ Owl::ShaderDataType::Float3, "in_Position" },
 			{ Owl::ShaderDataType::Float2, "in_TexCoord" }
@@ -50,8 +47,7 @@ public:
 		m_SquareVertexArray->AddVertexBuffer(squareVertexBuffer);
 		
 		unsigned int squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		Owl::Ref<Owl::IndexBuffer> squareIndexBuffer;
-		squareIndexBuffer.reset(Owl::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		Owl::Ref<Owl::IndexBuffer> squareIndexBuffer = Owl::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 		m_SquareVertexArray->SetIndexBuffer(squareIndexBuffer);
 		
 		m_ShaderLibrary.Load("Assets/Shaders/VertexPositionColor.glsl");
@@ -147,10 +143,7 @@ public:
 		PushLayer(new ExampleLayer());
 	}
 
-	~Sandbox()
-	{
-		
-	}
+	~Sandbox() override = default;
 };
 
 Owl::Application* Owl::CreateApplication()

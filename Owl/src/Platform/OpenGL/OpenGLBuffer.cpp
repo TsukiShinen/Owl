@@ -7,6 +7,7 @@ namespace Owl
 {
 	// ========== VERTEX ===========
 	OpenGlVertexBuffer::OpenGlVertexBuffer(const float* pVertices, const uint32_t pSize)
+		: m_Layout()
 	{
 		glCreateBuffers(1, &m_RendererId);
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererId);
@@ -29,12 +30,12 @@ namespace Owl
 	}
 
 	// ========== INDEX ===========
-	OpenGlIndexBuffer::OpenGlIndexBuffer(uint32_t* pIndices, uint32_t pCount)
+	OpenGlIndexBuffer::OpenGlIndexBuffer(const uint32_t* pIndices, const uint32_t pCount)
 		: m_Count(pCount)
 	{
 		glCreateBuffers(1, &m_RendererId);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererId);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, pCount * sizeof(uint32_t), pIndices, GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, static_cast<GLsizeiptr>(pCount * sizeof(uint32_t)), pIndices, GL_STATIC_DRAW);
 	}
 
 	OpenGlIndexBuffer::~OpenGlIndexBuffer()

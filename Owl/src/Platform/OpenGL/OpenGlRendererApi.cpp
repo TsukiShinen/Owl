@@ -13,7 +13,7 @@ namespace Owl
 
 	void OpenGlRendererApi::SetViewport(const int pX, const int pY, const uint32_t pWidth, const uint32_t pHeight)
 	{
-		glViewport(pX, pY, pWidth, pHeight);
+		glViewport(pX, pY, static_cast<GLsizei>(pWidth), static_cast<GLsizei>(pHeight));
 	}
 
 	void OpenGlRendererApi::SetClearColor(const glm::vec4& pColor)
@@ -28,6 +28,6 @@ namespace Owl
 
 	void OpenGlRendererApi::DrawIndexed(const Ref<VertexArray>& pVertexArray)
 	{
-		glDrawElements(GL_TRIANGLES, pVertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+		glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(pVertexArray->GetIndexBuffer()->GetCount()), GL_UNSIGNED_INT, nullptr);
 	}
 }

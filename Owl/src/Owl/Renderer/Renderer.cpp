@@ -6,7 +6,7 @@
 
 namespace Owl
 {
-	Renderer::SceneData* Renderer::m_SceneData = new SceneData();
+	Scope<Renderer::SceneData> Renderer::s_SceneData = CreateScope<SceneData>();
 
 	void Renderer::Init()
 	{
@@ -20,7 +20,7 @@ namespace Owl
 
 	void Renderer::BeginScene(const OrthographicCamera& pCamera)
 	{
-		m_SceneData->ViewProjectionMatrix = pCamera.GetViewProjectionMatrix();
+		s_SceneData->ViewProjectionMatrix = pCamera.GetViewProjectionMatrix();
 	}
 
 	void Renderer::EndScene()
@@ -30,7 +30,7 @@ namespace Owl
 	void Renderer::Submit(const Ref<VertexArray>& pVertexArray, const Ref<Shader>& pShader, const glm::mat4& pTransform)
 	{
 		pShader->Bind();
-		std::dynamic_pointer_cast<OpenGlShader>(pShader)->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		std::dynamic_pointer_cast<OpenGlShader>(pShader)->UploadUniformMat4("u_ViewProjection", s_SceneData->ViewProjectionMatrix);
 		std::dynamic_pointer_cast<OpenGlShader>(pShader)->UploadUniformMat4("u_Transform", pTransform);
 		
 		pVertexArray->Bind();

@@ -5,6 +5,9 @@ namespace Owl
 {
 	class WindowsInput : public Input
 	{
+	public:
+		virtual ~WindowsInput() = default;
+		
 	protected:
 		bool IsKeyPressedImpl(KeyCode pKeyCode) override;
 		bool IsMouseButtonPressedImpl(MouseCode pMouseCode) override;

@@ -22,7 +22,7 @@ namespace Owl
 	class OpenGlIndexBuffer : public IndexBuffer
 	{
 	public:
-		OpenGlIndexBuffer(uint32_t* pIndices, uint32_t pCount);
+		OpenGlIndexBuffer(const uint32_t* pIndices, uint32_t pCount);
 		~OpenGlIndexBuffer() override;
 		
 		void Bind() const override;

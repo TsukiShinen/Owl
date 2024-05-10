@@ -8,7 +8,7 @@ namespace Owl
 	{
 	public:
 		ImGuiLayer();
-		virtual ~ImGuiLayer() = default;
+		~ImGuiLayer() override = default;
 
 		void OnAttach() override;
 		void OnDetach() override;
@@ -16,8 +16,6 @@ namespace Owl
 
 		void Begin();
 		void End();
-	private:
-		float m_Time = 0.0f;
 	};
 	
 }

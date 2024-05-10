@@ -1,8 +1,15 @@
 ﻿#pragma once
 
+#include "Owl/Core/PlatformDetection.h"
+
 #include <memory>
 
 #ifdef OWL_DEBUG
+	#if defined(OWL_PLATFORM_WINDOWS)
+		#define OWL_DEBUGBREAK() __debugbreak()
+	#else
+		#error "Platform doesn't support debugbreak yet!"
+	#endif
 	#define OWL_ENABLE_ASSERTS
 #else
 	#define OWL_DEBUGBREAK()

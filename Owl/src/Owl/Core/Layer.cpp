@@ -3,12 +3,8 @@
 
 namespace Owl
 {
-	Layer::Layer(const std::string& pName)
-		: m_DebugName(pName)
-	{
-	}
-
-	Layer::~Layer()
+	Layer::Layer(std::string pName)
+		: m_DebugName(std::move(pName))
 	{
 	}
 }

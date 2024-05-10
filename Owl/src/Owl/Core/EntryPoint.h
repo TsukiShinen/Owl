@@ -8,8 +8,8 @@ extern Owl::Application* Owl::CreateApplication();
 inline int main(int pArgc, char** pArgv)
 {
 	Owl::Log::Init();
-	
-	auto app = Owl::CreateApplication();
+
+	const auto app = Owl::CreateApplication();
 	app->Run();
 	delete app;
 }

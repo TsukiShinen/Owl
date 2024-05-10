@@ -1,9 +1,8 @@
 ﻿#pragma once
 
-#include "Base.h"
-#include "LayerStack.h"
-#include "DeltaTime.h"
-#include "Window.h"
+#include "Owl/Core/Base.h"
+#include "Owl/Core/LayerStack.h"
+#include "Owl/Core/Window.h"
 #include "Owl/Events/ApplicationEvent.h"
 #include "Owl/ImGui/ImGuiLayer.h"
 
@@ -13,7 +12,7 @@ namespace Owl
 	{
 	public:
 		Application();
-		virtual ~Application();
+		virtual ~Application() = default;
 
 		void Run();
 
@@ -27,8 +26,8 @@ namespace Owl
 		static Application& Get() { return *s_Instance; }
 
 	private:
-		bool OnWindowClose(WindowCloseEvent& pEvent);
-		bool OnWindowResize(WindowResizeEvent& pEvent);
+		bool OnWindowClose(const WindowCloseEvent& pEvent);
+		bool OnWindowResize(const WindowResizeEvent& pEvent);
 	private:
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;

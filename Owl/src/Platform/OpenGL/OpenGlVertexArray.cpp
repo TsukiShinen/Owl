@@ -9,17 +9,20 @@ namespace Owl
 	{
 		switch (pType)
 		{
-		case ShaderDataType::Float: return GL_FLOAT;
-		case ShaderDataType::Float2: return GL_FLOAT;
-		case ShaderDataType::Float3: return GL_FLOAT;
-		case ShaderDataType::Float4: return GL_FLOAT;
-		case ShaderDataType::Mat3: return GL_FLOAT;
+		case ShaderDataType::Float:
+		case ShaderDataType::Float2:
+		case ShaderDataType::Float3:
+		case ShaderDataType::Float4:
+		case ShaderDataType::Mat3:
 		case ShaderDataType::Mat4: return GL_FLOAT;
-		case ShaderDataType::Int: return GL_INT;
-		case ShaderDataType::Int2: return GL_INT;
-		case ShaderDataType::Int3: return GL_INT;
+		case ShaderDataType::Int:
+		case ShaderDataType::Int2:
+		case ShaderDataType::Int3:
 		case ShaderDataType::Int4: return GL_INT;
 		case ShaderDataType::Bool: return GL_BOOL;
+		case ShaderDataType::None:
+			OWL_CORE_ASSERT(false, "ShaderDataType::None is not Supported!")
+			break;
 		}
 
 		OWL_CORE_ASSERT(false, "Unknown ShaderDataType!")
@@ -48,23 +51,22 @@ namespace Owl
 
 	void OpenGlVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& pVertexBuffer)
 	{
-		OWL_CORE_ASSERT(pVertexBuffer->GetLayout().GetElements().size(), "Vertex buffer has no layout!")
+		OWL_CORE_ASSERT(!pVertexBuffer->GetLayout().GetElements().empty(), "Vertex buffer has no layout!")
 		
 		glBindVertexArray(m_RendererId);
 		pVertexBuffer->Bind();
 
-		uint32_t index = 0;
 		const auto& layout = pVertexBuffer->GetLayout();
 		for (const auto& element : layout)
 		{
-			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(index,
-				element.GetComponentCount(),
+			glEnableVertexAttribArray(m_VertexBufferIndex);
+			glVertexAttribPointer(m_VertexBufferIndex,
+				static_cast<GLint>(element.GetComponentCount()),
 				ShaderDataTypeToOpenGlBaseType(element.Type),
 				element.Normalized ? GL_TRUE : GL_FALSE,
-				layout.GetStride(),
-				reinterpret_cast<const void*>(element.Offset));
-			index++;
+				static_cast<GLsizei>(layout.GetStride()),
+				(const void*)(uintptr_t)element.Offset);
+			m_VertexBufferIndex++;
 		}
 
 		m_VertexBuffers.push_back(pVertexBuffer);

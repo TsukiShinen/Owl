@@ -11,7 +11,7 @@ namespace Owl
 
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 	protected:
-		KeyEvent(const int pKeyCode)
+		KeyEvent(const uint16_t pKeyCode)
 			: m_KeyCode(pKeyCode)
 		{
 			
@@ -20,10 +20,10 @@ namespace Owl
 		KeyCode m_KeyCode;
 	};
 
-	class KeyPressedEvent : public KeyEvent
+	class KeyPressedEvent final : public KeyEvent
 	{
 	public:
-		KeyPressedEvent(const int pKeyCode, const int pRepeatCount)
+		KeyPressedEvent(const uint16_t pKeyCode, const int pRepeatCount)
 			: KeyEvent(pKeyCode), m_RepeatCount(pRepeatCount)
 		{
 			
@@ -43,10 +43,10 @@ namespace Owl
 		int m_RepeatCount;
 	};
 
-	class KeyReleasedEvent : public KeyEvent
+	class KeyReleasedEvent final : public KeyEvent
 	{
 	public:
-		KeyReleasedEvent(const int pKeyCode)
+		KeyReleasedEvent(const uint16_t pKeyCode)
 			: KeyEvent(pKeyCode)
 		{
 			

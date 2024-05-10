@@ -7,12 +7,12 @@ namespace Owl
 	class Layer
 	{
 	public:
-		Layer(const std::string& pName = "Layer");
-		virtual ~Layer();
+		Layer(std::string pName = "Layer");
+		virtual ~Layer() = default;
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate(DeltaTime pTimestep) {}
+		virtual void OnUpdate(DeltaTime pDeltaTime) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& pEvent) {}
 

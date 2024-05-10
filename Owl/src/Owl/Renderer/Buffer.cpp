@@ -6,28 +6,28 @@
 
 namespace Owl
 {
-	VertexBuffer* VertexBuffer::Create(float* pVertices, uint32_t pSize)
+	Ref<VertexBuffer> VertexBuffer::Create(const float* pVertices, const uint32_t pSize)
 	{
 		switch (Renderer::GetApi()) {
 		case RendererApi::Api::None:
 			OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported!")
 			return nullptr;
 		case RendererApi::Api::OpenGl:
-			return new OpenGlVertexBuffer(pVertices, pSize);
+			return CreateRef<OpenGlVertexBuffer>(pVertices, pSize);
 		}
 
 		OWL_CORE_ASSERT(false, "Unknow RendererApi!")
 		return nullptr;
 	}
 
-	IndexBuffer* IndexBuffer::Create(uint32_t* pIndices, uint32_t pCount)
+	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* pIndices, const uint32_t pCount)
 	{
 		switch (Renderer::GetApi()) {
 		case RendererApi::Api::None:
 			OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported !")
 			return nullptr;
 		case RendererApi::Api::OpenGl:
-			return new OpenGlIndexBuffer(pIndices, pCount);
+			return CreateRef<OpenGlIndexBuffer>(pIndices, pCount);
 		}
 
 		OWL_CORE_ASSERT(false, "Unknow RendererApi!")

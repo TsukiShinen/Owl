@@ -22,21 +22,17 @@ namespace Owl
 		PushOverlay(m_ImGuiLayer);
 	}
 
-	Application::~Application()
-	{
-	}
-
 	void Application::Run()
 	{
 		while (m_IsRunning)
 		{
 			const float time = static_cast<float>(glfwGetTime());
-			DeltaTime timestep = time - m_LastFrameTime;
+			const DeltaTime deltaTime = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
 			if (!m_IsMinimized)
 				for (Layer* layer : m_LayerStack)
-					layer->OnUpdate(timestep);
+					layer->OnUpdate(deltaTime);
 			
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
@@ -71,13 +67,13 @@ namespace Owl
 		m_LayerStack.PushOverlay(pOverlay);
 	}
 
-	bool Application::OnWindowClose(WindowCloseEvent& pEvent)
+	bool Application::OnWindowClose(const WindowCloseEvent& pEvent)
 	{
 		m_IsRunning = false;
 		return true;
 	}
 
-	bool Application::OnWindowResize(WindowResizeEvent& pEvent)
+	bool Application::OnWindowResize(const WindowResizeEvent& pEvent)
 	{
 		if (pEvent.GetWidth() == 0 || pEvent.GetHeight() == 0)
 		{

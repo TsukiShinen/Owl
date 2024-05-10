@@ -5,7 +5,7 @@ namespace Owl
 	class DeltaTime
 	{
 	public:
-		DeltaTime(float pTime = 0.0f)
+		DeltaTime(const float pTime = 0.0f)
 			: m_Time(pTime)
 		{
 			

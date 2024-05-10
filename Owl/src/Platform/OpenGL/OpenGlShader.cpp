@@ -106,7 +106,7 @@ namespace Owl
 			in.seekg(0, std::ios::end);
 			result.resize(in.tellg());
 			in.seekg(0, std::ios::beg);
-			in.read(result.data(), result.size());
+			in.read(result.data(), static_cast<std::streamsize>(result.size()));
 			in.close();
 		}
 		else
@@ -206,7 +206,10 @@ namespace Owl
 		}
 
 		for (const auto id : glShaderIds)
+		{
 			glDetachShader(program, id);
+			glDeleteShader(id);
+		}
 
 		m_RendererID = program;
 	}

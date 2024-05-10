@@ -12,18 +12,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/PlatformDetection.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/premake5.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/premake5.lua" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Base.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Base.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/DeltaTime.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/DeltaTime.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/EntryPoint.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/EntryPoint.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Input.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Input.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/KeyCodes.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/KeyCodes.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Layer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Layer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Layer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Layer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/OrthographicCameraController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/OrthographicCameraController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/OrthographicCameraController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/OrthographicCameraController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Window.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Window.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Events/ApplicationEvent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Events/ApplicationEvent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Events/Event.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Events/Event.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Events/KeyEvent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Events/KeyEvent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Events/MouseEvent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Events/MouseEvent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/ImGui/ImGuiLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/ImGui/ImGuiLayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/ImGui/ImGuiLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/ImGui/ImGuiLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Buffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Buffer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Buffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Buffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/GraphicsContext.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/GraphicsContext.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/GraphicsContext.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RenderCommand.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RenderCommand.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RenderCommand.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RenderCommand.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RendererApi.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RendererApi.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/VertexArray.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/VertexArray.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/VertexArray.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/VertexArray.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGLBuffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGLBuffer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGLBuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGLBuffer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlTexture.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlTexture.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlVertexArray.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlVertexArray.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlVertexArray.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlVertexArray.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsInput.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsInput.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsInput.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsInput.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsWindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsWindow.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sandbox/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Sandbox/imgui.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sandbox/src/Sandbox.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sandbox/src/Sandbox.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,6 +191,30 @@
         <option name="USE_EXTERNAL_CONSOLE" value="0" />
         <option name="TERMINAL_INTERACTION_BEHAVIOR" value="FORCE_CONSOLE" />
       </configuration_3>
+      <configuration_4>
+        <option name="CONFIGURATION" value="Release" />
+        <option name="PLATFORM" value="x64" />
+        <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Sandbox/Sandbox.vcxproj" />
+        <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
+        <option name="EXE_PATH" value="$(TargetPath)" />
+        <option name="PROGRAM_PARAMETERS" value="" />
+        <option name="WORKING_DIRECTORY" value="$(ProjectDir)" />
+        <option name="PASS_PARENT_ENVS" value="1" />
+        <option name="USE_EXTERNAL_CONSOLE" value="0" />
+        <option name="TERMINAL_INTERACTION_BEHAVIOR" value="AUTO_DETECT" />
+      </configuration_4>
+      <configuration_5>
+        <option name="CONFIGURATION" value="Dist" />
+        <option name="PLATFORM" value="x64" />
+        <option name="PROJECT_FILE_PATH" value="$PROJECT_DIR$/Sandbox/Sandbox.vcxproj" />
+        <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
+        <option name="EXE_PATH" value="$(TargetPath)" />
+        <option name="PROGRAM_PARAMETERS" value="" />
+        <option name="WORKING_DIRECTORY" value="$(ProjectDir)" />
+        <option name="PASS_PARENT_ENVS" value="1" />
+        <option name="USE_EXTERNAL_CONSOLE" value="0" />
+        <option name="TERMINAL_INTERACTION_BEHAVIOR" value="AUTO_DETECT" />
+      </configuration_5>
       <option name="DEFAULT_PROJECT_PATH" value="$PROJECT_DIR$/Sandbox/Sandbox.vcxproj" />
       <option name="AUTO_SELECT_PRIORITY" value="0" />
       <method v="2">
@@ -206,7 +261,8 @@
       <workItem from="1715178294452" duration="693000" />
       <workItem from="1715191403442" duration="2358000" />
       <workItem from="1715242746809" duration="2449000" />
-      <workItem from="1715283671949" duration="1387000" />
+      <workItem from="1715283671949" duration="3819000" />
+      <workItem from="1715326838141" duration="4185000" />
     </task>
     <servers />
   </component>

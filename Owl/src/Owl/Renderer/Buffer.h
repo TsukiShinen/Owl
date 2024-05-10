@@ -22,9 +22,12 @@ namespace Owl
 		case ShaderDataType::Int3:     return 4 * 3;
 		case ShaderDataType::Int4:     return 4 * 4;
 		case ShaderDataType::Bool:     return 1;
+		case ShaderDataType::None:
+			OWL_CORE_ASSERT(false, "ShaderDataType::None is not supported!")
+			break;
 		}
 
-		OWL_CORE_ASSERT(false, "Unknown ShaderDataType!")
+		OWL_CORE_ASSERT(false, "Unknow ShaderDataType!")
 		return 0;
 	}
 	
@@ -33,10 +36,10 @@ namespace Owl
 		std::string Name;
 		ShaderDataType Type;
 		uint32_t Size;
-		uint32_t Offset;
+		size_t Offset;
 		bool Normalized;
 
-		BufferElement() {}
+		BufferElement() = default;
 		BufferElement(const ShaderDataType pType, std::string pName, const bool pNormalized = false)
 			: Name(std::move(pName)), Type(pType), Size(ShaderDataTypeSize(pType)), Offset(0), Normalized(pNormalized)
 		{
@@ -58,9 +61,12 @@ namespace Owl
 			case ShaderDataType::Int3:    return 3;
 			case ShaderDataType::Int4:    return 4;
 			case ShaderDataType::Bool:    return 1;
+			case ShaderDataType::None:
+			OWL_CORE_ASSERT(false, "ShaderDataType::None is not supported!")
+				break;
 			}
 
-			OWL_CORE_ASSERT(false, "Unknown ShaderDataType!")
+			OWL_CORE_ASSERT(false, "Unknow ShaderDataType!")
 			return 0;
 		}
 	};
@@ -68,7 +74,7 @@ namespace Owl
 	class BufferLayout
 	{
 	public:
-		BufferLayout() {}
+		BufferLayout() = default;
 		BufferLayout(const std::initializer_list<BufferElement>& pElements)
 			: m_Elements(pElements)
 		{
@@ -85,7 +91,7 @@ namespace Owl
 	private:
 		void CalculateOffsetsAndStride()
 		{
-			uint32_t offset = 0;
+			size_t offset = 0;
 			m_Stride = 0;
 			for (auto& element : m_Elements)
 			{
@@ -110,7 +116,7 @@ namespace Owl
 		virtual const BufferLayout& GetLayout() const = 0;
 		virtual void SetLayout(const BufferLayout& pLayout) = 0;
 
-		static VertexBuffer* Create(float* pVertices, uint32_t pSize);
+		static Ref<VertexBuffer> Create(const float* pVertices, uint32_t pSize);
 	};
 	
 	class IndexBuffer
@@ -123,6 +129,6 @@ namespace Owl
 
 		virtual uint32_t GetCount() const = 0;
 
-		static IndexBuffer* Create(uint32_t* pIndices, uint32_t pCount);
+		static Ref<IndexBuffer> Create(uint32_t* pIndices, uint32_t pCount);
 	};
 }

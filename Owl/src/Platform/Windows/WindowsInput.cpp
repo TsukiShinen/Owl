@@ -6,7 +6,7 @@
 
 namespace Owl
 {
-	Input* Input::s_Instance = new WindowsInput();
+	Scope<Input> Input::s_Instance = CreateScope<WindowsInput>();
 	
 	bool WindowsInput::IsKeyPressedImpl(const KeyCode pKeyCode)
 	{

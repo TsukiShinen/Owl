@@ -12,7 +12,7 @@ namespace Owl
 	{
 	public:
 		WindowsWindow(const WindowProps& pProps);
-		virtual ~WindowsWindow();
+		~WindowsWindow() override;
 
 		void OnUpdate() override;
 
@@ -32,7 +32,7 @@ namespace Owl
 	private:
 		GLFWwindow* m_Window;
 
-		GraphicsContext* m_Context;
+		Scope<GraphicsContext> m_Context;
 
 		struct WindowData
 		{

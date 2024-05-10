@@ -5,7 +5,7 @@
 
 namespace Owl
 {
-	class MouseMovedEvent : public Event
+	class MouseMovedEvent final : public Event
 	{
 	public:
 		MouseMovedEvent(const float pX, const float pY)
@@ -27,7 +27,7 @@ namespace Owl
 		float m_MouseX, m_MouseY;
 	};
 
-	class MouseScrolledEvent : public Event
+	class MouseScrolledEvent final : public Event
 	{
 	public:
 		MouseScrolledEvent(const float pXOffset, const float pYOffset)
@@ -62,7 +62,7 @@ namespace Owl
 		MouseCode m_Button;
 	};
 
-	class MouseButtonPressedEvent : public MouseButtonEvent
+	class MouseButtonPressedEvent final : public MouseButtonEvent
 	{
 	public:
 		MouseButtonPressedEvent(const MouseCode pButton)
@@ -78,7 +78,7 @@ namespace Owl
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class MouseButtonReleasedEvent : public MouseButtonEvent
+	class MouseButtonReleasedEvent final : public MouseButtonEvent
 	{
 	public:
 		MouseButtonReleasedEvent(const MouseCode pButton)

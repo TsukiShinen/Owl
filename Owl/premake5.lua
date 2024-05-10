@@ -47,10 +47,6 @@ project "Owl"
 	filter "system:windows"
 		systemversion "latest"
 
-		defines {
-			"OWL_PLATFORM_WINDOWS"
-		}
-
 	filter "configurations:Debug"
 		defines "OWL_DEBUG"
 		runtime "Debug"

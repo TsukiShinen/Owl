@@ -36,7 +36,7 @@ namespace Owl
 		EventCategoryMouseButton = BIT(4),
 	};
 
-#define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::##type; }\
+#define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::type; }\
 								EventType GetEventType() const override { return GetStaticType(); }\
 								const char* GetName() const override { return #type; }
 
@@ -47,6 +47,8 @@ namespace Owl
 		friend class EventDispatcher;
 
 	public:
+		virtual ~Event() = default;
+		
 		bool IsHandled = false;
 		
 		virtual EventType GetEventType() const = 0;
@@ -54,7 +56,7 @@ namespace Owl
 		virtual int GetCategoryFlags() const = 0;
 		virtual std::string ToString() const { return GetName(); }
 
-		bool IsInCategory(const EventCategory pCategory)
+		bool IsInCategory(const EventCategory pCategory) const
 		{
 			return GetCategoryFlags() & pCategory;
 		}
@@ -62,9 +64,6 @@ namespace Owl
 
 	class EventDispatcher
 	{
-		template <typename T>
-		using EventFunction = std::function<bool(T&)>;
-
 	public:
 		EventDispatcher(Event& pEvent)
 			: m_Event(pEvent)
@@ -72,12 +71,12 @@ namespace Owl
 			
 		}
 
-		template<typename T>
-		bool Dispatch(EventFunction<T> pFunction)
+		template<typename T, typename F>
+		bool Dispatch(const F& pFunction)
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.IsHandled = pFunction(*static_cast<T*>(&m_Event));
+				m_Event.IsHandled = pFunction(static_cast<T&>(m_Event));
 				return true;
 			}
 			return false;

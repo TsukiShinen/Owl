@@ -23,6 +23,7 @@ namespace Owl
 		Ref<IndexBuffer> m_IndexBuffers;
 
 		uint32_t m_RendererId;
+		uint32_t m_VertexBufferIndex = 0;
 	};
 	
 }

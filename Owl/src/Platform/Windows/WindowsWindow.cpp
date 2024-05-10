@@ -9,7 +9,7 @@
 
 namespace Owl
 {
-	static bool s_GLFWInitialized = false;
+	static uint8_t s_GlfwWindowCount = 0;
 
 	static void GLFWErrorCallback(int pError, const char* pDescription)
 	{
@@ -60,17 +60,18 @@ namespace Owl
 
 		OWL_CORE_INFO("Creating window {0} ({1}, {2})", m_Data.Title, m_Data.Width, m_Data.Height);
 
-		if (!s_GLFWInitialized)
+		if (s_GlfwWindowCount == 0)
 		{
+			OWL_CORE_INFO("Initializing GLFW");
 			const int success = glfwInit();
 			OWL_CORE_ASSERT(success, "Could not initialize GLFW!")
 			glfwSetErrorCallback(GLFWErrorCallback);
-			s_GLFWInitialized = true;
 		}
 
 		m_Window = glfwCreateWindow(static_cast<int>(m_Data.Width), static_cast<int>(m_Data.Height), m_Data.Title.c_str(), nullptr, nullptr);
+		++s_GlfwWindowCount;
 		
-		m_Context = new OpenGLContext(m_Window);
+		m_Context = CreateScope<OpenGLContext>(m_Window);
 		m_Context->Init();
 		
 		glfwSetWindowUserPointer(m_Window, &m_Data);
@@ -118,6 +119,7 @@ namespace Owl
 					data.EventCallback(event);
 					break;
 				}
+			default:;
 			}
 		});
 
@@ -139,6 +141,7 @@ namespace Owl
 					data.EventCallback(event);
 					break;
 				}
+			default:;
 			}
 		});
 
@@ -162,5 +165,11 @@ namespace Owl
 	void WindowsWindow::Shutdown()
 	{
 		glfwDestroyWindow(m_Window);
+
+		if (--s_GlfwWindowCount == 0)
+		{
+			OWL_CORE_INFO("Terminating GLFW");
+			glfwTerminate();
+		}
 	}
 }
