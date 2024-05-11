@@ -2,6 +2,7 @@
 #include "Renderer.h"
 
 #include "RenderCommand.h"
+#include "Renderer2D.h"
 #include "Platform/OpenGL/OpenGlShader.h"
 
 namespace Owl
@@ -11,6 +12,7 @@ namespace Owl
 	void Renderer::Init()
 	{
 		RenderCommand::Init();
+		Renderer2D::Init();
 	}
 
 	void Renderer::OnWindowResize(uint32_t pWidth, uint32_t pHeight)

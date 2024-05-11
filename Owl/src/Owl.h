@@ -20,6 +20,7 @@
 // -- Renderer ----------------------
 #include "Owl/Renderer/RenderCommand.h"
 #include "Owl/Renderer/Renderer.h"
+#include "Owl/Renderer/Renderer2D.h"
 
 #include "Owl/Renderer/Buffer.h"
 #include "Owl/Renderer/Shader.h"

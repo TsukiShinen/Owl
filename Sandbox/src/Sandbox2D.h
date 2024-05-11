@@ -16,10 +16,6 @@ public:
 
 private:
 	Owl::OrthographicCameraController m_CameraController;
-
-	// Temp
-	Owl::ShaderLibrary m_ShaderLibrary;
-	Owl::Ref<Owl::VertexArray> m_SquareVertexArray;
 	
 	glm::vec4 m_SquareColor = {1.0f, 1.0f, 1.0f, 1.0f};
 };
