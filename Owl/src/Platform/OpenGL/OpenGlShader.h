@@ -12,7 +12,7 @@ namespace Owl
 	{
 	public:
 		OpenGlShader(const std::string& pFilePath);
-		OpenGlShader(const std::string& pName, const std::string& pVertexSource, const std::string& pFragmentSource);
+		OpenGlShader(std::string pName, const std::string& pVertexSource, const std::string& pFragmentSource);
 		~OpenGlShader() override;
 
 		const std::string& GetName() const override { return m_Name; }
@@ -23,6 +23,7 @@ namespace Owl
 		void SetMat4(const std::string& pName, const glm::mat4& pValue) override;
 		void SetFloat4(const std::string& pName, const glm::vec4& pValue) override;
 		void SetFloat3(const std::string& pName,const glm::vec3& pValue) override;
+		void SetInt(const std::string& pName, int pValue) override;
 		
 		void UploadUniformInt(const std::string& pName, int pValue) const;
 

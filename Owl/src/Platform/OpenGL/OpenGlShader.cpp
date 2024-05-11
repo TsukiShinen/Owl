@@ -31,9 +31,9 @@ namespace Owl
 		m_Name = pFilePath.substr(lastSlash, count);
 	}
 
-	OpenGlShader::OpenGlShader(const std::string& pName, const std::string& pVertexSource,
+	OpenGlShader::OpenGlShader(std::string pName, const std::string& pVertexSource,
 	                           const std::string& pFragmentSource)
-		: m_Name(pName)
+		: m_Name(std::move(pName))
 	{
 		Compile({
 			{GL_VERTEX_SHADER, pVertexSource},
@@ -69,6 +69,11 @@ namespace Owl
 	void OpenGlShader::SetFloat3(const std::string& pName, const glm::vec3& pValue)
 	{
 		UploadUniformFloat3(pName, pValue);
+	}
+
+	void OpenGlShader::SetInt(const std::string& pName, const int pValue)
+	{
+		UploadUniformInt(pName, pValue);
 	}
 
 	void OpenGlShader::UploadUniformInt(const std::string& pName, const int pValue) const

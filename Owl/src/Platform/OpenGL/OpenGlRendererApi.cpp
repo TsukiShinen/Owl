@@ -9,6 +9,8 @@ namespace Owl
 	{
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		glEnable(GL_DEPTH_TEST);
 	}
 
 	void OpenGlRendererApi::SetViewport(const int pX, const int pY, const uint32_t pWidth, const uint32_t pHeight)

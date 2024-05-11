@@ -14,6 +14,7 @@ namespace Owl
 		virtual void SetMat4(const std::string& pName, const glm::mat4& pValue) = 0;
 		virtual void SetFloat4(const std::string& pName, const glm::vec4& pValue) = 0;
 		virtual void SetFloat3(const std::string& pName, const glm::vec3& pValue) = 0;
+		virtual void SetInt(const std::string& pName, const int pValue) = 0;
 
 		virtual const std::string& GetName() const = 0;
 

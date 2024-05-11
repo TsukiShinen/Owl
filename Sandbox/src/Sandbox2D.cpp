@@ -11,7 +11,7 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
-	
+	m_CheckerboardTexture = Owl::Texture2D::Create("Assets/Textures/Checkerboard.png");
 }
 
 void Sandbox2D::OnDetach()
@@ -29,7 +29,8 @@ void Sandbox2D::OnUpdate(const Owl::DeltaTime pDeltaTime)
 	Owl::Renderer2D::BeginScene(m_CameraController.GetCamera());
 	{
 		Owl::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { .8f, .8f }, m_SquareColor);
-		Owl::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { .5f, .75f }, m_SquareColor);
+		Owl::Renderer2D::DrawQuad({ 0.6f, -0.5f }, { .5f, .75f }, m_SquareColor);
+		Owl::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10, 10 }, m_CheckerboardTexture, m_SquareColor);
 	}
 	Owl::Renderer2D::EndScene();
 }
