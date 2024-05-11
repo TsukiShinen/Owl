@@ -4,8 +4,6 @@
 #include "glm/gtc/type_ptr.hpp"
 #include "imgui/imgui.h"
 
-#include "Platform/OpenGL/OpenGlShader.h"
-
 Sandbox2D::Sandbox2D()
 	: Layer("Sandbox2D"), m_CameraController(1280.0f / 780.0f)
 {
@@ -30,7 +28,8 @@ void Sandbox2D::OnUpdate(const Owl::DeltaTime pDeltaTime)
 
 	Owl::Renderer2D::BeginScene(m_CameraController.GetCamera());
 	{
-		Owl::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, m_SquareColor);
+		Owl::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { .8f, .8f }, m_SquareColor);
+		Owl::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { .5f, .75f }, m_SquareColor);
 	}
 	Owl::Renderer2D::EndScene();
 }

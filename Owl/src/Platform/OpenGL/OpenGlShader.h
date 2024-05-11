@@ -19,7 +19,11 @@ namespace Owl
 
 		void Bind() const override;
 		void UnBind() const override;
-
+		
+		void SetMat4(const std::string& pName, const glm::mat4& pValue) override;
+		void SetFloat4(const std::string& pName, const glm::vec4& pValue) override;
+		void SetFloat3(const std::string& pName,const glm::vec3& pValue) override;
+		
 		void UploadUniformInt(const std::string& pName, int pValue) const;
 
 		void UploadUniformFloat(const std::string& pName, float pValue) const;
@@ -35,6 +39,7 @@ namespace Owl
 		static std::unordered_map<GLenum, std::string> PreProcess(const std::string& pSource);
 		void Compile(const std::unordered_map<GLenum, std::string>& pShaderSources);
 
+	private:
 		uint32_t m_RendererID;
 		std::string m_Name;
 	};

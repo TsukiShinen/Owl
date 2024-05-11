@@ -4,7 +4,7 @@
 #include "RenderCommand.h"
 #include "Shader.h"
 #include "VertexArray.h"
-#include "Platform/OpenGL/OpenGlShader.h"
+#include "glm/gtc/matrix_transform.hpp"
 
 namespace Owl
 {
@@ -47,11 +47,8 @@ namespace Owl
 
 	void Renderer2D::BeginScene(const OrthographicCamera& pCamera)
 	{
-		std::dynamic_pointer_cast<OpenGlShader>(s_Storage->FlatColorShader)->Bind();
-		std::dynamic_pointer_cast<OpenGlShader>(s_Storage->FlatColorShader)->UploadUniformMat4(
-			"u_ViewProjection", pCamera.GetViewProjectionMatrix());
-		std::dynamic_pointer_cast<OpenGlShader>(s_Storage->FlatColorShader)->UploadUniformMat4(
-			"u_Transform", glm::mat4(1.0f));
+		s_Storage->FlatColorShader->Bind();
+		s_Storage->FlatColorShader->SetMat4("u_ViewProjection", pCamera.GetViewProjectionMatrix());
 	}
 
 	void Renderer2D::EndScene()
@@ -65,8 +62,12 @@ namespace Owl
 
 	void Renderer2D::DrawQuad(const glm::vec3& pPosition, const glm::vec2& pSize, const glm::vec4& pColor)
 	{
-		std::dynamic_pointer_cast<OpenGlShader>(s_Storage->FlatColorShader)->Bind();
-		std::dynamic_pointer_cast<OpenGlShader>(s_Storage->FlatColorShader)->UploadUniformFloat4("u_Color", pColor);
+		s_Storage->FlatColorShader->Bind();
+		s_Storage->FlatColorShader->SetFloat4("u_Color", pColor);
+
+		glm::mat4 transform = translate(glm::mat4(1.0f), pPosition)
+							* scale(glm::mat4(1.0f), {pSize.x, pSize.y, 1.0f});
+		s_Storage->FlatColorShader->SetMat4("u_Transform", transform);
 
 		s_Storage->QuadVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Storage->QuadVertexArray);

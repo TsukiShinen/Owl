@@ -56,6 +56,21 @@ namespace Owl
 		glUseProgram(0);
 	}
 
+	void OpenGlShader::SetMat4(const std::string& pName, const glm::mat4& pValue)
+	{
+		UploadUniformMat4(pName, pValue);
+	}
+
+	void OpenGlShader::SetFloat4(const std::string& pName, const glm::vec4& pValue)
+	{
+		UploadUniformFloat4(pName, pValue);
+	}
+
+	void OpenGlShader::SetFloat3(const std::string& pName, const glm::vec3& pValue)
+	{
+		UploadUniformFloat3(pName, pValue);
+	}
+
 	void OpenGlShader::UploadUniformInt(const std::string& pName, const int pValue) const
 	{
 		const GLint location = glGetUniformLocation(m_RendererID, pName.c_str());
