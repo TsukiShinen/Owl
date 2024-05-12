@@ -30,7 +30,7 @@ void Sandbox2D::OnUpdate(const Owl::DeltaTime pDeltaTime)
 	{
 		Owl::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { .8f, .8f }, m_SquareColor);
 		Owl::Renderer2D::DrawQuad({ 0.6f, -0.5f }, { .5f, .75f }, m_SquareColor);
-		Owl::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10, 10 }, m_CheckerboardTexture, m_SquareColor);
+		Owl::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { .5f, .5f }, m_CheckerboardTexture, m_SquareColor);
 	}
 	Owl::Renderer2D::EndScene();
 }

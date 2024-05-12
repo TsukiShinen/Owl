@@ -6,6 +6,23 @@
 
 namespace Owl
 {
+	OpenGlTexture2D::OpenGlTexture2D(const uint32_t pWidth, const uint32_t pHeight)
+		: m_Width(pWidth), m_Height(pHeight)
+	{
+		m_InternalFormat = GL_RGBA8;
+		m_DataFormat = GL_RGBA;
+
+		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererId);
+		glTextureStorage2D(m_RendererId, 1, m_InternalFormat, static_cast<GLsizei>(m_Width),
+						   static_cast<GLsizei>(m_Height));
+
+		glTextureParameteri(m_RendererId, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTextureParameteri(m_RendererId, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		
+		glTextureParameteri(m_RendererId, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTextureParameteri(m_RendererId, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	}
+
 	OpenGlTexture2D::OpenGlTexture2D(std::string pPath)
 		: m_Path(std::move(pPath))
 	{
@@ -16,7 +33,8 @@ namespace Owl
 		m_Width = width;
 		m_Height = height;
 
-		GLenum internalFormat = 0, dataFormat = 0;
+		GLenum internalFormat = 0;
+		GLenum dataFormat = 0;
 		if (channels == 4)
 		{
 			internalFormat = GL_RGBA8;
@@ -30,8 +48,11 @@ namespace Owl
 
 		OWL_CORE_ASSERT(internalFormat & dataFormat, "Format not supported!")
 
+		m_InternalFormat = internalFormat;
+		m_DataFormat = dataFormat;
+
 		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererId);
-		glTextureStorage2D(m_RendererId, 1, internalFormat, static_cast<GLsizei>(m_Width),
+		glTextureStorage2D(m_RendererId, 1, m_InternalFormat, static_cast<GLsizei>(m_Width),
 		                   static_cast<GLsizei>(m_Height));
 
 		glTextureParameteri(m_RendererId, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -41,7 +62,7 @@ namespace Owl
 		glTextureParameteri(m_RendererId, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
 		glTextureSubImage2D(m_RendererId, 0, 0, 0, static_cast<GLsizei>(m_Width), static_cast<GLsizei>(m_Height),
-		                    dataFormat, GL_UNSIGNED_BYTE, data);
+		                    m_DataFormat, GL_UNSIGNED_BYTE, data);
 
 		stbi_image_free(data);
 	}
@@ -49,6 +70,13 @@ namespace Owl
 	OpenGlTexture2D::~OpenGlTexture2D()
 	{
 		glDeleteTextures(1, &m_RendererId);
+	}
+
+	void OpenGlTexture2D::SetData(void* pData, const uint32_t pSize)
+	{
+		OWL_CORE_ASSERT(pSize == m_Width * m_Height * (m_DataFormat == GL_RGBA ? 4 : 3), "Data must be entire texture!")
+		glTextureSubImage2D(m_RendererId, 0, 0, 0, static_cast<GLsizei>(m_Width), static_cast<GLsizei>(m_Height),
+							m_DataFormat, GL_UNSIGNED_BYTE, pData);
 	}
 
 	void OpenGlTexture2D::Bind(const uint32_t pSlot) const

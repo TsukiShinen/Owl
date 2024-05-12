@@ -11,8 +11,9 @@ namespace Owl
 	struct Renderer2DStorage
 	{
 		Ref<VertexArray> QuadVertexArray;
+
+		Ref<Texture2D> WhiteTexture;
 		
-		Ref<Shader> FlatColorShader;
 		Ref<Shader> TextureShader;
 	};
 
@@ -40,7 +41,9 @@ namespace Owl
 		Ref<IndexBuffer> quadIndexBuffer = IndexBuffer::Create(quadIndices, sizeof(quadIndices) / sizeof(uint32_t));
 		s_Storage->QuadVertexArray->SetIndexBuffer(quadIndexBuffer);
 
-		s_Storage->FlatColorShader = Shader::Create("Assets/Shaders/FlatColor.glsl");
+		s_Storage->WhiteTexture = Texture2D::Create(1, 1);
+		uint32_t whiteTextureData = 0xffffffff;
+		s_Storage->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
 		
 		s_Storage->TextureShader = Shader::Create("Assets/Shaders/Texture.glsl");
 		s_Storage->TextureShader->Bind();
@@ -54,9 +57,6 @@ namespace Owl
 
 	void Renderer2D::BeginScene(const OrthographicCamera& pCamera)
 	{
-		s_Storage->FlatColorShader->Bind();
-		s_Storage->FlatColorShader->SetMat4("u_ViewProjection", pCamera.GetViewProjectionMatrix());
-		
 		s_Storage->TextureShader->Bind();
 		s_Storage->TextureShader->SetMat4("u_ViewProjection", pCamera.GetViewProjectionMatrix());
 	}
@@ -72,15 +72,7 @@ namespace Owl
 
 	void Renderer2D::DrawQuad(const glm::vec3& pPosition, const glm::vec2& pSize, const glm::vec4& pColor)
 	{
-		s_Storage->FlatColorShader->Bind();
-		s_Storage->FlatColorShader->SetFloat4("u_Color", pColor);
-
-		glm::mat4 transform = translate(glm::mat4(1.0f), pPosition)
-							* scale(glm::mat4(1.0f), {pSize.x, pSize.y, 1.0f});
-		s_Storage->FlatColorShader->SetMat4("u_Transform", transform);
-
-		s_Storage->QuadVertexArray->Bind();
-		RenderCommand::DrawIndexed(s_Storage->QuadVertexArray);
+		DrawQuad(pPosition, pSize, s_Storage->WhiteTexture, pColor);
 	}
 
 	void Renderer2D::DrawQuad(const glm::vec2& pPosition, const glm::vec2& pSize, const Ref<Texture2D>& pTexture, const glm::vec4& pColor)
@@ -90,14 +82,12 @@ namespace Owl
 
 	void Renderer2D::DrawQuad(const glm::vec3& pPosition, const glm::vec2& pSize, const Ref<Texture2D>& pTexture, const glm::vec4& pColor)
 	{
-		s_Storage->TextureShader->Bind();
 		s_Storage->TextureShader->SetFloat4("u_Color", pColor);
+		pTexture->Bind();
 
 		glm::mat4 transform = translate(glm::mat4(1.0f), pPosition)
 							* scale(glm::mat4(1.0f), {pSize.x, pSize.y, 1.0f});
 		s_Storage->TextureShader->SetMat4("u_Transform", transform);
-
-		pTexture->Bind();
 
 		s_Storage->QuadVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Storage->QuadVertexArray);
