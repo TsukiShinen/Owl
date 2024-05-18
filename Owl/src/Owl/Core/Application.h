@@ -6,6 +6,8 @@
 #include "Owl/Events/ApplicationEvent.h"
 #include "Owl/ImGui/ImGuiLayer.h"
 
+int main(int argc, char** argv);
+
 namespace Owl
 {
 	class Application
@@ -13,8 +15,6 @@ namespace Owl
 	public:
 		Application();
 		virtual ~Application();
-
-		void Run();
 
 		void OnEvent(Event& pEvent);
 
@@ -26,6 +26,8 @@ namespace Owl
 		static Application& Get() { return *s_Instance; }
 
 	private:
+		void Run();
+		
 		bool OnWindowClose(const WindowCloseEvent& pEvent);
 		bool OnWindowResize(const WindowResizeEvent& pEvent);
 		Scope<Window> m_Window;
@@ -34,7 +36,10 @@ namespace Owl
 		bool m_IsMinimized = false;
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f;
+
+	private:
 		static Application* s_Instance;
+		friend int ::main(int argc, char** argv);
 	};
 
 	// To be defined in client

@@ -4,6 +4,7 @@
 #include "Owl/Events/ApplicationEvent.h"
 #include "Owl/Events/KeyEvent.h"
 #include "Owl/Events/MouseEvent.h"
+#include "Owl/Renderer/Renderer.h"
 
 #include "Platform/OpenGL/OpenGLContext.h"
 
@@ -14,11 +15,6 @@ namespace Owl
 	static void GLFWErrorCallback(int pError, const char* pDescription)
 	{
 		OWL_CORE_ERROR("GLFW Error ({0}) : {1}", pError, pDescription);
-	}
-
-	Window* Window::Create(const WindowProps& pProps)
-	{
-		return new WindowsWindow(pProps);
 	}
 
 	WindowsWindow::WindowsWindow(const WindowProps& pProps)
@@ -79,6 +75,10 @@ namespace Owl
 			OWL_CORE_ASSERT(success, "Could not initialize GLFW!")
 			glfwSetErrorCallback(GLFWErrorCallback);
 		}
+#if defined(OWL_DEBUG)
+		if (Renderer::GetApi() == RendererApi::Api::OpenGl)
+			glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+#endif
 
 		m_Window = glfwCreateWindow(static_cast<int>(m_Data.Width), static_cast<int>(m_Data.Height),
 		                            m_Data.Title.c_str(), nullptr, nullptr);

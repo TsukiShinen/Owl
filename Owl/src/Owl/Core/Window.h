@@ -36,6 +36,6 @@ namespace Owl
 
 		virtual void* GetNativeWindow() = 0;
 
-		static Window* Create(const WindowProps& pProps = WindowProps());
+		static Scope<Window> Create(const WindowProps& pProps = WindowProps());
 	};
 }

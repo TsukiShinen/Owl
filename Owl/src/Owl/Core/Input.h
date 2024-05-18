@@ -24,7 +24,8 @@ namespace Owl
 		static std::pair<float, float> GetCursorPosition() { return s_Instance->GetCursorPositionImpl(); }
 		static float GetCursorX() { return s_Instance->GetCursorXImpl(); }
 		static float GetCursorY() { return s_Instance->GetCursorYImpl(); }
-
+		
+		static Scope<Input> Create();
 	protected:
 		Input() = default;
 

@@ -1,6 +1,8 @@
 ﻿#include "opch.h"
 #include "Application.h"
 
+#include <ranges>
+
 #include "GLFW/glfw3.h"
 #include "Owl/Renderer/Renderer.h"
 
@@ -72,9 +74,9 @@ namespace Owl
 		dispatcher.Dispatch<WindowCloseEvent>(OWL_BIND_EVENT_FN(OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(OWL_BIND_EVENT_FN(OnWindowResize));
 
-		for (auto iterator = m_LayerStack.end(); iterator != m_LayerStack.begin();)
+		for (auto& iterator : std::ranges::reverse_view(m_LayerStack))
 		{
-			(*--iterator)->OnEvent(pEvent);
+			iterator->OnEvent(pEvent);
 			if (pEvent.IsHandled)
 				break;
 		}

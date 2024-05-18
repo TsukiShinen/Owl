@@ -12,29 +12,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Debug/Instrumentor.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sandbox/src/ExampleLayer.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sandbox/src/ExampleLayer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/EntryPoint.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/EntryPoint.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/LayerStack.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/LayerStack.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/OrthographicCameraController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/OrthographicCameraController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/ImGui/ImGuiLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/ImGui/ImGuiLayer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/ImGui/ImGuiLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/ImGui/ImGuiLayer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/OrthographicCamera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/OrthographicCamera.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGLBuffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGLBuffer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGLContext.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGLContext.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/LayerStack.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/LayerStack.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlTexture.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlTexture.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlVertexArray.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlVertexArray.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsWindow.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/opch.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/opch.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sandbox/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Sandbox/imgui.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sandbox/src/Sandbox2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sandbox/src/Sandbox2D.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sandbox/src/Sandbox.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sandbox/src/Sandbox.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +35,11 @@
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.39.33519/include/memory" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.39.33519/include/vector" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.39.33519/include/xmemory" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.39.33519/include/xstring" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.39.33519/include/xutility" root0="SKIP_HIGHLIGHTING" />
@@ -69,30 +59,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;C++ Project.Sandbox.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;do_not_show_solution_notification&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C++&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "C++ Project.Sandbox.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "do_not_show_solution_notification": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C++",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\TsukiShinen\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\TsukiShinen\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\TsukiShinen\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\TsukiShinen\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
+      "C:\\Users\\TsukiShinen\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
+      "C:\\Users\\TsukiShinen\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="C++ Project.Sandbox">
     <configuration name="Owl" type="CppProject" factoryName="C++ Project">
       <configuration_1>
@@ -254,7 +244,8 @@
       <workItem from="1715791162525" duration="109000" />
       <workItem from="1715801965300" duration="335000" />
       <workItem from="1715971308707" duration="3426000" />
-      <workItem from="1716030723124" duration="801000" />
+      <workItem from="1716030723124" duration="1703000" />
+      <workItem from="1716033995039" duration="1602000" />
     </task>
     <servers />
   </component>
