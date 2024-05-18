@@ -20,6 +20,8 @@ namespace Owl
 
 	void ImGuiLayer::OnAttach()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		// Setup Dear ImGui context
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
@@ -54,19 +56,17 @@ namespace Owl
 
 	void ImGuiLayer::OnDetach()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
 	}
 
-	void ImGuiLayer::OnImGuiRender()
-	{
-		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
-	}
-
 	void ImGuiLayer::Begin()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
@@ -74,6 +74,8 @@ namespace Owl
 
 	void ImGuiLayer::End()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		ImGuiIO& io = ImGui::GetIO();
 		const Application& app = Application::Get();
 		io.DisplaySize = ImVec2(static_cast<float>(app.GetWindow().GetWidth()),

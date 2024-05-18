@@ -11,8 +11,14 @@ namespace Owl
 
 	void Renderer::Init()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		RenderCommand::Init();
 		Renderer2D::Init();
+	}
+
+	void Renderer::Shutdown()
+	{
 	}
 
 	void Renderer::OnWindowResize(uint32_t pWidth, uint32_t pHeight)

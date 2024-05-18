@@ -9,6 +9,8 @@ namespace Owl
 	OpenGlTexture2D::OpenGlTexture2D(const uint32_t pWidth, const uint32_t pHeight)
 		: m_Width(pWidth), m_Height(pHeight)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		m_InternalFormat = GL_RGBA8;
 		m_DataFormat = GL_RGBA;
 
@@ -26,6 +28,8 @@ namespace Owl
 	OpenGlTexture2D::OpenGlTexture2D(std::string pPath)
 		: m_Path(std::move(pPath))
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		int width, height, channels;
 		stbi_set_flip_vertically_on_load(1);
 		stbi_uc* data = stbi_load(m_Path.c_str(), &width, &height, &channels, 0);
@@ -69,11 +73,15 @@ namespace Owl
 
 	OpenGlTexture2D::~OpenGlTexture2D()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		glDeleteTextures(1, &m_RendererId);
 	}
 
 	void OpenGlTexture2D::SetData(void* pData, const uint32_t pSize)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		OWL_CORE_ASSERT(pSize == m_Width * m_Height * (m_DataFormat == GL_RGBA ? 4 : 3), "Data must be entire texture!")
 		glTextureSubImage2D(m_RendererId, 0, 0, 0, static_cast<GLsizei>(m_Width), static_cast<GLsizei>(m_Height),
 							m_DataFormat, GL_UNSIGNED_BYTE, pData);
@@ -81,6 +89,8 @@ namespace Owl
 
 	void OpenGlTexture2D::Bind(const uint32_t pSlot) const
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		glBindTextureUnit(pSlot, m_RendererId);
 	}
 }

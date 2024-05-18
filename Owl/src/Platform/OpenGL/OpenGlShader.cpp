@@ -19,6 +19,8 @@ namespace Owl
 
 	OpenGlShader::OpenGlShader(const std::string& pFilePath)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		const std::string source = ReadFile(pFilePath);
 		const auto shaderSources = PreProcess(source);
 		Compile(shaderSources);
@@ -35,6 +37,8 @@ namespace Owl
 	                           const std::string& pFragmentSource)
 		: m_Name(std::move(pName))
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		Compile({
 			{GL_VERTEX_SHADER, pVertexSource},
 			{GL_FRAGMENT_SHADER, pFragmentSource},
@@ -43,36 +47,50 @@ namespace Owl
 
 	OpenGlShader::~OpenGlShader()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		glDeleteProgram(m_RendererID);
 	}
 
 	void OpenGlShader::Bind() const
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		glUseProgram(m_RendererID);
 	}
 
 	void OpenGlShader::UnBind() const
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		glUseProgram(0);
 	}
 
 	void OpenGlShader::SetMat4(const std::string& pName, const glm::mat4& pValue)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		UploadUniformMat4(pName, pValue);
 	}
 
 	void OpenGlShader::SetFloat4(const std::string& pName, const glm::vec4& pValue)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		UploadUniformFloat4(pName, pValue);
 	}
 
 	void OpenGlShader::SetFloat3(const std::string& pName, const glm::vec3& pValue)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		UploadUniformFloat3(pName, pValue);
 	}
 
 	void OpenGlShader::SetInt(const std::string& pName, const int pValue)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		UploadUniformInt(pName, pValue);
 	}
 
@@ -120,6 +138,8 @@ namespace Owl
 
 	std::string OpenGlShader::ReadFile(const std::string& pFilePath)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		std::string result;
 		std::ifstream in(pFilePath, std::ios::in | std::ios::binary);
 		if (in)
@@ -138,6 +158,8 @@ namespace Owl
 
 	std::unordered_map<GLenum, std::string> OpenGlShader::PreProcess(const std::string& pSource)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		std::unordered_map<GLenum, std::string> shaderSources;
 
 		const auto typeToken = "#type";
@@ -165,6 +187,8 @@ namespace Owl
 
 	void OpenGlShader::Compile(const std::unordered_map<GLenum, std::string>& pShaderSources)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		const GLint program = glCreateProgram();
 		std::vector<GLenum> glShaderIds;
 		glShaderIds.reserve(pShaderSources.size());

@@ -17,6 +17,7 @@
 
 #include "Owl/Core/Assert.h"
 #include "Owl/Core/Log.h"
+#include "Owl/Debug/Instrumentor.h"
 
 #ifdef OWL_PLATFORM_WINDOWS
 #include <Windows.h>

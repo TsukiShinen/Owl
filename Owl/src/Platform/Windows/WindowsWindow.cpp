@@ -23,22 +23,30 @@ namespace Owl
 
 	WindowsWindow::WindowsWindow(const WindowProps& pProps)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		Init(pProps);
 	}
 
 	WindowsWindow::~WindowsWindow()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		Shutdown();
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		glfwPollEvents();
 		m_Context->SwapBuffer();
 	}
 
 	void WindowsWindow::SetVSync(const bool pEnabled)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		if (pEnabled)
 			glfwSwapInterval(1);
 		else
@@ -54,6 +62,8 @@ namespace Owl
 
 	void WindowsWindow::Init(const WindowProps& pProps)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		m_Data.Title = pProps.Title;
 		m_Data.Width = pProps.Width;
 		m_Data.Height = pProps.Height;
@@ -62,6 +72,8 @@ namespace Owl
 
 		if (s_GlfwWindowCount == 0)
 		{
+			OWL_PROFILE_SCOPE("glfwInit");
+			
 			OWL_CORE_INFO("Initializing GLFW");
 			const int success = glfwInit();
 			OWL_CORE_ASSERT(success, "Could not initialize GLFW!")
@@ -71,9 +83,12 @@ namespace Owl
 		m_Window = glfwCreateWindow(static_cast<int>(m_Data.Width), static_cast<int>(m_Data.Height),
 		                            m_Data.Title.c_str(), nullptr, nullptr);
 		++s_GlfwWindowCount;
-
-		m_Context = CreateScope<OpenGLContext>(m_Window);
-		m_Context->Init();
+		{
+			OWL_PROFILE_SCOPE("glfwCreateWindow");
+			
+			m_Context = CreateScope<OpenGLContext>(m_Window);
+			m_Context->Init();
+		}
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
@@ -165,6 +180,8 @@ namespace Owl
 
 	void WindowsWindow::Shutdown()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		glfwDestroyWindow(m_Window);
 
 		if (--s_GlfwWindowCount == 0)

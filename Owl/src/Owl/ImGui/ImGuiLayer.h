@@ -12,7 +12,6 @@ namespace Owl
 
 		void OnAttach() override;
 		void OnDetach() override;
-		void OnImGuiRender() override;
 
 		void Begin();
 		void End();

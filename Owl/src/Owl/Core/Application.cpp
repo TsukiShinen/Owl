@@ -10,11 +10,14 @@ namespace Owl
 
 	Application::Application()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		OWL_CORE_ASSERT(!s_Instance, "Application already exists!")
 		s_Instance = this;
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(OWL_BIND_EVENT_FN(OnEvent));
+		m_Window->SetVSync(false);
 
 		Renderer::Init();
 
@@ -22,21 +25,39 @@ namespace Owl
 		PushOverlay(m_ImGuiLayer);
 	}
 
+	Application::~Application()
+	{
+		OWL_PROFILE_FUNCTION();
+		
+		Renderer::Shutdown();
+	}
+
 	void Application::Run()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		while (m_IsRunning)
 		{
+			OWL_PROFILE_SCOPE("RunLoop");
 			const float time = static_cast<float>(glfwGetTime());
 			const DeltaTime deltaTime = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
 			if (!m_IsMinimized)
+			{
+				OWL_PROFILE_SCOPE("LayerStack OnUpdate");
+				
 				for (Layer* layer : m_LayerStack)
 					layer->OnUpdate(deltaTime);
+			}
 
 			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
-				layer->OnImGuiRender();
+			{
+				OWL_PROFILE_SCOPE("LayerStack OnImGuiRender");
+				
+				for (Layer* layer : m_LayerStack)
+					layer->OnImGuiRender();
+			}
 			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
@@ -45,6 +66,8 @@ namespace Owl
 
 	void Application::OnEvent(Event& pEvent)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		EventDispatcher dispatcher(pEvent);
 		dispatcher.Dispatch<WindowCloseEvent>(OWL_BIND_EVENT_FN(OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(OWL_BIND_EVENT_FN(OnWindowResize));
@@ -59,12 +82,18 @@ namespace Owl
 
 	void Application::PushLayer(Layer* pLayer)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		m_LayerStack.PushLayer(pLayer);
+		pLayer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* pOverlay)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		m_LayerStack.PushOverlay(pOverlay);
+		pOverlay->OnAttach();
 	}
 
 	bool Application::OnWindowClose(const WindowCloseEvent& pEvent)
@@ -75,6 +104,8 @@ namespace Owl
 
 	bool Application::OnWindowResize(const WindowResizeEvent& pEvent)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		if (pEvent.GetWidth() == 0 || pEvent.GetHeight() == 0)
 		{
 			m_IsMinimized = true;

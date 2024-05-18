@@ -16,13 +16,11 @@ namespace Owl
 	{
 		m_Layers.emplace(m_Layers.begin() + m_LayerInsertIndex, pLayer);
 		m_LayerInsertIndex++;
-		pLayer->OnAttach();
 	}
 
 	void LayerStack::PushOverlay(Layer* pOverlay)
 	{
 		m_Layers.emplace_back(pOverlay);
-		pOverlay->OnAttach();
 	}
 
 	void LayerStack::PopLayer(Layer* pLayer)

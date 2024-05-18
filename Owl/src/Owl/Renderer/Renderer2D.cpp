@@ -21,6 +21,8 @@ namespace Owl
 
 	void Renderer2D::Init()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		s_Storage = new Renderer2DStorage();
 		s_Storage->QuadVertexArray = VertexArray::Create();
 
@@ -52,17 +54,23 @@ namespace Owl
 
 	void Renderer2D::Shutdown()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		delete s_Storage;
 	}
 
 	void Renderer2D::BeginScene(const OrthographicCamera& pCamera)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		s_Storage->TextureShader->Bind();
 		s_Storage->TextureShader->SetMat4("u_ViewProjection", pCamera.GetViewProjectionMatrix());
 	}
 
 	void Renderer2D::EndScene()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 	}
 
 	void Renderer2D::DrawQuad(const glm::vec2& pPosition, const glm::vec2& pSize, const glm::vec4& pColor)
@@ -82,6 +90,8 @@ namespace Owl
 
 	void Renderer2D::DrawQuad(const glm::vec3& pPosition, const glm::vec2& pSize, const Ref<Texture2D>& pTexture, const glm::vec4& pColor)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		s_Storage->TextureShader->SetFloat4("u_Color", pColor);
 		pTexture->Bind();
 

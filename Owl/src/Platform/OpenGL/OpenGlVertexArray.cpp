@@ -31,26 +31,36 @@ namespace Owl
 
 	OpenGlVertexArray::OpenGlVertexArray()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		glCreateVertexArrays(1, &m_RendererId);
 	}
 
 	OpenGlVertexArray::~OpenGlVertexArray()
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		glDeleteVertexArrays(1, &m_RendererId);
 	}
 
 	void OpenGlVertexArray::Bind() const
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		glBindVertexArray(m_RendererId);
 	}
 
 	void OpenGlVertexArray::UnBind() const
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		glBindVertexArray(0);
 	}
 
 	void OpenGlVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& pVertexBuffer)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		OWL_CORE_ASSERT(!pVertexBuffer->GetLayout().GetElements().empty(), "Vertex buffer has no layout!")
 
 		glBindVertexArray(m_RendererId);
@@ -74,6 +84,8 @@ namespace Owl
 
 	void OpenGlVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& pIndexBuffer)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		glBindVertexArray(m_RendererId);
 		pIndexBuffer->Bind();
 

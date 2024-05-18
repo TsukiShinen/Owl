@@ -16,3 +16,5 @@ Intermediates/
 
 # Directories
 scripts/__pycache__
+
+OwlProfile-**.json
