@@ -20,10 +20,11 @@ namespace Owl
 		void Bind() const override;
 		void UnBind() const override;
 		
-		void SetMat4(const std::string& pName, const glm::mat4& pValue) override;
-		void SetFloat4(const std::string& pName, const glm::vec4& pValue) override;
-		void SetFloat3(const std::string& pName,const glm::vec3& pValue) override;
 		void SetInt(const std::string& pName, int pValue) override;
+		void SetFloat(const std::string& pName, float pValue) override;
+		void SetFloat3(const std::string& pName,const glm::vec3& pValue) override;
+		void SetFloat4(const std::string& pName, const glm::vec4& pValue) override;
+		void SetMat4(const std::string& pName, const glm::mat4& pValue) override;
 		
 		void UploadUniformInt(const std::string& pName, int pValue) const;
 

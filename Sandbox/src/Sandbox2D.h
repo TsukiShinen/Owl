@@ -20,4 +20,5 @@ private:
 	Owl::Ref<Owl::Texture2D> m_CheckerboardTexture;
 	
 	glm::vec4 m_SquareColor = {1.0f, 1.0f, 1.0f, 1.0f};
+	float m_SquareRotation = 0.0f;
 };

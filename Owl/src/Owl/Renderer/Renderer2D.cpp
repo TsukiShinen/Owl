@@ -75,27 +75,60 @@ namespace Owl
 
 	void Renderer2D::DrawQuad(const glm::vec2& pPosition, const glm::vec2& pSize, const glm::vec4& pColor)
 	{
-		DrawQuad({pPosition.x, pPosition.y, 0.0f}, pSize, pColor);
+		DrawQuad({pPosition.x, pPosition.y, 0.0f}, pSize, s_Storage->WhiteTexture, 1.0f, pColor);
 	}
 
 	void Renderer2D::DrawQuad(const glm::vec3& pPosition, const glm::vec2& pSize, const glm::vec4& pColor)
 	{
-		DrawQuad(pPosition, pSize, s_Storage->WhiteTexture, pColor);
+		DrawQuad(pPosition, pSize, s_Storage->WhiteTexture, 1.0f, pColor);
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec2& pPosition, const glm::vec2& pSize, const Ref<Texture2D>& pTexture, const glm::vec4& pColor)
+	void Renderer2D::DrawQuad(const glm::vec2& pPosition, const glm::vec2& pSize, const Ref<Texture2D>& pTexture, const float pTilingFactor, const glm::vec4& pColor)
 	{
-		DrawQuad({pPosition.x, pPosition.y, 0.0f}, pSize, pTexture, pColor);
+		DrawQuad({pPosition.x, pPosition.y, 0.0f}, pSize, pTexture, pTilingFactor, pColor);
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec3& pPosition, const glm::vec2& pSize, const Ref<Texture2D>& pTexture, const glm::vec4& pColor)
+	void Renderer2D::DrawQuad(const glm::vec3& pPosition, const glm::vec2& pSize, const Ref<Texture2D>& pTexture, const float pTilingFactor, const glm::vec4& pColor)
 	{
 		OWL_PROFILE_FUNCTION();
 		
 		s_Storage->TextureShader->SetFloat4("u_Color", pColor);
+		s_Storage->TextureShader->SetFloat("u_TilingFactor", pTilingFactor);
 		pTexture->Bind();
 
 		glm::mat4 transform = translate(glm::mat4(1.0f), pPosition)
+							* scale(glm::mat4(1.0f), {pSize.x, pSize.y, 1.0f});
+		s_Storage->TextureShader->SetMat4("u_Transform", transform);
+
+		s_Storage->QuadVertexArray->Bind();
+		RenderCommand::DrawIndexed(s_Storage->QuadVertexArray);
+	}
+
+	void Renderer2D::DrawRotatedQuad(const glm::vec2& pPosition, float pRotation, const glm::vec2& pSize, const glm::vec4& pColor)
+	{
+		DrawRotatedQuad({pPosition.x, pPosition.y, 0}, pRotation, pSize, s_Storage->WhiteTexture, 1.0f, pColor);
+	}
+
+	void Renderer2D::DrawRotatedQuad(const glm::vec3& pPosition, float pRotation, const glm::vec2& pSize, const glm::vec4& pColor)
+	{
+		DrawRotatedQuad(pPosition, pRotation, pSize, s_Storage->WhiteTexture, 1.0f, pColor);
+	}
+
+	void Renderer2D::DrawRotatedQuad(const glm::vec2& pPosition, float pRotation, const glm::vec2& pSize, const Ref<Texture2D>& pTexture, const float pTilingFactor, const glm::vec4& pColor)
+	{
+		DrawRotatedQuad({pPosition.x, pPosition.y, 0}, pRotation, pSize, pTexture, pTilingFactor, pColor);
+	}
+
+	void Renderer2D::DrawRotatedQuad(const glm::vec3& pPosition, float pRotation, const glm::vec2& pSize, const Ref<Texture2D>& pTexture, float pTilingFactor, const glm::vec4& pColor)
+	{
+		OWL_PROFILE_FUNCTION();
+		
+		s_Storage->TextureShader->SetFloat4("u_Color", pColor);
+		s_Storage->TextureShader->SetFloat("u_TilingFactor", pTilingFactor);
+		pTexture->Bind();
+
+		glm::mat4 transform = translate(glm::mat4(1.0f), pPosition)
+							* rotate(glm::mat4(1.0f), pRotation, { 0.0f, 0.0f, 1.0f })
 							* scale(glm::mat4(1.0f), {pSize.x, pSize.y, 1.0f});
 		s_Storage->TextureShader->SetMat4("u_Transform", transform);
 
