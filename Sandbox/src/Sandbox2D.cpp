@@ -41,9 +41,10 @@ void Sandbox2D::OnUpdate(const Owl::DeltaTime pDeltaTime)
 		
 		Owl::Renderer2D::BeginScene(m_CameraController.GetCamera());
 		{
-			Owl::Renderer2D::DrawRotatedQuad({-1.0f, 0.0f}, glm::radians(m_SquareRotation), {.8f, .8f}, m_SquareColor);
-			Owl::Renderer2D::DrawQuad({0.6f, -0.5f}, {.5f, .75f}, m_SquareColor);
-			Owl::Renderer2D::DrawQuad({0.0f, 0.0f, -0.1f}, {10.0f, 10.0f}, m_CheckerboardTexture, 10.0f);
+			//Owl::Renderer2D::DrawRotatedQuad({-1.0f, 0.0f}, glm::radians(m_SquareRotation), {.8f, .8f}, m_SquareColor);
+			Owl::Renderer2D::DrawQuad({-1.0f, -0.0f}, {.8f, .8f}, m_SquareColor);
+			Owl::Renderer2D::DrawQuad({0.5f, -0.5f}, {.5f, .75f}, m_SquareColor);
+			//Owl::Renderer2D::DrawQuad({0.0f, 0.0f, -0.1f}, {10.0f, 10.0f}, m_CheckerboardTexture, 10.0f);
 		}
 		Owl::Renderer2D::EndScene();
 	}

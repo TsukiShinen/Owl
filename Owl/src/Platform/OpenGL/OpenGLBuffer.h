@@ -6,11 +6,14 @@ namespace Owl
 	class OpenGlVertexBuffer : public VertexBuffer
 	{
 	public:
+		OpenGlVertexBuffer(uint32_t pSize);
 		OpenGlVertexBuffer(const float* pVertices, uint32_t pSize);
 		~OpenGlVertexBuffer() override;
 
 		void Bind() const override;
 		void UnBind() const override;
+
+		void SetData(const void* pData, uint32_t pSize) override;
 
 		const BufferLayout& GetLayout() const override { return m_Layout; }
 		void SetLayout(const BufferLayout& pLayout) override { m_Layout = pLayout; }

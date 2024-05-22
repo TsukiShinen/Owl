@@ -115,9 +115,12 @@ namespace Owl
 		virtual void Bind() const = 0;
 		virtual void UnBind() const = 0;
 
+		virtual void SetData(const void* pData, uint32_t pSize) = 0;
+
 		virtual const BufferLayout& GetLayout() const = 0;
 		virtual void SetLayout(const BufferLayout& pLayout) = 0;
 
+		static Ref<VertexBuffer> Create(uint32_t pSize);
 		static Ref<VertexBuffer> Create(const float* pVertices, uint32_t pSize);
 	};
 

@@ -59,9 +59,10 @@ namespace Owl
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
-	void OpenGlRendererApi::DrawIndexed(const Ref<VertexArray>& pVertexArray)
+	void OpenGlRendererApi::DrawIndexed(const Ref<VertexArray>& pVertexArray, uint32_t pIndexCount)
 	{
-		glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(pVertexArray->GetIndexBuffer()->GetCount()), GL_UNSIGNED_INT,
+		uint32_t count = pIndexCount ? pVertexArray->GetIndexBuffer()->GetCount() : pIndexCount;
+		glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(count), GL_UNSIGNED_INT,
 		               nullptr);
 	}
 }

@@ -12,6 +12,6 @@ namespace Owl
 		void SetClearColor(const glm::vec4& pColor) override;
 		void Clear() override;
 
-		void DrawIndexed(const Ref<VertexArray>& pVertexArray) override;
+		void DrawIndexed(const Ref<VertexArray>& pVertexArray, uint32_t pIndexCount = 0) override;
 	};
 }

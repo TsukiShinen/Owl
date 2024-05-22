@@ -26,9 +26,9 @@ namespace Owl
 			s_RendererApi->Clear();
 		}
 
-		static void DrawIndexed(const Ref<VertexArray>& pVertexArray)
+		static void DrawIndexed(const Ref<VertexArray>& pVertexArray, uint32_t pIndexCount = 0)
 		{
-			s_RendererApi->DrawIndexed(pVertexArray);
+			s_RendererApi->DrawIndexed(pVertexArray, pIndexCount);
 		}
 
 	private:

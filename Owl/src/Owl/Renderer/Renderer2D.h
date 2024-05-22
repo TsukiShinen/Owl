@@ -12,6 +12,7 @@ namespace Owl
 
 		static void BeginScene(const OrthographicCamera& pCamera);
 		static void EndScene();
+		static void Flush();
 
 		static void DrawQuad(const glm::vec2& pPosition, const glm::vec2& pSize, const glm::vec4& pColor);
 		static void DrawQuad(const glm::vec3& pPosition, const glm::vec2& pSize, const glm::vec4& pColor);

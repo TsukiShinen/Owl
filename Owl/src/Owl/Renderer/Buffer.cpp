@@ -6,6 +6,21 @@
 
 namespace Owl
 {
+	Ref<VertexBuffer> VertexBuffer::Create(uint32_t pSize)
+	{
+		switch (Renderer::GetApi())
+		{
+		case RendererApi::Api::None:
+			OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported!")
+			return nullptr;
+		case RendererApi::Api::OpenGl:
+			return CreateRef<OpenGlVertexBuffer>(pSize);
+		}
+
+		OWL_CORE_ASSERT(false, "Unknow RendererApi!")
+		return nullptr;
+	}
+
 	Ref<VertexBuffer> VertexBuffer::Create(const float* pVertices, const uint32_t pSize)
 	{
 		switch (Renderer::GetApi())
