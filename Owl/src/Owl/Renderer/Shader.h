@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include <span>
 #include <glm/glm.hpp>
 
 namespace Owl
@@ -12,6 +13,7 @@ namespace Owl
 		virtual void UnBind() const = 0;
 
 		virtual void SetInt(const std::string& pName, int pValue) = 0;
+		virtual void SetIntArray(const std::string& pName, std::span<int> pValues) = 0;
 		virtual void SetFloat(const std::string& pName, float pValue) = 0;
 		virtual void SetFloat3(const std::string& pName, const glm::vec3& pValue) = 0;
 		virtual void SetFloat4(const std::string& pName, const glm::vec4& pValue) = 0;

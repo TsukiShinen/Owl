@@ -13,16 +13,12 @@
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Buffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Buffer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Buffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Buffer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RenderCommand.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RenderCommand.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RendererApi.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/RendererApi.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGLBuffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGLBuffer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGLBuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGLBuffer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Shader.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Shader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Texture.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Texture.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlTexture.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlTexture.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sandbox/Assets/Shaders/Texture.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/Sandbox/Assets/Shaders/Texture.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sandbox/src/Sandbox2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Sandbox/src/Sandbox2D.cpp" afterDir="false" />
     </list>
@@ -35,6 +31,25 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
@@ -260,6 +275,7 @@
       <workItem from="1716048580874" duration="462000" />
       <workItem from="1716053129979" duration="907000" />
       <workItem from="1716402566893" duration="2260000" />
+      <workItem from="1716491784049" duration="4110000" />
     </task>
     <servers />
   </component>

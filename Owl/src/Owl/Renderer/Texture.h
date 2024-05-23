@@ -16,6 +16,8 @@ namespace Owl
 		virtual void SetData(void* pData, uint32_t pSize) = 0;
 
 		virtual void Bind(uint32_t pSlot = 0) const = 0;
+
+		virtual bool operator==(const Texture&) const = 0;
 	};
 
 	class Texture2D : public Texture

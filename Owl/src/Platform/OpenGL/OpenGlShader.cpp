@@ -94,6 +94,13 @@ namespace Owl
 		UploadUniformInt(pName, pValue);
 	}
 
+	void OpenGlShader::SetIntArray(const std::string& pName, std::span<int> pValues)
+	{
+		OWL_PROFILE_FUNCTION();
+
+		UploadUniformIntArray(pName, pValues);
+	}
+
 	void OpenGlShader::SetFloat(const std::string& pName, float pValue)
 	{
 		OWL_PROFILE_FUNCTION();
@@ -111,6 +118,12 @@ namespace Owl
 	{
 		const GLint location = glGetUniformLocation(m_RendererID, pName.c_str());
 		glUniform1f(location, pValue);
+	}
+
+	void OpenGlShader::UploadUniformIntArray(const std::string& pName, const std::span<int> pValues) const
+	{
+		const GLint location = glGetUniformLocation(m_RendererID, pName.c_str());
+		glUniform1iv(location, pValues.size(), pValues.data());
 	}
 
 	void OpenGlShader::UploadUniformFloat2(const std::string& pName, const glm::vec2& pValues) const

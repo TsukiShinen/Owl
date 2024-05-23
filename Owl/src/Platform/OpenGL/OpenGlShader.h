@@ -21,6 +21,7 @@ namespace Owl
 		void UnBind() const override;
 		
 		void SetInt(const std::string& pName, int pValue) override;
+		void SetIntArray(const std::string& pName, std::span<int> pValues) override;
 		void SetFloat(const std::string& pName, float pValue) override;
 		void SetFloat3(const std::string& pName,const glm::vec3& pValue) override;
 		void SetFloat4(const std::string& pName, const glm::vec4& pValue) override;
@@ -29,6 +30,7 @@ namespace Owl
 		void UploadUniformInt(const std::string& pName, int pValue) const;
 
 		void UploadUniformFloat(const std::string& pName, float pValue) const;
+		void UploadUniformIntArray(const std::string& pName, std::span<int> pValues) const;
 		void UploadUniformFloat2(const std::string& pName, const glm::vec2& pValues) const;
 		void UploadUniformFloat3(const std::string& pName, const glm::vec3& pValues) const;
 		void UploadUniformFloat4(const std::string& pName, const glm::vec4& pValues) const;

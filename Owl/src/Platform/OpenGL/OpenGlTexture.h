@@ -19,6 +19,11 @@ namespace Owl
 		void SetData(void* pData, uint32_t pSize) override;
 
 		void Bind(uint32_t pSlot = 0) const override;
+		
+		bool operator==(const Texture& other) const override
+		{
+			return m_RendererId == ((OpenGlTexture2D&)other).m_RendererId;
+		}
 
 	private:
 		std::string m_Path;
