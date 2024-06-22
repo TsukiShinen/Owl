@@ -15,6 +15,7 @@ void Sandbox2D::OnAttach()
 	OWL_PROFILE_FUNCTION();
 	
 	m_CheckerboardTexture = Owl::Texture2D::Create("Assets/Textures/Checkerboard.png");
+	m_ChernoTexture = Owl::Texture2D::Create("Assets/Textures/ChernoLogo.png");
 }
 
 void Sandbox2D::OnDetach()

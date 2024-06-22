@@ -191,7 +191,7 @@ namespace Owl
 		OWL_PROFILE_FUNCTION();
 
 		float textureIndex = 0.0f;
-		for (uint32_t i = 0; i < s_Data.TextureSlotIndex; ++i)
+		for (uint32_t i = 1; i < s_Data.TextureSlotIndex; ++i)
 		{
 			if (*s_Data.TextureSlots[i].get() == *pTexture.get())
 			{
@@ -298,7 +298,7 @@ namespace Owl
 		OWL_PROFILE_FUNCTION();
 
 		float textureIndex = 0.0f;
-		for (uint32_t i = 0; i < s_Data.TextureSlotIndex; ++i)
+		for (uint32_t i = 1; i < s_Data.TextureSlotIndex; ++i)
 		{
 			if (*s_Data.TextureSlots[i].get() == *pTexture.get())
 			{

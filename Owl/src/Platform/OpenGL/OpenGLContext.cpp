@@ -9,6 +9,7 @@ namespace Owl
 	OpenGLContext::OpenGLContext(GLFWwindow* pWindowHandle)
 		: m_WindowHandle(pWindowHandle)
 	{
+		OWL_CORE_ASSERT(pWindowHandle, "Window handle is null!")
 	}
 
 	void OpenGLContext::Init()

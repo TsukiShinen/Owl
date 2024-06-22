@@ -32,7 +32,11 @@ namespace Owl
 		
 		int width, height, channels;
 		stbi_set_flip_vertically_on_load(1);
-		stbi_uc* data = stbi_load(m_Path.c_str(), &width, &height, &channels, 0);
+		stbi_uc* data = nullptr;
+		{
+			OWL_PROFILE_SCOPE("stbi_load - OpenGLTexture2D::OpenGLTexture2D(const std:string&)");
+			data = stbi_load(m_Path.c_str(), &width, &height, &channels, 0);
+		}
 		OWL_CORE_ASSERT(data, "Failed to load image!")
 		m_Width = width;
 		m_Height = height;
