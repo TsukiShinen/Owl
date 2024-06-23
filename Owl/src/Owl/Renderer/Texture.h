@@ -12,6 +12,7 @@ namespace Owl
 
 		virtual uint32_t GetWidth() const = 0;
 		virtual uint32_t GetHeight() const = 0;
+		virtual uint32_t GetRendererID() const = 0;
 
 		virtual void SetData(void* pData, uint32_t pSize) = 0;
 

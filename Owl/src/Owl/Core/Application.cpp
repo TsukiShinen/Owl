@@ -98,6 +98,11 @@ namespace Owl
 		pOverlay->OnAttach();
 	}
 
+	void Application::Close()
+	{
+		m_IsRunning = false;
+	}
+
 	bool Application::OnWindowClose(const WindowCloseEvent& pEvent)
 	{
 		m_IsRunning = false;

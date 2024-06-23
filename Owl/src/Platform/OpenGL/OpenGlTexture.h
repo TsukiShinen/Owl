@@ -15,6 +15,7 @@ namespace Owl
 
 		uint32_t GetWidth() const override { return m_Width; }
 		uint32_t GetHeight() const override { return m_Height; }
+		uint32_t GetRendererID() const override { return m_RendererId; }
 
 		void SetData(void* pData, uint32_t pSize) override;
 
