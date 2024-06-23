@@ -76,9 +76,9 @@ namespace Owl
 
 		for (auto& iterator : std::ranges::reverse_view(m_LayerStack))
 		{
-			iterator->OnEvent(pEvent);
 			if (pEvent.IsHandled)
 				break;
+			iterator->OnEvent(pEvent);
 		}
 	}
 

@@ -12,6 +12,7 @@ namespace Owl
 
 		void OnAttach() override;
 		void OnDetach() override;
+		void OnEvent(Event& pEvent) override;
 
 		void Begin();
 		void End();

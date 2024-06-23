@@ -63,6 +63,13 @@ namespace Owl
 		ImGui::DestroyContext();
 	}
 
+	void ImGuiLayer::OnEvent(Event& pEvent)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		pEvent.IsHandled |= pEvent.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse;
+		pEvent.IsHandled |= pEvent.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard;
+	}
+
 	void ImGuiLayer::Begin()
 	{
 		OWL_PROFILE_FUNCTION();

@@ -5,12 +5,15 @@
 #include <memory>
 
 #ifdef OWL_DEBUG
-#if defined(OWL_PLATFORM_WINDOWS)
-#define OWL_DEBUGBREAK() __debugbreak()
-#else
+	#if defined(OWL_PLATFORM_WINDOWS)
+		#define OWL_DEBUGBREAK() __debugbreak()
+	#elif defined(HZ_PLATFORM_LINUX)
+		#include <signal.h>
+		#define HZ_DEBUGBREAK() raise(SIGTRAP)
+	#else
 		#error "Platform doesn't support debugbreak yet!"
-#endif
-#define OWL_ENABLE_ASSERTS
+	#endif
+	#define OWL_ENABLE_ASSERTS
 #else
 	#define OWL_DEBUGBREAK()
 #endif
