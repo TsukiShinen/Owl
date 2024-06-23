@@ -19,9 +19,9 @@ namespace Owl
 	
 	struct Renderer2DData
 	{
-		const uint32_t MaxQuads = 10000;
-		const uint32_t MaxVertices = MaxQuads * 4;
-		const uint32_t MaxIndices = MaxQuads * 6;
+		static const uint32_t MaxQuads = 20000;
+		static const uint32_t MaxVertices = MaxQuads * 4;
+		static const uint32_t MaxIndices = MaxQuads * 6;
 		static const uint32_t MaxTextureSlots = 32; // TODO: RenderCaps
 		
 		Ref<VertexArray> QuadVertexArray;
@@ -37,6 +37,8 @@ namespace Owl
 		uint32_t TextureSlotIndex = 1; // 0 = WhiteTexture
 
 		glm::vec4 QuadVertexPositions[4];
+		
+		Renderer2D::Statistics Stats;
 	};
 
 	static Renderer2DData s_Data;
@@ -133,8 +135,19 @@ namespace Owl
 			s_Data.TextureSlots[i]->Bind(i);
 		
 		RenderCommand::DrawIndexed(s_Data.QuadVertexArray, s_Data.QuadIndexCount);
+		s_Data.Stats.DrawCalls++;
 	}
 
+	void Renderer2D::FlushAndReset()
+	{
+		EndScene();
+		
+		s_Data.QuadIndexCount = 0;
+		s_Data.QuadVertexBufferPtr = s_Data.QuadVertexBufferBase;
+
+		s_Data.TextureSlotIndex = 1;
+	}
+	
 	void Renderer2D::DrawQuad(const glm::vec2& pPosition, const glm::vec2& pSize, const glm::vec4& pColor)
 	{
 		DrawQuad({pPosition.x, pPosition.y, 0.0f}, pSize, pColor);
@@ -143,6 +156,9 @@ namespace Owl
 	void Renderer2D::DrawQuad(const glm::vec3& pPosition, const glm::vec2& pSize, const glm::vec4& pColor)
 	{
 		OWL_PROFILE_FUNCTION();
+
+		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
+			FlushAndReset();
 
 		constexpr float textureIndex = 0.0f;
 		constexpr float tilingFactor = 1.0f;
@@ -179,6 +195,8 @@ namespace Owl
 		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadIndexCount += 6;
+
+		s_Data.Stats.QuadCount++;
 	}
 
 	void Renderer2D::DrawQuad(const glm::vec2& pPosition, const glm::vec2& pSize, const Ref<Texture2D>& pTexture, const float pTilingFactor, const glm::vec4& pColor)
@@ -190,6 +208,9 @@ namespace Owl
 	{
 		OWL_PROFILE_FUNCTION();
 
+		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
+			FlushAndReset();
+
 		float textureIndex = 0.0f;
 		for (uint32_t i = 1; i < s_Data.TextureSlotIndex; ++i)
 		{
@@ -239,6 +260,8 @@ namespace Owl
 		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadIndexCount += 6;
+		
+		s_Data.Stats.QuadCount++;
 	}
 
 	void Renderer2D::DrawRotatedQuad(const glm::vec2& pPosition, float pRotation, const glm::vec2& pSize, const glm::vec4& pColor)
@@ -249,6 +272,9 @@ namespace Owl
 	void Renderer2D::DrawRotatedQuad(const glm::vec3& pPosition, float pRotation, const glm::vec2& pSize, const glm::vec4& pColor)
 	{
 		OWL_PROFILE_FUNCTION();
+
+		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
+			FlushAndReset();
 
 		constexpr float textureIndex = 0.0f;
 		constexpr float tilingFactor = 1.0f;
@@ -286,6 +312,8 @@ namespace Owl
 		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadIndexCount += 6;
+		
+		s_Data.Stats.QuadCount++;
 	}
 
 	void Renderer2D::DrawRotatedQuad(const glm::vec2& pPosition, float pRotation, const glm::vec2& pSize, const Ref<Texture2D>& pTexture, const float pTilingFactor, const glm::vec4& pColor)
@@ -296,6 +324,9 @@ namespace Owl
 	void Renderer2D::DrawRotatedQuad(const glm::vec3& pPosition, float pRotation, const glm::vec2& pSize, const Ref<Texture2D>& pTexture, float pTilingFactor, const glm::vec4& pColor)
 	{
 		OWL_PROFILE_FUNCTION();
+
+		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
+			FlushAndReset();
 
 		float textureIndex = 0.0f;
 		for (uint32_t i = 1; i < s_Data.TextureSlotIndex; ++i)
@@ -347,5 +378,17 @@ namespace Owl
 		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadIndexCount += 6;
+		
+		s_Data.Stats.QuadCount++;
+	}
+
+	Renderer2D::Statistics Renderer2D::GetStats()
+	{
+		return s_Data.Stats;
+	}
+
+	void Renderer2D::ResetStats()
+	{
+		memset(&s_Data.Stats, 0, sizeof(Statistics));
 	}
 }

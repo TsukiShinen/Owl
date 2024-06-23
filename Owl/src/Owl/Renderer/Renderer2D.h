@@ -23,6 +23,20 @@ namespace Owl
 		static void DrawRotatedQuad(const glm::vec3& pPosition, float pRotation, const glm::vec2& pSize, const glm::vec4& pColor);
 		static void DrawRotatedQuad(const glm::vec2& pPosition, float pRotation, const glm::vec2& pSize, const Ref<Texture2D>& pTexture, float pTilingFactor, const glm::vec4& pColor = {1.0f, 1.0f, 1.0f, 1.0f});
 		static void DrawRotatedQuad(const glm::vec3& pPosition, float pRotation, const glm::vec2& pSize, const Ref<Texture2D>& pTexture, float pTilingFactor, const glm::vec4& pColor = {1.0f, 1.0f, 1.0f, 1.0f});
+
+		struct Statistics
+		{
+			uint32_t DrawCalls = 0;
+			uint32_t QuadCount = 0;
+
+			uint32_t GetTotalVertexCount() { return QuadCount * 4; }
+			uint32_t GetTotalIndexCount() { return QuadCount * 6; }
+		};
+		static Statistics GetStats();
+		static void ResetStats();
+		
+	private:
+		static void FlushAndReset();
 	};
 	
 }
