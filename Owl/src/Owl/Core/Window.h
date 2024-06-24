@@ -7,11 +7,11 @@ namespace Owl
 	struct WindowProps
 	{
 		std::string Title;
-		unsigned int Width;
-		unsigned int Height;
+		uint32_t  Width;
+		uint32_t  Height;
 
-		WindowProps(std::string pTitle = "Owl Engine", const unsigned int pWidth = 1280,
-		            const unsigned int pHeight = 720)
+		WindowProps(std::string pTitle = "Owl Engine", const uint32_t  pWidth = 1280,
+		            const uint32_t  pHeight = 720)
 			: Title(std::move(pTitle)), Width(pWidth), Height(pHeight)
 		{
 		}
@@ -26,8 +26,8 @@ namespace Owl
 
 		virtual void OnUpdate() = 0;
 
-		virtual unsigned int GetWidth() const = 0;
-		virtual unsigned int GetHeight() const = 0;
+		virtual uint32_t  GetWidth() const = 0;
+		virtual uint32_t  GetHeight() const = 0;
 
 		// Window attributes
 		virtual void SetEventCallback(const EventCallbackFunction& pCallback) = 0;

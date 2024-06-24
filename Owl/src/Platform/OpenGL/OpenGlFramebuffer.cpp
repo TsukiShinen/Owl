@@ -16,6 +16,14 @@ namespace Owl
         glDeleteFramebuffers(1, &m_RendererId);
     }
 
+    void OpenGlFramebuffer::Resize(uint32_t pWidth, uint32_t pHeight)
+    {
+        m_Specification.Width = pWidth;
+        m_Specification.Height = pHeight;
+
+        Invalidate();
+    }
+
     void OpenGlFramebuffer::Bind()
     {
         glBindFramebuffer(GL_FRAMEBUFFER, m_RendererId);

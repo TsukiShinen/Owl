@@ -15,7 +15,7 @@ public:
 	Sandbox()
 	{
 		// PushLayer(new ExampleLayer());
-		PushLayer(new Sandbox2D());
+		PushLayer(new EditorLayer());
 	}
 
 	~Sandbox() override = default;

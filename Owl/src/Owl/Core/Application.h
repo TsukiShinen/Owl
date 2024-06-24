@@ -13,7 +13,7 @@ namespace Owl
 	class Application
 	{
 	public:
-		Application();
+		Application(const std::string& pName = "Owl App");
 		virtual ~Application();
 
 		void OnEvent(Event& pEvent);

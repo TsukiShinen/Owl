@@ -2,7 +2,7 @@ include "Dependencies.lua"
 
 workspace "Owl"
     architecture "x86_64"
-    startproject "Sandbox"
+    startproject "OwlEditor"
 
     configurations
 	{
@@ -26,6 +26,7 @@ group ""
 
 group "Core"
 	include "Owl"
+	include "OwlEditor"
 group ""
 
 group "Misc"

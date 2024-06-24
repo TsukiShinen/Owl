@@ -9,6 +9,8 @@ namespace Owl
         OpenGlFramebuffer(const FramebufferSpecification& pSpecification);
         ~OpenGlFramebuffer() override;
         
+		virtual void Resize(uint32_t pWidth, uint32_t pHeight) override;
+        
         void Bind() override;
         void Unbind() override;
         uint32_t GetColorAttachmentRendererId() const override {return m_ColorAttachment; }
@@ -17,8 +19,8 @@ namespace Owl
         void Invalidate();
 
     private:
-        uint32_t m_RendererId;
-        uint32_t m_ColorAttachment, m_DepthAttachment;
+        uint32_t m_RendererId = 0;
+        uint32_t m_ColorAttachment = 0, m_DepthAttachment = 0;
         FramebufferSpecification m_Specification;
     };
 }

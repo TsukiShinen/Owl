@@ -63,6 +63,12 @@ namespace Owl
 		dispatcher.Dispatch<WindowResizeEvent>(OWL_BIND_EVENT_FN(OnWindowResized));
 	}
 
+	void OrthographicCameraController::OnResize(float pWidth, float pHeight)
+	{
+		m_AspectRatio = pWidth / pHeight;
+		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
+	}
+
 	bool OrthographicCameraController::OnMouseScrolled(const MouseScrolledEvent& pEvent)
 	{
 		OWL_PROFILE_FUNCTION();
@@ -78,8 +84,7 @@ namespace Owl
 	{
 		OWL_PROFILE_FUNCTION();
 		
-		m_AspectRatio = static_cast<float>(pEvent.GetWidth()) / static_cast<float>(pEvent.GetHeight());
-		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
+		OnResize(static_cast<float>(pEvent.GetWidth()), static_cast<float>(pEvent.GetHeight()));
 
 		return false;
 	}

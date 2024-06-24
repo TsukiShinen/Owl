@@ -19,6 +19,9 @@ namespace Owl
         
         virtual void Bind() = 0;
         virtual void Unbind() = 0;
+        
+		virtual void Resize(uint32_t pWidth, uint32_t pHeight) = 0;
+        
         virtual uint32_t GetColorAttachmentRendererId() const = 0;
         virtual const FramebufferSpecification& GetSpecification() const = 0;
         
