@@ -16,6 +16,11 @@ void Sandbox2D::OnAttach()
 	
 	m_CheckerboardTexture = Owl::Texture2D::Create("Assets/Textures/Checkerboard.png");
 	m_ChernoTexture = Owl::Texture2D::Create("Assets/Textures/ChernoLogo.png");
+
+	Owl::FramebufferSpecification framebufferSpecification;
+	framebufferSpecification.Width = 1280;
+	framebufferSpecification.Height = 780;
+	m_Framebuffer = Owl::Framebuffer::Create(framebufferSpecification);
 }
 
 void Sandbox2D::OnDetach()
@@ -33,6 +38,7 @@ void Sandbox2D::OnUpdate(const Owl::DeltaTime pDeltaTime)
 	Owl::Renderer2D::ResetStats();
 	{
 		OWL_PROFILE_SCOPE("Render Preparation");
+		m_Framebuffer->Bind();
 		
 		Owl::RenderCommand::SetClearColor({.1f, .1f, .1f, 1});
 		Owl::RenderCommand::Clear();
@@ -63,6 +69,7 @@ void Sandbox2D::OnUpdate(const Owl::DeltaTime pDeltaTime)
 			}
 		}
 		Owl::Renderer2D::EndScene();
+		m_Framebuffer->Unbind();
 	}
 }
 
@@ -143,8 +150,8 @@ void Sandbox2D::OnImGuiRender()
 
 		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
-		uint32_t textureID = m_CheckerboardTexture->GetRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererId();
+		ImGui::Image((void*)textureID, ImVec2{ 1280.0f, 720.0f });
 		ImGui::End();
 
 		ImGui::End();
@@ -162,8 +169,8 @@ void Sandbox2D::OnImGuiRender()
 
 		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
-		uint32_t textureID = m_CheckerboardTexture->GetRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererId();
+		ImGui::Image((void*)textureID, ImVec2{ 1280.0f, 720.0f });
 		ImGui::End();
 	}
 }
