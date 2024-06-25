@@ -1,12 +1,13 @@
 ﻿#include "opch.h"
-#include "WindowsInput.h"
+#include "Owl/Core/Input.h"
 
-#include "GLFW/glfw3.h"
+#include <GLFW/glfw3.h>
+
 #include "Owl/Core/Application.h"
 
 namespace Owl
 {
-	bool WindowsInput::IsKeyPressedImpl(const KeyCode pKeyCode)
+	bool Input::IsKeyPressed(const KeyCode pKeyCode)
 	{
 		const Application& app = Application::Get();
 		const auto window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
@@ -15,7 +16,7 @@ namespace Owl
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 
-	bool WindowsInput::IsMouseButtonPressedImpl(const MouseCode pMouseCode)
+	bool Input::IsMouseButtonPressed(const MouseCode pMouseCode)
 	{
 		const Application& app = Application::Get();
 		const auto window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
@@ -24,21 +25,7 @@ namespace Owl
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 
-	float WindowsInput::GetCursorXImpl()
-	{
-		auto [x, y] = GetCursorPositionImpl();
-
-		return x;
-	}
-
-	float WindowsInput::GetCursorYImpl()
-	{
-		auto [x, y] = GetCursorPositionImpl();
-
-		return y;
-	}
-
-	std::pair<float, float> WindowsInput::GetCursorPositionImpl()
+	std::pair<float, float> Input::GetCursorPosition()
 	{
 		const Application& app = Application::Get();
 		const auto window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
@@ -47,5 +34,19 @@ namespace Owl
 		glfwGetCursorPos(window, &x, &y);
 
 		return {static_cast<float>(x), static_cast<float>(y)};
+	}
+
+	float Input::GetCursorX()
+	{
+		auto [x, y] = GetCursorPosition();
+
+		return x;
+	}
+
+	float Input::GetCursorY()
+	{
+		auto [x, y] = GetCursorPosition();
+
+		return y;
 	}
 }
