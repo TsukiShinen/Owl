@@ -65,6 +65,9 @@ namespace Owl
 
 	void ImGuiLayer::OnEvent(Event& pEvent)
 	{
+		if (!m_BlockEvents)
+			return;
+		
 		ImGuiIO& io = ImGui::GetIO();
 		pEvent.IsHandled |= pEvent.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse;
 		pEvent.IsHandled |= pEvent.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard;

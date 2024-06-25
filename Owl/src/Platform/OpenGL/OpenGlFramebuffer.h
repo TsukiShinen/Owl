@@ -9,7 +9,7 @@ namespace Owl
         OpenGlFramebuffer(const FramebufferSpecification& pSpecification);
         ~OpenGlFramebuffer() override;
         
-		virtual void Resize(uint32_t pWidth, uint32_t pHeight) override;
+        void Resize(uint32_t pWidth, uint32_t pHeight) override;
         
         void Bind() override;
         void Unbind() override;

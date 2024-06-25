@@ -16,5 +16,9 @@ namespace Owl
 
 		void Begin();
 		void End();
+
+		void BlockEvents(bool pBlock) { m_BlockEvents = pBlock; }
+	private:
+		bool m_BlockEvents = true;
 	};
 }
