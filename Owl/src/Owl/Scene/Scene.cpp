@@ -2,6 +2,7 @@
 #include "Scene.h"
 
 #include "Components.h"
+#include "Entity.h"
 #include "Owl/Renderer/Renderer2D.h"
 
 namespace Owl
@@ -14,9 +15,14 @@ namespace Owl
     {
     }
 
-    entt::entity Scene::CreateEntity()
+    Entity Scene::CreateEntity(const std::string& pName)
     {
-        return m_Registry.create();
+        Entity entity{m_Registry.create(), this};
+    	entity.AddComponent<TransformComponent>();
+    	auto& tag = entity.AddComponent<TagComponent>();
+        tag.Tag = pName.empty() ? "Entity" : pName;
+        
+        return entity;
     }
 
     void Scene::OnUpdate(DeltaTime pDeltaTime)

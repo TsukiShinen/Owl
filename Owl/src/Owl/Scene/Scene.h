@@ -5,18 +5,19 @@
 
 namespace Owl
 {
+    class Entity;
     class Scene
     {
     public:
         Scene();
         ~Scene();
-        
-		entt::registry& Reg() { return m_Registry; }
 
-        entt::entity CreateEntity();
+        Entity CreateEntity(const std::string& pName = std::string());
 
         void OnUpdate(DeltaTime pDeltaTime);
     private:
         entt::registry m_Registry;
+
+        friend class Entity;
     };
 }

@@ -2,15 +2,25 @@
 
 #include <glm/glm.hpp>
 
-namespace Owl {
-
+namespace Owl
+{
+    struct TagComponent
+    {
+        std::string Tag;
+        
+        TagComponent() = default;
+        TagComponent(const TagComponent&) = default;
+        TagComponent(std::string pTag)
+            : Tag(std::move(pTag)) {}
+    };
+    
     struct TransformComponent
     {
         glm::mat4 Transform{ 1.0f };
 
         TransformComponent() = default;
         TransformComponent(const TransformComponent&) = default;
-        TransformComponent(const glm::mat4 & pTransform)
+        TransformComponent(const glm::mat4& pTransform)
             : Transform(pTransform) {}
 
         operator glm::mat4& () { return Transform; }
@@ -26,5 +36,4 @@ namespace Owl {
         SpriteRendererComponent(const glm::vec4& pColor)
             : Color(pColor) {}
     };
-
 }
