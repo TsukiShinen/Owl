@@ -2,6 +2,8 @@
 
 #include <glm/glm.hpp>
 
+#include "Owl/Renderer/Camera.h"
+
 namespace Owl
 {
     struct TagComponent
@@ -35,5 +37,16 @@ namespace Owl
         SpriteRendererComponent(const SpriteRendererComponent&) = default;
         SpriteRendererComponent(const glm::vec4& pColor)
             : Color(pColor) {}
+    };
+
+    struct CameraComponent
+    {
+        Camera Camera;
+        bool Primary = true; // TODO: think about moving to scene
+        
+        CameraComponent() = default;
+        CameraComponent(const CameraComponent&) = default;
+        CameraComponent(const glm::mat4& pProjection)
+            : Camera(pProjection) {}
     };
 }

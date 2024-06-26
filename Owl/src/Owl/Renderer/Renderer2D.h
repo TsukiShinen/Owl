@@ -4,13 +4,16 @@
 
 namespace Owl
 {
+	class Camera;
+
 	class Renderer2D
 	{
 	public:
 		static void Init();
 		static void Shutdown();
 
-		static void BeginScene(const OrthographicCamera& pCamera);
+		static void BeginScene(const Camera& pCamera, const glm::mat4& pTransform);
+		static void BeginScene(const OrthographicCamera& pCamera); // TODO: Remove
 		static void EndScene();
 		static void Flush();
 
