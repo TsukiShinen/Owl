@@ -85,7 +85,6 @@ namespace Owl
 		OWL_PROFILE_FUNCTION();
 		
 		OnResize(static_cast<float>(pEvent.GetWidth()), static_cast<float>(pEvent.GetHeight()));
-
 		return false;
 	}
 }

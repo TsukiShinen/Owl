@@ -17,6 +17,9 @@
 
 #include "Owl/ImGui/ImGuiLayer.h"
 
+#include "Owl/Scene/Scene.h"
+#include "Owl/Scene/Components.h"
+
 // -- Renderer ----------------------
 #include "Owl/Renderer/RenderCommand.h"
 #include "Owl/Renderer/Renderer.h"

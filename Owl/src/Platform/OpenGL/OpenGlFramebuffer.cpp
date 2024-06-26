@@ -5,6 +5,8 @@
 
 namespace Owl
 {
+    static uint32_t s_MaxFrameBufferSize = 8192;
+    
     OpenGlFramebuffer::OpenGlFramebuffer(const FramebufferSpecification& pSpecification)
         : m_Specification(pSpecification)
     {
@@ -14,10 +16,18 @@ namespace Owl
     OpenGlFramebuffer::~OpenGlFramebuffer()
     {
         glDeleteFramebuffers(1, &m_RendererId);
+        glDeleteTextures(1, &m_ColorAttachment);
+        glDeleteTextures(1, &m_DepthAttachment);
     }
 
     void OpenGlFramebuffer::Resize(uint32_t pWidth, uint32_t pHeight)
     {
+        if (pWidth == 0 || pHeight == 0 || pWidth > s_MaxFrameBufferSize || pHeight > s_MaxFrameBufferSize)
+        {
+            OWL_CORE_WARN("Attempted to resize framebuffer to {0}, {1}", pWidth, pHeight);
+            return;
+        }
+        
         m_Specification.Width = pWidth;
         m_Specification.Height = pHeight;
 
@@ -27,6 +37,7 @@ namespace Owl
     void OpenGlFramebuffer::Bind()
     {
         glBindFramebuffer(GL_FRAMEBUFFER, m_RendererId);
+		glViewport(0, 0, m_Specification.Width, m_Specification.Height);
     }
 
     void OpenGlFramebuffer::Unbind()
@@ -36,6 +47,13 @@ namespace Owl
 
     void OpenGlFramebuffer::Invalidate()
     {
+        if (m_RendererId)
+        {
+            glDeleteFramebuffers(1, &m_RendererId);
+            glDeleteTextures(1, &m_ColorAttachment);
+            glDeleteTextures(1, &m_DepthAttachment);
+        }
+        
         glCreateFramebuffers(1, &m_RendererId);
         glBindFramebuffer(GL_FRAMEBUFFER, m_RendererId);
 
