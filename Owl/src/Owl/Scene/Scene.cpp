@@ -33,11 +33,11 @@ namespace Owl
         auto view = m_Registry.view<TransformComponent, CameraComponent>();
         for (auto entity : view)
         {
-            auto [transform, camera] = view.get<TransformComponent, CameraComponent>(entity);
-            if (camera.Primary)
+            auto [transformComponent, cameraComponent] = view.get<TransformComponent, CameraComponent>(entity);
+            if (cameraComponent.Primary)
             {
-                mainCamera = &camera.Camera;
-                cameraTransform = &transform.Transform;
+                mainCamera = &cameraComponent.Camera;
+                cameraTransform = &transformComponent.Transform;
                 break;
             }
         }
@@ -49,12 +49,28 @@ namespace Owl
             auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
             for (auto entity : group)
             {
-                auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+                auto [transformComponent, spriteComponent] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
-                Renderer2D::DrawQuad(transform, sprite.Color);
+                Renderer2D::DrawQuad(transformComponent, spriteComponent.Color);
             }
 
             Renderer2D::EndScene();
+        }
+    }
+
+    void Scene::SetViewportResize(uint32_t pWidth, uint32_t pHeight)
+    {
+        m_ViewportWidth = pWidth;
+        m_ViewportHeight = pHeight;
+
+        auto view = m_Registry.view<CameraComponent>();
+        for (auto entity : view)
+        {
+            auto& cameraComponent = view.get<CameraComponent>(entity);
+            if (cameraComponent.FixedAspectRatio)
+                continue;
+
+            cameraComponent.Camera.SetViewportSize(pWidth, pHeight);
         }
     }
 }

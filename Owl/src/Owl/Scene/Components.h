@@ -2,7 +2,7 @@
 
 #include <glm/glm.hpp>
 
-#include "Owl/Renderer/Camera.h"
+#include "Owl/Scene/SceneCamera.h"
 
 namespace Owl
 {
@@ -41,12 +41,11 @@ namespace Owl
 
     struct CameraComponent
     {
-        Camera Camera;
+        SceneCamera Camera;
         bool Primary = true; // TODO: think about moving to scene
+        bool FixedAspectRatio = false; 
         
         CameraComponent() = default;
         CameraComponent(const CameraComponent&) = default;
-        CameraComponent(const glm::mat4& pProjection)
-            : Camera(pProjection) {}
     };
 }
