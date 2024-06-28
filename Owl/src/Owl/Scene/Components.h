@@ -54,22 +54,14 @@ namespace Owl
     {
         ScriptableEntity* Instance = nullptr;
         
-        std::function<void()> InstantiateFunction;
-        std::function<void()> DestroyInstanceFunction;
-
-        std::function<void(ScriptableEntity*)> OnCreateFunction;
-        std::function<void(ScriptableEntity*)> OnDestroyFunction;
-        std::function<void(ScriptableEntity*, DeltaTime)> OnUpdateFunction;
+        ScriptableEntity*(*Instantiate)();
+        void(*Destroy)(NativeScriptComponent*);
 
         template<typename T>
         void Bind()
         {
-            InstantiateFunction = [&]() { Instance = new T(); };
-            DestroyInstanceFunction = [&]() { delete static_cast<T*>(Instance); Instance = nullptr; };
-
-            OnCreateFunction = [](ScriptableEntity* pInstance) { static_cast<T*>(pInstance)->OnCreate(); };
-            OnDestroyFunction = [](ScriptableEntity* pInstance) { static_cast<T*>(pInstance)->OnDestroy(); };
-            OnUpdateFunction = [](ScriptableEntity* pInstance, DeltaTime pDeltaTime) { static_cast<T*>(pInstance)->OnUpdate(pDeltaTime); };
+            Instantiate = []() { return static_cast<ScriptableEntity*>(new T()); };
+            Destroy = [](NativeScriptComponent* pNsc) { delete pNsc->Instance; pNsc->Instance = nullptr; };
         }
     };
 }

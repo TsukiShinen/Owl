@@ -38,18 +38,8 @@ namespace Owl
     	class CameraController : public ScriptableEntity
     	{
     	public:
-    		void OnCreate()
-    		{
-    			
-    		}
-
-    		void OnDestroy()
-    		{
-    			
-    		}
-
-    		void OnUpdate(DeltaTime pDeltaTime)
-    		{
+    		void OnUpdate(DeltaTime pDeltaTime) override
+		    {
     			auto& transform = GetComponent<TransformComponent>().Transform;
     			float speed = 5.0f;
 

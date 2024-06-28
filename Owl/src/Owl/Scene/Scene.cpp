@@ -33,12 +33,11 @@ namespace Owl
             {
                 if (!pNsc.Instance)
                 {
-                    pNsc.InstantiateFunction();
+                    pNsc.Instance = pNsc.Instantiate();
                     pNsc.Instance->m_Entity = { pEntity, this };
-                    pNsc.OnCreateFunction(pNsc.Instance);
+                    pNsc.Instance->OnCreate();
                 }
-
-                pNsc.OnUpdateFunction(pNsc.Instance, pDeltaTime);
+                pNsc.Instance->OnUpdate(pDeltaTime);
             });
         }
         
