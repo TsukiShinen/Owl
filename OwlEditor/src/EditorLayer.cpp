@@ -28,8 +28,43 @@ namespace Owl
     	m_SquareEntity = m_ActiveScene->CreateEntity("Square");
     	m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{0.0f, 1.0f, 0.0f, 1.0f});
 
-    	m_CameraEntity = m_ActiveScene->CreateEntity("Camera");
-    	m_CameraEntity.AddComponent<CameraComponent>();
+    	m_MainCameraEntity = m_ActiveScene->CreateEntity("Camera");
+    	m_MainCameraEntity.AddComponent<CameraComponent>();
+
+    	m_SecondCameraEntity= m_ActiveScene->CreateEntity("Clip-Space");
+    	auto& secondCameraComponent = m_SecondCameraEntity.AddComponent<CameraComponent>();
+		secondCameraComponent.Primary = false;
+
+    	class CameraController : public ScriptableEntity
+    	{
+    	public:
+    		void OnCreate()
+    		{
+    			
+    		}
+
+    		void OnDestroy()
+    		{
+    			
+    		}
+
+    		void OnUpdate(DeltaTime pDeltaTime)
+    		{
+    			auto& transform = GetComponent<TransformComponent>().Transform;
+    			float speed = 5.0f;
+
+    			if (Input::IsKeyPressed(Key::A))
+    				transform[3][0] -= speed * pDeltaTime;
+    			if (Input::IsKeyPressed(Key::D))
+    				transform[3][0] += speed * pDeltaTime;
+    			if (Input::IsKeyPressed(Key::W))
+    				transform[3][1] += speed * pDeltaTime;
+    			if (Input::IsKeyPressed(Key::S))
+    				transform[3][1] -= speed * pDeltaTime;
+    		}
+    	};
+    	
+    	m_MainCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
     }
 
     void EditorLayer::OnDetach()
@@ -147,7 +182,16 @@ namespace Owl
 
 		{
     		ImGui::Separator();
-			auto& camera = m_CameraEntity.GetComponent<CameraComponent>().Camera;
+    		if (ImGui::Checkbox("Camera A", &m_PrimaryCamera))
+    		{
+    			m_MainCameraEntity.GetComponent<CameraComponent>().Primary = m_PrimaryCamera;
+    			m_SecondCameraEntity.GetComponent<CameraComponent>().Primary = !m_PrimaryCamera;
+    		}
+		}
+
+		{
+    		ImGui::Separator();
+			auto& camera = m_SecondCameraEntity.GetComponent<CameraComponent>().Camera;
 			float orthoSize = camera.GetOrthographicSize();
 			if (ImGui::DragFloat("Camera Size", &orthoSize))
 				camera.SetOrthographicSize(orthoSize);

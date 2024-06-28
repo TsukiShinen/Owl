@@ -18,6 +18,8 @@
 #include "Owl/ImGui/ImGuiLayer.h"
 
 #include "Owl/Scene/Scene.h"
+#include "Owl/Scene/Entity.h"
+#include "Owl/Scene/ScriptableEntity.h"
 #include "Owl/Scene/Components.h"
 
 // -- Renderer ----------------------

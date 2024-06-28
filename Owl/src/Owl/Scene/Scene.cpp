@@ -27,6 +27,21 @@ namespace Owl
 
     void Scene::OnUpdate(DeltaTime pDeltaTime)
     {
+        // Update scripts
+        {
+            m_Registry.view<NativeScriptComponent>().each([=](auto pEntity, auto& pNsc)
+            {
+                if (!pNsc.Instance)
+                {
+                    pNsc.InstantiateFunction();
+                    pNsc.Instance->m_Entity = { pEntity, this };
+                    pNsc.OnCreateFunction(pNsc.Instance);
+                }
+
+                pNsc.OnUpdateFunction(pNsc.Instance, pDeltaTime);
+            });
+        }
+        
         // Render sprites
         Camera* mainCamera = nullptr;
         glm::mat4* cameraTransform = nullptr;
@@ -58,7 +73,7 @@ namespace Owl
         }
     }
 
-    void Scene::SetViewportResize(uint32_t pWidth, uint32_t pHeight)
+    void Scene::SetViewportResize(const uint32_t pWidth, const uint32_t pHeight)
     {
         m_ViewportWidth = pWidth;
         m_ViewportHeight = pHeight;
