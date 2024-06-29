@@ -18,6 +18,7 @@ namespace OwlEditor
         void OnImGuiRender();
     private:
         void DrawEntityNode(Entity pEntity);
+        void DrawComponents(Entity pEntity);
     private:
         Ref<Scene> m_Context;
         Entity m_SelectionContext;

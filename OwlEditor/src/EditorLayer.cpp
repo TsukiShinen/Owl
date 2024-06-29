@@ -28,10 +28,10 @@ namespace OwlEditor
     	m_SquareEntity = m_ActiveScene->CreateEntity("Square");
     	m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{0.0f, 1.0f, 0.0f, 1.0f});
 
-    	m_MainCameraEntity = m_ActiveScene->CreateEntity("Camera");
+    	m_MainCameraEntity = m_ActiveScene->CreateEntity("Main Camera");
     	m_MainCameraEntity.AddComponent<CameraComponent>();
 
-    	m_SecondCameraEntity= m_ActiveScene->CreateEntity("Clip-Space");
+    	m_SecondCameraEntity= m_ActiveScene->CreateEntity("Second Camera");
     	auto& secondCameraComponent = m_SecondCameraEntity.AddComponent<CameraComponent>();
 		secondCameraComponent.Primary = false;
 
