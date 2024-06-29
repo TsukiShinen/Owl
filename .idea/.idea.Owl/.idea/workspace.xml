@@ -13,15 +13,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneCamera.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneCamera.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OwlEditor/src/Panels/SceneHierarchyPanel.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OwlEditor/src/Panels/SceneHierarchyPanel.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Camera.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Components.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Components.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Entity.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Entity.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OwlEditor/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/imgui.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/src/OwlEditorApp.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/OwlEditorApp.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -299,6 +299,7 @@
       <workItem from="1719334800055" duration="4086000" />
       <workItem from="1719409909890" duration="1043000" />
       <workItem from="1719486613056" duration="2019000" />
+      <workItem from="1719645678217" duration="2078000" />
     </task>
     <servers />
   </component>

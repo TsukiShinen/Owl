@@ -3,6 +3,11 @@
 #include "entt.hpp"
 #include "Owl/Core/DeltaTime.h"
 
+namespace OwlEditor
+{
+    class SceneHierarchyPanel;
+}
+
 namespace Owl
 {
     class Entity;
@@ -21,5 +26,6 @@ namespace Owl
         uint32_t m_ViewportWidth = 0, m_ViewportHeight = 0;
 
         friend class Entity;
+        friend class OwlEditor::SceneHierarchyPanel;
     };
 }

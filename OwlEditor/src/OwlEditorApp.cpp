@@ -3,23 +3,23 @@
 
 #include "EditorLayer.h"
 
-namespace Owl
+namespace OwlEditor
 {
-    class OwlEditor : public Application
+    class OwlEditor : public Owl::Application
     {
     public:
         OwlEditor()
-            : Application("Owl Editor")
+            : Owl::Application("Owl Editor")
         {
             PushLayer(new EditorLayer());
         }
 
         ~OwlEditor() override = default;
     };
-
-    Application* CreateApplication()
-    {
-        return new OwlEditor();
-    }
     
+}
+
+Owl::Application* Owl::CreateApplication()
+{
+    return new OwlEditor::OwlEditor();
 }

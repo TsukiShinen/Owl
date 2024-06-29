@@ -5,7 +5,7 @@
 #include "imgui/imgui.h"
 #include "Owl/Debug/Instrumentor.h"
 
-namespace Owl
+namespace OwlEditor
 {
     EditorLayer::EditorLayer()
         : Layer("Sandbox2D"), m_CameraController(1280.0f / 780.0f)
@@ -55,6 +55,8 @@ namespace Owl
     	};
     	
     	m_MainCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+
+    	m_HierarchyPanel.SetContext(m_ActiveScene);
     }
 
     void EditorLayer::OnDetach()
@@ -154,6 +156,8 @@ namespace Owl
 		}
 
 		ImGui::Begin("Settings");
+    	
+    	m_HierarchyPanel.OnImGuiRender();
 
 		auto stats = Renderer2D::GetStats();
 		ImGui::Text("Renderer2D Stats:");
