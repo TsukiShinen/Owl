@@ -12,13 +12,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneCamera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneCamera.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneCamera.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneCamera.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/imgui.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/src/Panels/SceneHierarchyPanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/Panels/SceneHierarchyPanel.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -297,7 +291,7 @@
       <workItem from="1719486613056" duration="2019000" />
       <workItem from="1719645678217" duration="2909000" />
       <workItem from="1719687509486" duration="1389000" />
-      <workItem from="1719734924744" duration="1294000" />
+      <workItem from="1719734924744" duration="1410000" />
     </task>
     <servers />
   </component>

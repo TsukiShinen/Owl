@@ -155,7 +155,7 @@ namespace OwlEditor
 			ImGui::EndMenuBar();
 		}
 
-		ImGui::Begin("Settings");
+		ImGui::Begin("Stats");
     	
     	m_HierarchyPanel.OnImGuiRender();
 
@@ -165,31 +165,6 @@ namespace OwlEditor
 		ImGui::Text("Quads: %d", stats.QuadCount);
 		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
-
-		if (m_SquareEntity)
-		{
-    		ImGui::Separator();
-			ImGui::Text("%s", m_SquareEntity.GetComponent<TagComponent>().Tag.c_str());
-			auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
-			ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
-		}
-
-		{
-    		ImGui::Separator();
-    		if (ImGui::Checkbox("Camera A", &m_PrimaryCamera))
-    		{
-    			m_MainCameraEntity.GetComponent<CameraComponent>().Primary = m_PrimaryCamera;
-    			m_SecondCameraEntity.GetComponent<CameraComponent>().Primary = !m_PrimaryCamera;
-    		}
-		}
-
-		{
-    		ImGui::Separator();
-			auto& camera = m_SecondCameraEntity.GetComponent<CameraComponent>().Camera;
-			float orthoSize = camera.GetOrthographicSize();
-			if (ImGui::DragFloat("Camera Size", &orthoSize))
-				camera.SetOrthographicSize(orthoSize);
-		}
 
 		ImGui::End();
 

@@ -75,7 +75,7 @@ namespace Owl
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.IsHandled = pFunction(static_cast<T&>(m_Event));
+				m_Event.IsHandled |= pFunction(static_cast<T&>(m_Event));
 				return true;
 			}
 			return false;

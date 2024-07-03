@@ -144,5 +144,17 @@ namespace OwlEditor
                 ImGui::TreePop();
             }
         }
+
+        if (pEntity.HasComponent<SpriteRendererComponent>())
+        {
+            if (ImGui::TreeNodeEx((void*)typeid(SpriteRendererComponent).hash_code(), ImGuiTreeNodeFlags_DefaultOpen,
+                                  "Sprite Renderer"))
+            {
+                auto& spriteRendererComponent = pEntity.GetComponent<SpriteRendererComponent>();
+                ImGui::ColorEdit4("Color", glm::value_ptr(spriteRendererComponent.Color));
+
+                ImGui::TreePop();
+            }
+        }
     }
 }
