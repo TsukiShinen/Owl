@@ -40,17 +40,17 @@ namespace OwlEditor
     	public:
     		void OnUpdate(DeltaTime pDeltaTime) override
 		    {
-    			auto& transform = GetComponent<TransformComponent>().Transform;
+    			auto& translation = GetComponent<TransformComponent>().Translation;
     			float speed = 5.0f;
 
     			if (Input::IsKeyPressed(Key::A))
-    				transform[3][0] -= speed * pDeltaTime;
+    				translation.x -= speed * pDeltaTime;
     			if (Input::IsKeyPressed(Key::D))
-    				transform[3][0] += speed * pDeltaTime;
+    				translation.x += speed * pDeltaTime;
     			if (Input::IsKeyPressed(Key::W))
-    				transform[3][1] += speed * pDeltaTime;
+    				translation.y += speed * pDeltaTime;
     			if (Input::IsKeyPressed(Key::S))
-    				transform[3][1] -= speed * pDeltaTime;
+    				translation.y -= speed * pDeltaTime;
     		}
     	};
     	

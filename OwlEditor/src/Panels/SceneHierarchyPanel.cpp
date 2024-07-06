@@ -1,7 +1,10 @@
 ﻿#include "SceneHierarchyPanel.h"
 
+#include <ranges>
+
 #include "glm/gtc/type_ptr.hpp"
 #include "imgui/imgui.h"
+#include "ImGui/imgui_internal.h"
 #include "Owl/Scene/Components.h"
 
 namespace OwlEditor
@@ -54,6 +57,60 @@ namespace OwlEditor
             ImGui::TreePop();
     }
 
+    static void DrawVector3Control(const std::string& pLabel, glm::vec3& pValues, float pResetValue = 0.0f, float pColumnWidth = 100.0f)
+    {
+        ImGui::PushID(pLabel.c_str());
+        
+        ImGui::Columns(2);
+        ImGui::SetColumnWidth(0, pColumnWidth);
+        ImGui::Text(pLabel.c_str());
+        ImGui::NextColumn();
+
+        ImGui::PushMultiItemsWidths(3, ImGui::CalcItemWidth());
+        ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2{ 0, 0 });
+
+        float lineHeight = GImGui->Font->FontSize + GImGui->Style.FramePadding.y * 2.0f;
+        ImVec2 buttonSize = { lineHeight + 3.0f, lineHeight };
+
+        ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.8f, 0.1f, 0.15f, 1.0f));
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.9f, 0.2f, 0.25f, 1.0f));
+        ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.8f, 0.1f, 0.15f, 1.0f));
+        if (ImGui::Button("X", buttonSize))
+            pValues.x = pResetValue;
+        ImGui::SameLine();
+        ImGui::DragFloat("##X", &pValues.x, 0.1f, 0, 0, "%.2f");
+        ImGui::PopItemWidth();
+        ImGui::SameLine();
+        ImGui::PopStyleColor(3);
+
+        ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.2f, 0.7f, 0.2f, 1.0f));
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.3f, 0.8f, 0.3f, 1.0f));
+        ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.2f, 0.7f, 0.2f, 1.0f));
+        if (ImGui::Button("Y", buttonSize))
+            pValues.y = pResetValue;
+        ImGui::SameLine();
+        ImGui::DragFloat("##Y", &pValues.y, 0.1f, 0, 0, "%.2f");
+        ImGui::PopItemWidth();
+        ImGui::SameLine();
+        ImGui::PopStyleColor(3);
+
+        ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.1f, 0.25f, 0.8f, 1.0f));
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.2f, 0.35f, 0.9f, 1.0f));
+        ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.1f, 0.25f, 0.8f, 1.0f));
+        if (ImGui::Button("Z", buttonSize))
+            pValues.z = pResetValue;
+        ImGui::SameLine();
+        ImGui::DragFloat("##Z", &pValues.z, 0.1f, 0, 0, "%.2f");
+        ImGui::PopItemWidth();
+        ImGui::PopStyleColor(3);
+        
+        ImGui::PopStyleVar();
+        
+        ImGui::Columns(1);
+
+        ImGui::PopID();
+    }
+
     void SceneHierarchyPanel::DrawComponents(Entity pEntity)
     {
         if (pEntity.HasComponent<TagComponent>())
@@ -73,8 +130,12 @@ namespace OwlEditor
             if (ImGui::TreeNodeEx((void*)typeid(TransformComponent).hash_code(), ImGuiTreeNodeFlags_DefaultOpen,
                                   "Transform"))
             {
-                auto& transform = pEntity.GetComponent<TransformComponent>().Transform;
-                ImGui::DragFloat3("Position", glm::value_ptr(transform[3]), 0.1f);
+                auto& transformComponent = pEntity.GetComponent<TransformComponent>();
+                DrawVector3Control("Translation", transformComponent.Translation);
+                glm::vec3 rotation = degrees(transformComponent.Rotation);
+                DrawVector3Control("Rotation", rotation);
+                transformComponent.Rotation = radians(rotation);
+                DrawVector3Control("Scale", transformComponent.Scale, 1.0f);
 
                 ImGui::TreePop();
             }

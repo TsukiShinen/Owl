@@ -43,7 +43,7 @@ namespace Owl
         
         // Render sprites
         Camera* mainCamera = nullptr;
-        glm::mat4* cameraTransform = nullptr;
+        glm::mat4 cameraTransform;
         auto view = m_Registry.view<TransformComponent, CameraComponent>();
         for (auto entity : view)
         {
@@ -51,21 +51,21 @@ namespace Owl
             if (cameraComponent.Primary)
             {
                 mainCamera = &cameraComponent.Camera;
-                cameraTransform = &transformComponent.Transform;
+                cameraTransform = transformComponent.GetTransform();
                 break;
             }
         }
 
         if (mainCamera)
         {
-            Renderer2D::BeginScene(*mainCamera, *cameraTransform);
+            Renderer2D::BeginScene(*mainCamera, cameraTransform);
 
             auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
             for (auto entity : group)
             {
                 auto [transformComponent, spriteComponent] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
-                Renderer2D::DrawQuad(transformComponent, spriteComponent.Color);
+                Renderer2D::DrawQuad(transformComponent.GetTransform(), spriteComponent.Color);
             }
 
             Renderer2D::EndScene();

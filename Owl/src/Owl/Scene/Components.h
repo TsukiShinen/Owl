@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 
 #include "ScriptableEntity.h"
+#include <glm/gtc/matrix_transform.hpp>
 #include "Owl/Scene/SceneCamera.h"
 
 namespace Owl
@@ -19,15 +20,25 @@ namespace Owl
     
     struct TransformComponent
     {
-        glm::mat4 Transform{ 1.0f };
+        glm::vec3 Translation = { 0.0f, 0.0f, 0.0f};
+        glm::vec3 Rotation = { 0.0f, 0.0f, 0.0f};
+        glm::vec3 Scale = { 1.0f, 1.0f, 1.0f};
 
         TransformComponent() = default;
         TransformComponent(const TransformComponent&) = default;
-        TransformComponent(const glm::mat4& pTransform)
-            : Transform(pTransform) {}
+        TransformComponent(const glm::vec3& pTranslation, const glm::vec3& pRotation = { 0.0f, 0.0f, 0.0f}, const glm::vec3& pScale = { 0.0f, 0.0f, 0.0f})
+            : Translation(pTranslation), Rotation(pRotation), Scale(pScale) {}
 
-        operator glm::mat4& () { return Transform; }
-        operator const glm::mat4& () const { return Transform; }
+        [[nodiscard]] glm::mat4 GetTransform() const
+        {
+            const glm::mat4 rotation = rotate(glm::mat4(1.0f), Rotation.x, {1, 0, 0})
+                               * rotate(glm::mat4(1.0f), Rotation.y, {0, 1, 0})
+                               * rotate(glm::mat4(1.0f), Rotation.z, {0, 0, 1});
+
+            return translate(glm::mat4(1.0f), Translation)
+                * rotation
+                * scale(glm::mat4(1.0f), Scale);
+        }
     };
 
     struct SpriteRendererComponent
