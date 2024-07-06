@@ -4,6 +4,7 @@
 #include "glm/gtc/type_ptr.hpp"
 #include "imgui/imgui.h"
 #include "Owl/Debug/Instrumentor.h"
+#include "Owl/Utils/PlatformUtils.h"
 
 namespace OwlEditor
 {
@@ -62,6 +63,7 @@ namespace OwlEditor
 
     	SceneSerializer sceneSerializer(m_ActiveScene);
     	sceneSerializer.Deserialize("Assets/Scenes/Example.owl");
+		m_ActiveScenePath = "Assets/Scenes/Example.owl";
     }
 
     void EditorLayer::OnDetach()
@@ -157,17 +159,17 @@ namespace OwlEditor
 				// which we can't undo at the moment without finer window depth/z control.
 				//ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
 
-				if (ImGui::MenuItem("Serialize"))
-				{
-					SceneSerializer sceneSerializer(m_ActiveScene);
-					sceneSerializer.Serialize("Assets/Scenes/Example.owl");
-				}
+				if (ImGui::MenuItem("New", "Ctrl+N"))
+					NewScene();
 				
-				if (ImGui::MenuItem("Deserialize"))
-				{
-					SceneSerializer sceneSerializer(m_ActiveScene);
-					sceneSerializer.Deserialize("Assets/Scenes/Example.owl");
-				}
+				if (ImGui::MenuItem("Open...", "Ctrl+O"))
+					OpenScene();
+				
+				if (ImGui::MenuItem("Save", "Ctrl+S"))
+					SaveScene();
+				
+				if (ImGui::MenuItem("Save As...", "Ctrl+Shift+S"))
+					SaveSceneAs();
 
 				if (ImGui::MenuItem("Exit")) Application::Get().Close();
 				ImGui::EndMenu();
@@ -209,5 +211,84 @@ namespace OwlEditor
     void EditorLayer::OnEvent(Event& pEvent)
     {
         m_CameraController.OnEvent(pEvent);
+
+    	EventDispatcher dispatcher(pEvent);
+    	dispatcher.Dispatch<KeyPressedEvent>(OWL_BIND_EVENT_FN(EditorLayer::OnKeyPressed));
+    }
+
+    bool EditorLayer::OnKeyPressed(const KeyPressedEvent& pEvent)
+    {
+    	if (pEvent.GetRepeatCount() > 0)
+    		return false;
+
+    	bool control = Input::IsKeyPressed(Key::LeftControl) || Input::IsKeyPressed(Key::RightControl);
+    	bool shift = Input::IsKeyPressed(Key::LeftShift) || Input::IsKeyPressed(Key::RightShift);
+    	switch (pEvent.GetKeyCode())
+    	{
+    	case Key::N:
+    		{
+    			if (control)
+    				NewScene();
+    			break;
+    		}
+    	case Key::O:
+    		{
+    			if (control)
+    				OpenScene();
+    			break;
+    		}
+    	case Key::S:
+    		{
+    			if (control)
+    				SaveScene();
+    			if (control && shift)
+    				SaveSceneAs();
+    			break;
+    		}
+    	}
+    }
+
+    void EditorLayer::NewScene()
+    {
+    	m_ActiveScene = CreateRef<Scene>();
+    	m_ActiveScene->SetViewportResize(static_cast<uint32_t>(m_ViewportSize.x), static_cast<uint32_t>(m_ViewportSize.y));
+    	m_HierarchyPanel.SetContext(m_ActiveScene);
+    }
+
+    void EditorLayer::OpenScene()
+    {
+    	if (const auto filepath = FileDialogs::OpenFile("Owl Scene (*.owl)\0*.owl\0"))
+    	{
+    		m_ActiveScene = CreateRef<Scene>();
+    		m_ActiveScene->SetViewportResize(static_cast<uint32_t>(m_ViewportSize.x), static_cast<uint32_t>(m_ViewportSize.y));
+    		m_HierarchyPanel.SetContext(m_ActiveScene);
+					
+    		SceneSerializer sceneSerializer(m_ActiveScene);
+    		sceneSerializer.Deserialize(*filepath);
+						
+    		m_ActiveScenePath = *filepath;
+    	}
+    }
+
+    void EditorLayer::SaveScene()
+    {
+    	if (!m_ActiveScenePath.empty())
+    	{
+    		SceneSerializer sceneSerializer(m_ActiveScene);
+    		sceneSerializer.Serialize(m_ActiveScenePath);
+    	}
+    	else
+    	{
+    		SaveSceneAs();
+    	}
+    }
+
+    void EditorLayer::SaveSceneAs()
+    {
+    	if (const auto filepath = FileDialogs::SaveFile("Owl Scene (*.owl)\0*.owl\0"))
+    	{
+    		SceneSerializer sceneSerializer(m_ActiveScene);
+    		sceneSerializer.Serialize(*filepath);
+    	}
     }
 }

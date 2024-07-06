@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <Owl.h>
 
+#include "Owl/Events/KeyEvent.h"
 #include "Owl/Scene/Entity.h"
 #include "Owl/Scene/SceneSerializer.h"
 #include "Panels/SceneHierarchyPanel.h"
@@ -21,11 +22,20 @@ namespace OwlEditor
         void OnUpdate(DeltaTime pDeltaTime) override;
         void OnImGuiRender() override;
         void OnEvent(Event& pEvent) override;
+        
+    private:
+        bool OnKeyPressed(const KeyPressedEvent& pEvent);
+
+        void NewScene();
+        void OpenScene();
+        void SaveScene();
+        void SaveSceneAs();
 
     private:
         OrthographicCameraController m_CameraController;
         
         Ref<Scene> m_ActiveScene;
+        std::filesystem::path m_ActiveScenePath;
         Entity m_SquareEntity;
         Entity m_MainCameraEntity;
         Entity m_SecondCameraEntity;
