@@ -2,6 +2,7 @@
 #include <Owl.h>
 
 #include "Owl/Scene/Entity.h"
+#include "Owl/Scene/SceneSerializer.h"
 #include "Panels/SceneHierarchyPanel.h"
 
 using namespace Owl;

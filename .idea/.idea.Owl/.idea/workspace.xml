@@ -13,12 +13,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneSerializer.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneSerializer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/vendor/yaml-cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Window.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Window.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/ImGui/ImGuiLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/ImGui/ImGuiLayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dependencies.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Dependencies.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/premake5.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/premake5.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OwlEditor/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/imgui.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/src/Panels/SceneHierarchyPanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/Panels/SceneHierarchyPanel.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/premake5.lua" beforeDir="false" afterPath="$PROJECT_DIR$/premake5.lua" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,10 +35,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="cidr-memory-view://5" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/include/filesystem" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/include/xutility" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Owl/vendor/imgui/backends/imgui_impl_opengl3.h" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -305,7 +308,9 @@
       <workItem from="1719734924744" duration="1410000" />
       <workItem from="1720029059956" duration="1958000" />
       <workItem from="1720251863916" duration="2852000" />
-      <workItem from="1720268571585" duration="2353000" />
+      <workItem from="1720268571585" duration="5171000" />
+      <workItem from="1720273881626" duration="116000" />
+      <workItem from="1720293372131" duration="1008000" />
     </task>
     <servers />
   </component>

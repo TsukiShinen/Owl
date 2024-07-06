@@ -25,6 +25,7 @@ namespace OwlEditor
 
     	m_ActiveScene = CreateRef<Scene>();
 
+#if 0
     	m_SquareEntity = m_ActiveScene->CreateEntity("Square");
     	m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{0.0f, 1.0f, 0.0f, 1.0f});
 
@@ -55,8 +56,12 @@ namespace OwlEditor
     	};
     	
     	m_MainCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+#endif
 
     	m_HierarchyPanel.SetContext(m_ActiveScene);
+
+    	SceneSerializer sceneSerializer(m_ActiveScene);
+    	sceneSerializer.Deserialize("Assets/Scenes/Example.owl");
     }
 
     void EditorLayer::OnDetach()
@@ -151,6 +156,18 @@ namespace OwlEditor
 				// Disabling fullscreen would allow the window to be moved to the front of other windows, 
 				// which we can't undo at the moment without finer window depth/z control.
 				//ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
+
+				if (ImGui::MenuItem("Serialize"))
+				{
+					SceneSerializer sceneSerializer(m_ActiveScene);
+					sceneSerializer.Serialize("Assets/Scenes/Example.owl");
+				}
+				
+				if (ImGui::MenuItem("Deserialize"))
+				{
+					SceneSerializer sceneSerializer(m_ActiveScene);
+					sceneSerializer.Deserialize("Assets/Scenes/Example.owl");
+				}
 
 				if (ImGui::MenuItem("Exit")) Application::Get().Close();
 				ImGui::EndMenu();

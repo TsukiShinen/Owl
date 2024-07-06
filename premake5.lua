@@ -22,6 +22,7 @@ group "Dependencies"
 	include "Owl/vendor/GLFW"
 	include "Owl/vendor/Glad"
 	include "Owl/vendor/ImGui"
+	include "Owl/vendor/yaml-cpp"
 group ""
 
 group "Core"
