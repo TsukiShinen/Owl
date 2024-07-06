@@ -25,11 +25,16 @@ namespace Owl
         return entity;
     }
 
+    void Scene::Destroy(Entity pEntity)
+    {
+        m_Registry.destroy(pEntity);
+    }
+
     void Scene::OnUpdate(DeltaTime pDeltaTime)
     {
         // Update scripts
         {
-            m_Registry.view<NativeScriptComponent>().each([=](auto pEntity, auto& pNsc)
+            m_Registry.view<NativeScriptComponent>().each([&](auto pEntity, auto& pNsc)
             {
                 if (!pNsc.Instance)
                 {
@@ -86,5 +91,37 @@ namespace Owl
 
             cameraComponent.Camera.SetViewportSize(pWidth, pHeight);
         }
+    }
+    
+    template <typename T>
+    void Scene::OnComponentAdded(Entity pEntity, T& pComponent)
+    {
+        static_assert(false);
+    }
+    
+    template <>
+    void Scene::OnComponentAdded<TransformComponent>(Entity pEntity, TransformComponent& pComponent)
+    {
+    }
+    
+    template <>
+    void Scene::OnComponentAdded<TagComponent>(Entity pEntity, TagComponent& pComponent)
+    {
+    }
+    
+    template <>
+    void Scene::OnComponentAdded<CameraComponent>(Entity pEntity, CameraComponent& pComponent)
+    {
+        pComponent.Camera.SetViewportSize(m_ViewportWidth, m_ViewportHeight);
+    }
+    
+    template <>
+    void Scene::OnComponentAdded<SpriteRendererComponent>(Entity pEntity, SpriteRendererComponent& pComponent)
+    {
+    }
+    
+    template <>
+    void Scene::OnComponentAdded<NativeScriptComponent>(Entity pEntity, NativeScriptComponent& pComponent)
+    {
     }
 }
