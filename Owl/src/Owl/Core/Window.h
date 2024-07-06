@@ -10,8 +10,8 @@ namespace Owl
 		uint32_t  Width;
 		uint32_t  Height;
 
-		WindowProps(std::string pTitle = "Owl Engine", const uint32_t  pWidth = 1280,
-		            const uint32_t  pHeight = 720)
+		WindowProps(std::string pTitle = "Owl Engine", const uint32_t  pWidth = 1920,
+		            const uint32_t pHeight = 1080)
 			: Title(std::move(pTitle)), Width(pWidth), Height(pHeight)
 		{
 		}

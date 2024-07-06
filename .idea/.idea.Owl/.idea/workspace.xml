@@ -14,10 +14,10 @@
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Entity.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Entity.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Window.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Window.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/ImGui/ImGuiLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/ImGui/ImGuiLayer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OwlEditor/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/imgui.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OwlEditor/src/Panels/SceneHierarchyPanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/Panels/SceneHierarchyPanel.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -305,6 +305,7 @@
       <workItem from="1719734924744" duration="1410000" />
       <workItem from="1720029059956" duration="1958000" />
       <workItem from="1720251863916" duration="2852000" />
+      <workItem from="1720268571585" duration="2353000" />
     </task>
     <servers />
   </component>

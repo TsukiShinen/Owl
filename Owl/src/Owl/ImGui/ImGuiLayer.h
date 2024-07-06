@@ -18,6 +18,8 @@ namespace Owl
 		void End();
 
 		void BlockEvents(bool pBlock) { m_BlockEvents = pBlock; }
+
+		void SetDarkThemeColors();
 	private:
 		bool m_BlockEvents = true;
 	};
