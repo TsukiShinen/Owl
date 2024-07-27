@@ -4,12 +4,15 @@
 [submodule "Owl/vendor/glfw"]
 	path = Owl/vendor/glfw
 	url = https://github.com/TheCherno/glfw.git
-[submodule "Owl/vendor/imgui"]
-	path = Owl/vendor/imgui
-	url = https://github.com/TsukiShinen/imgui.git
 [submodule "Owl/vendor/glm"]
 	path = Owl/vendor/glm
 	url = https://github.com/g-truc/glm.git
 [submodule "Owl/vendor/yaml-cpp"]
 	path = Owl/vendor/yaml-cpp
 	url = https://github.com/TheCherno/yaml-cpp.git
+[submodule "Owl/vendor/imgui"]
+	path = Owl/vendor/imgui
+	url = https://github.com/TsukiShinen/imgui.git
+[submodule "Owl/vendor/ImGuizmo"]
+	path = Owl/vendor/ImGuizmo
+	url = https://github.com/CedricGuillemet/ImGuizmo.git

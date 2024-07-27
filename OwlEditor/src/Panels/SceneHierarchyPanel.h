@@ -14,8 +14,10 @@ namespace OwlEditor
         SceneHierarchyPanel(const Ref<Scene>& pContext);
 
         void SetContext(const Ref<Scene>& pContext);
-
+        
         void OnImGuiRender();
+        
+        [[nodiscard]] Entity GetSelectedEntity() const { return m_SelectionContext; }
     private:
         void DrawEntityNode(Entity pEntity);
         void DrawComponents(Entity pEntity);

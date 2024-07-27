@@ -9,6 +9,7 @@
 #include "Owl/Core/Application.h"
 
 // Temporary
+#include "ImGuizmo.h"
 #include "GLFW/glfw3.h"
 
 namespace Owl
@@ -84,6 +85,7 @@ namespace Owl
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
+		ImGuizmo::BeginFrame();
 	}
 
 	void ImGuiLayer::End()

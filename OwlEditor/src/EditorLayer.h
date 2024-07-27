@@ -53,6 +53,8 @@ namespace OwlEditor
         glm::vec4 m_SquareColor = {1.0f, 1.0f, 1.0f, 1.0f};
         float m_SquareRotation = 0.0f;
 
+        int m_GizmoType = -1;
+
         SceneHierarchyPanel m_HierarchyPanel;
     };
     

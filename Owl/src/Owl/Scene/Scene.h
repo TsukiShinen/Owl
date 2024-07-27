@@ -22,6 +22,8 @@ namespace Owl
 
         void OnUpdate(DeltaTime pDeltaTime);
         void SetViewportResize(uint32_t pWidth, uint32_t pHeight);
+
+        [[nodiscard]] Entity GetPrimaryCameraEntity();
     private:
         template<typename T>
         void OnComponentAdded(Entity pEntity, T& pComponent);

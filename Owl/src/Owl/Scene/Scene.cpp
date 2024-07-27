@@ -92,7 +92,17 @@ namespace Owl
             cameraComponent.Camera.SetViewportSize(pWidth, pHeight);
         }
     }
-    
+
+    Entity Scene::GetPrimaryCameraEntity()
+    {
+        for (const auto view = m_Registry.view<CameraComponent>(); const auto entity : view)
+        {
+            if (const auto& camera = view.get<CameraComponent>(entity); camera.Primary)
+                return Entity{entity, this};
+        }
+        return {};
+    }
+
     template <typename T>
     void Scene::OnComponentAdded(Entity pEntity, T& pComponent)
     {

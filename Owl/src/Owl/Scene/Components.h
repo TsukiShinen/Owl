@@ -4,6 +4,10 @@
 
 #include "ScriptableEntity.h"
 #include <glm/gtc/matrix_transform.hpp>
+
+#define GLM_ENABLE_EXPERIMENTAL
+#include "glm/gtx/quaternion.hpp"
+
 #include "Owl/Scene/SceneCamera.h"
 
 namespace Owl
@@ -31,9 +35,7 @@ namespace Owl
 
         [[nodiscard]] glm::mat4 GetTransform() const
         {
-            const glm::mat4 rotation = rotate(glm::mat4(1.0f), Rotation.x, {1, 0, 0})
-                               * rotate(glm::mat4(1.0f), Rotation.y, {0, 1, 0})
-                               * rotate(glm::mat4(1.0f), Rotation.z, {0, 0, 1});
+            const glm::mat4 rotation = toMat4(glm::quat(Rotation));
 
             return translate(glm::mat4(1.0f), Translation)
                 * rotation
