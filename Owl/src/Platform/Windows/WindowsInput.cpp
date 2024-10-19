@@ -25,7 +25,7 @@ namespace Owl
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 
-	std::pair<float, float> Input::GetCursorPosition()
+	std::pair<float, float> Input::GetMousePosition()
 	{
 		const Application& app = Application::Get();
 		const auto window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
@@ -36,16 +36,16 @@ namespace Owl
 		return {static_cast<float>(x), static_cast<float>(y)};
 	}
 
-	float Input::GetCursorX()
+	float Input::GetMouseX()
 	{
-		auto [x, y] = GetCursorPosition();
+		auto [x, y] = GetMousePosition();
 
 		return x;
 	}
 
-	float Input::GetCursorY()
+	float Input::GetMouseY()
 	{
-		auto [x, y] = GetCursorPosition();
+		auto [x, y] = GetMousePosition();
 
 		return y;
 	}

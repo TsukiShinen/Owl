@@ -2,6 +2,7 @@
 
 #include "entt.hpp"
 #include "Owl/Core/DeltaTime.h"
+#include "Owl/Renderer/EditorCamera.h"
 
 namespace OwlEditor
 {
@@ -20,7 +21,8 @@ namespace Owl
         Entity CreateEntity(const std::string& pName = std::string());
         void Destroy(Entity pEntity);
 
-        void OnUpdate(DeltaTime pDeltaTime);
+        void OnUpdateRuntime(DeltaTime pDeltaTime);
+        void OnUpdateEditor(DeltaTime pDeltaTime, const EditorCamera& pCamera);
         void SetViewportResize(uint32_t pWidth, uint32_t pHeight);
 
         [[nodiscard]] Entity GetPrimaryCameraEntity();

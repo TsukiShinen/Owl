@@ -41,6 +41,8 @@ namespace OwlEditor
         Entity m_SecondCameraEntity;
         
         bool m_PrimaryCamera;
+
+        EditorCamera m_EditorCamera;
 	
         Ref<Texture2D> m_CheckerboardTexture;
         

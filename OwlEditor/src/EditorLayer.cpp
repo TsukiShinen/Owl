@@ -28,6 +28,8 @@ namespace OwlEditor
 
     	m_ActiveScene = CreateRef<Scene>();
 
+    	m_EditorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
+
 #if 0
     	m_SquareEntity = m_ActiveScene->CreateEntity("Square");
     	m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{0.0f, 1.0f, 0.0f, 1.0f});
@@ -84,19 +86,23 @@ namespace OwlEditor
     	{
     		m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
     		m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
-
+    		m_EditorCamera.SetViewportSize(m_ViewportSize.x, m_ViewportSize.y);
     		m_ActiveScene->SetViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
     	}
     	
     	if (m_ViewportFocused)
-			m_CameraController.OnUpdate(pDeltaTime);
+    	{
+    		m_CameraController.OnUpdate(pDeltaTime);
+    		m_EditorCamera.OnUpdate(pDeltaTime);
+    	}
+
 
         Renderer2D::ResetStats();
         m_Framebuffer->Bind();
         RenderCommand::SetClearColor({.1f, .1f, .1f, 1});
         RenderCommand::Clear();
 
-    	m_ActiveScene->OnUpdate(pDeltaTime);
+    	m_ActiveScene->OnUpdateEditor(pDeltaTime, m_EditorCamera);
     	m_Framebuffer->Unbind();
     }
 
@@ -212,10 +218,17 @@ namespace OwlEditor
 			ImGuizmo::SetDrawlist();
 			ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, ImGui::GetWindowWidth(), ImGui::GetWindowHeight());
 
-			auto cameraEntity = m_ActiveScene->GetPrimaryCameraEntity();
-			const auto& camera = cameraEntity.GetComponent<CameraComponent>().Camera;
-			const glm::mat4& cameraProjection = camera.GetProjection();
-			glm::mat4 cameraView = inverse(cameraEntity.GetComponent<TransformComponent>().GetTransform());
+			// Camera
+
+			// Runtime Camera
+			// auto cameraEntity = m_ActiveScene->GetPrimaryCameraEntity();
+			// const auto& camera = cameraEntity.GetComponent<CameraComponent>().Camera;
+			// const glm::mat4& cameraProjection = camera.GetProjection();
+			// glm::mat4 cameraView = inverse(cameraEntity.GetComponent<TransformComponent>().GetTransform());
+
+			// Editor Camera
+			const glm::mat4& cameraProjection = m_EditorCamera.GetProjection();
+			glm::mat4 cameraView = m_EditorCamera.GetViewMatrix();
 
 			auto& transformComponent = selectedEntity.GetComponent<TransformComponent>();
 			glm::mat4 transform = transformComponent.GetTransform();
@@ -244,6 +257,7 @@ namespace OwlEditor
     void EditorLayer::OnEvent(Event& pEvent)
     {
         m_CameraController.OnEvent(pEvent);
+    	m_EditorCamera.OnEvent(pEvent);
 
     	EventDispatcher dispatcher(pEvent);
     	dispatcher.Dispatch<KeyPressedEvent>(OWL_BIND_EVENT_FN(EditorLayer::OnKeyPressed));

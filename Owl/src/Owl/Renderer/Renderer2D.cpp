@@ -121,6 +121,18 @@ namespace Owl
 		StartBatch();
 	}
 
+	void Renderer2D::BeginScene(const EditorCamera& pCamera)
+	{
+		OWL_PROFILE_FUNCTION();
+
+		const glm::mat4 viewProj = pCamera.GetViewProjection();
+		
+		s_Data.TextureShader->Bind();
+		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
+
+		StartBatch();
+	}
+
 	void Renderer2D::BeginScene(const OrthographicCamera& pCamera)
 	{
 		OWL_PROFILE_FUNCTION();

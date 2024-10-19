@@ -1,4 +1,6 @@
 ﻿#pragma once
+
+#include "EditorCamera.h"
 #include "OrthographicCamera.h"
 #include "Texture.h"
 
@@ -13,6 +15,7 @@ namespace Owl
 		static void Shutdown();
 
 		static void BeginScene(const Camera& pCamera, const glm::mat4& pTransform);
+		static void BeginScene(const EditorCamera& pCamera);
 		static void BeginScene(const OrthographicCamera& pCamera); // TODO: Remove
 		static void EndScene();
 		static void Flush();

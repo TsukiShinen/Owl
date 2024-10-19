@@ -12,8 +12,8 @@ namespace Owl
 		static bool IsKeyPressed(KeyCode pKeyCode);
 		
 		static bool IsMouseButtonPressed(MouseCode pMouseCode);
-		static std::pair<float, float> GetCursorPosition();
-		static float GetCursorX();
-		static float GetCursorY();
+		static std::pair<float, float> GetMousePosition();
+		static float GetMouseX();
+		static float GetMouseY();
 	};
 }

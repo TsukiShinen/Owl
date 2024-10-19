@@ -30,7 +30,7 @@ namespace Owl
         m_Registry.destroy(pEntity);
     }
 
-    void Scene::OnUpdate(DeltaTime pDeltaTime)
+    void Scene::OnUpdateRuntime(DeltaTime pDeltaTime)
     {
         // Update scripts
         {
@@ -77,6 +77,21 @@ namespace Owl
         }
     }
 
+    void Scene::OnUpdateEditor(DeltaTime pDeltaTime, const EditorCamera& pCamera)
+    {
+        Renderer2D::BeginScene(pCamera);
+
+        auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+        for (auto entity : group)
+        {
+            auto [transformComponent, spriteComponent] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+
+            Renderer2D::DrawQuad(transformComponent.GetTransform(), spriteComponent.Color);
+        }
+
+        Renderer2D::EndScene();
+    }
+
     void Scene::SetViewportResize(const uint32_t pWidth, const uint32_t pHeight)
     {
         m_ViewportWidth = pWidth;
@@ -106,7 +121,7 @@ namespace Owl
     template <typename T>
     void Scene::OnComponentAdded(Entity pEntity, T& pComponent)
     {
-        static_assert(false);
+		static_assert(sizeof(T) == 0);
     }
     
     template <>
