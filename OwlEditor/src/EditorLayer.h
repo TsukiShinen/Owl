@@ -39,6 +39,8 @@ namespace OwlEditor
         Entity m_SquareEntity;
         Entity m_MainCameraEntity;
         Entity m_SecondCameraEntity;
+
+        Entity m_HoveredEntity;
         
         bool m_PrimaryCamera;
 

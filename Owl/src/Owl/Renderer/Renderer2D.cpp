@@ -16,6 +16,9 @@ namespace Owl
 		glm::vec2 TexCoord;
 		float TexIndex;
 		float TilingFactor;
+
+		// Editor-Only
+		int EntityId = 0;
 	};
 	
 	struct Renderer2DData
@@ -56,7 +59,8 @@ namespace Owl
 			{ShaderDataType::Float4, "in_Color"},
 			{ShaderDataType::Float2, "in_TexCoord"},
 			{ShaderDataType::Float, "in_TexIndex"},
-			{ShaderDataType::Float, "in_TilingFactor"}
+			{ShaderDataType::Float, "in_TilingFactor"},
+			{ShaderDataType::Int, "in_EntityId"}
 		});
 		s_Data.QuadVertexArray->AddVertexBuffer(s_Data.QuadVertexBuffer);
 
@@ -187,8 +191,6 @@ namespace Owl
 
 	void Renderer2D::DrawQuad(const glm::vec3& pPosition, const glm::vec2& pSize, const glm::vec4& pColor)
 	{
-		OWL_PROFILE_FUNCTION();
-
 		glm::mat4 transform = translate(glm::mat4(1.0f), pPosition)
 							* scale(glm::mat4(1.0f), { pSize.x, pSize.y, 1.0f });
 
@@ -202,16 +204,16 @@ namespace Owl
 
 	void Renderer2D::DrawQuad(const glm::vec3& pPosition, const glm::vec2& pSize, const Ref<Texture2D>& pTexture, const float pTilingFactor, const glm::vec4& pTintColor)
 	{
-		OWL_PROFILE_FUNCTION();
-
 		glm::mat4 transform = translate(glm::mat4(1.0f), pPosition)
 							* scale(glm::mat4(1.0f), { pSize.x, pSize.y, 1.0f });
 
 		DrawQuad(transform, pTexture, pTilingFactor, pTintColor);
 	}
 
-	void Renderer2D::DrawQuad(const glm::mat4& pTransform, const glm::vec4& pColor)
+	void Renderer2D::DrawQuad(const glm::mat4& pTransform, const glm::vec4& pColor, int pEntityId)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		constexpr  size_t quadVertexCount = 4;
 		constexpr float textureIndex = 0.0f;
 		constexpr glm::vec2 textureCoords[] = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 1.0f, 1.0f }, { 0.0f, 1.0f } };
@@ -227,6 +229,7 @@ namespace Owl
 			s_Data.QuadVertexBufferPtr->TexCoord = textureCoords[i];
 			s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
 			s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
+			s_Data.QuadVertexBufferPtr->EntityId = pEntityId;
 			s_Data.QuadVertexBufferPtr++;
 		}
 
@@ -236,8 +239,10 @@ namespace Owl
 	}
 
 	void Renderer2D::DrawQuad(const glm::mat4& pTransform, const Ref<Texture2D>& pTexture, float pTilingFactor,
-		const glm::vec4& pTintColor)
+		const glm::vec4& pTintColor, int pEntityId)
 	{
+		OWL_PROFILE_FUNCTION();
+		
 		constexpr size_t quadVertexCount = 4;
 		constexpr glm::vec2 textureCoords[] = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 1.0f, 1.0f }, { 0.0f, 1.0f } };
 		
@@ -271,6 +276,7 @@ namespace Owl
 			s_Data.QuadVertexBufferPtr->TexCoord = textureCoords[i];
 			s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
 			s_Data.QuadVertexBufferPtr->TilingFactor = pTilingFactor;
+			s_Data.QuadVertexBufferPtr->EntityId = pEntityId;
 			s_Data.QuadVertexBufferPtr++;
 		}
 
@@ -309,6 +315,12 @@ namespace Owl
 							* scale(glm::mat4(1.0f), { pSize.x, pSize.y, 1.0f });
 
 		DrawQuad(transform, pTexture, pTilingFactor, pTintColor);
+	}
+
+	void Renderer2D::DrawSprite(const glm::mat4& pTransform, const SpriteRendererComponent& pSpriteRendererComponent,
+	                            const int pEntityId)
+	{
+		DrawQuad(pTransform, pSpriteRendererComponent.Color, pEntityId);
 	}
 
 	Renderer2D::Statistics Renderer2D::GetStats()

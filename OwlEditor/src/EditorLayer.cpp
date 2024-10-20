@@ -103,7 +103,7 @@ namespace OwlEditor
         RenderCommand::SetClearColor({.1f, .1f, .1f, 1});
         RenderCommand::Clear();
 
-    	m_Framebuffer->ClearAttachment(1, -1);
+    	m_Framebuffer->ClearAttachment(1, -1); 
 
     	m_ActiveScene->OnUpdateEditor(pDeltaTime, m_EditorCamera);
 
@@ -118,7 +118,7 @@ namespace OwlEditor
     	if (mouseX >= 0 && mouseY >= 0 && mouseX < static_cast<int>(viewportSize.x) && mouseY < static_cast<int>(viewportSize.y))
     	{
     		int pixelData = m_Framebuffer->ReadPixel(1, mouseX, mouseY);
-    		OWL_CORE_WARN("Pixel Data : {0}", pixelData);
+    			m_HoveredEntity = pixelData == -1 ? Entity() : Entity(static_cast<entt::entity>(pixelData), m_ActiveScene.get());
     	}
     	
     	m_Framebuffer->Unbind();
@@ -205,6 +205,9 @@ namespace OwlEditor
 		}
 
 		ImGui::Begin("Stats");
+
+		const std::string name = m_HoveredEntity ?  m_HoveredEntity.GetComponent<TagComponent>().Tag : "None";
+    	ImGui::Text("Hovered Entity: %s", name.c_str());
     	
     	m_HierarchyPanel.OnImGuiRender();
 

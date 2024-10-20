@@ -70,7 +70,7 @@ namespace Owl
             {
                 auto [transformComponent, spriteComponent] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
-                Renderer2D::DrawQuad(transformComponent.GetTransform(), spriteComponent.Color);
+                Renderer2D::DrawSprite(transformComponent.GetTransform(), spriteComponent, static_cast<int>(entity));
             }
 
             Renderer2D::EndScene();
@@ -86,7 +86,7 @@ namespace Owl
         {
             auto [transformComponent, spriteComponent] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
-            Renderer2D::DrawQuad(transformComponent.GetTransform(), spriteComponent.Color);
+            Renderer2D::DrawSprite(transformComponent.GetTransform(), spriteComponent, static_cast<int>(entity));
         }
 
         Renderer2D::EndScene();
