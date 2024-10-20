@@ -54,6 +54,8 @@ namespace Owl
         
         virtual void Bind() = 0;
         virtual void Unbind() = 0;
+
+        virtual void ClearAttachment(uint32_t pAttachmentIndex, int pValue) = 0;
         
 		virtual void Resize(uint32_t pWidth, uint32_t pHeight) = 0;
         virtual int ReadPixel(uint32_t pAttachmentPixel, int pX, int pY) = 0;

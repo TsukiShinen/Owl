@@ -103,6 +103,8 @@ namespace OwlEditor
         RenderCommand::SetClearColor({.1f, .1f, .1f, 1});
         RenderCommand::Clear();
 
+    	m_Framebuffer->ClearAttachment(1, -1);
+
     	m_ActiveScene->OnUpdateEditor(pDeltaTime, m_EditorCamera);
 
     	auto [mx, my] = ImGui::GetMousePos();

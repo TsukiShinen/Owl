@@ -73,6 +73,16 @@ namespace Owl
 
             return false;
         }
+
+        static GLenum OwlFBTextureFormatToGl(const FramebufferTextureFormat pFormat)
+        {
+            switch (pFormat) {
+                case FramebufferTextureFormat::RGBA8: return GL_RGBA8;
+                case FramebufferTextureFormat::RED_INTEGER: return GL_RED_INTEGER;
+            }
+            OWL_CORE_ASSERT(false)
+            return 0;
+        }
     }
 
     OpenGlFramebuffer::OpenGlFramebuffer(const FramebufferSpecification& pSpecification)
@@ -118,6 +128,15 @@ namespace Owl
         int pixelData;
         glReadPixels(pX, pY, 1, 1, GL_RED_INTEGER, GL_INT, &pixelData);
         return pixelData;
+    }
+
+    void OpenGlFramebuffer::ClearAttachment(uint32_t pAttachmentIndex, int pValue)
+    {
+        OWL_CORE_ASSERT(pAttachmentIndex < m_ColorAttachments.size())
+
+        glClearTexImage(m_ColorAttachments[pAttachmentIndex], 0,
+            Utils::OwlFBTextureFormatToGl(m_ColorAttachmentSpecifications[pAttachmentIndex].TextureFormat),
+            GL_INT, &pValue);
     }
 
     void OpenGlFramebuffer::Bind()

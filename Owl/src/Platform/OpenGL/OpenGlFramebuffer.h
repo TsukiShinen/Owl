@@ -12,6 +12,8 @@ namespace Owl
         void Resize(uint32_t pWidth, uint32_t pHeight) override;
         int ReadPixel(uint32_t pAttachmentIndex, int pX, int pY) override;
         
+        void ClearAttachment(uint32_t pAttachmentIndex, int pValue) override;
+        
         void Bind() override;
         void Unbind() override;
         uint32_t GetColorAttachmentRendererId(uint32_t pIndex = 0) const override { OWL_CORE_ASSERT(pIndex < m_ColorAttachments.size()) return m_ColorAttachments[pIndex]; }
