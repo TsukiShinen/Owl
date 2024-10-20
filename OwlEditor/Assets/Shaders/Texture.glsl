@@ -27,6 +27,7 @@ void main()
 #version 450
 
 layout(location = 0) out vec4 out_Color;
+layout(location = 1) out int out_Index;
 
 in vec4 v_Color;
 in vec2 v_TexCoord;
@@ -74,4 +75,6 @@ void main()
 		case 31: texColor *= texture(u_Texture[31], v_TexCoord * v_TilingFactor); break;
 	}
 	out_Color = texColor;
+
+	out_Index = 50;
 }

@@ -10,6 +10,7 @@ namespace Owl
 
         // Color
         RGBA8,
+        RED_INTEGER,
 
         // Depth/Stencil
         DEPTH24STENCIL8,
@@ -55,6 +56,7 @@ namespace Owl
         virtual void Unbind() = 0;
         
 		virtual void Resize(uint32_t pWidth, uint32_t pHeight) = 0;
+        virtual int ReadPixel(uint32_t pAttachmentPixel, int pX, int pY) = 0;
         
         virtual uint32_t GetColorAttachmentRendererId(uint32_t pIndex = 0) const = 0;
         virtual const FramebufferSpecification& GetSpecification() const = 0;

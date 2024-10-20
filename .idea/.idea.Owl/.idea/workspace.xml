@@ -17,7 +17,10 @@
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Framebuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Framebuffer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlFramebuffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlFramebuffer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlFramebuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlFramebuffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/Assets/Shaders/Texture.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/Assets/Shaders/Texture.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/imgui.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,7 +308,8 @@
       <workItem from="1720273881626" duration="116000" />
       <workItem from="1720293372131" duration="3795000" />
       <workItem from="1729282099880" duration="3132000" />
-      <workItem from="1729413443939" duration="1181000" />
+      <workItem from="1729413443939" duration="1498000" />
+      <workItem from="1729433407659" duration="3120000" />
     </task>
     <servers />
   </component>

@@ -24,15 +24,15 @@ namespace Owl
             glBindTexture(TextureTarget(pMultisample), pId);
         }
 
-        static void AttachColorTexture(const uint32_t pId, const int pSamples, const GLenum pFormat,
+        static void AttachColorTexture(const uint32_t pId, const int pSamples, const GLenum pInternalFormat, const GLenum pFormat,
                                        const uint32_t pWidth, const uint32_t pHeight, const int pIndex)
         {
             const bool multisample = pSamples > 1;
             if (multisample)
-                glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, pSamples, pFormat, pWidth, pHeight, GL_FALSE);
+                glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, pSamples, pInternalFormat, pWidth, pHeight, GL_FALSE);
             else
             {
-                glTexImage2D(GL_TEXTURE_2D, 0, pFormat, pWidth, pHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+                glTexImage2D(GL_TEXTURE_2D, 0, pInternalFormat, pWidth, pHeight, 0, pFormat, GL_UNSIGNED_BYTE, nullptr);
 
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -110,6 +110,16 @@ namespace Owl
         Invalidate();
     }
 
+    int OpenGlFramebuffer::ReadPixel(uint32_t pAttachmentIndex, int pX, int pY)
+    {
+        OWL_CORE_ASSERT(pAttachmentIndex < m_ColorAttachments.size())
+        
+        glReadBuffer(GL_COLOR_ATTACHMENT0 + pAttachmentIndex);
+        int pixelData;
+        glReadPixels(pX, pY, 1, 1, GL_RED_INTEGER, GL_INT, &pixelData);
+        return pixelData;
+    }
+
     void OpenGlFramebuffer::Bind()
     {
         glBindFramebuffer(GL_FRAMEBUFFER, m_RendererId);
@@ -144,13 +154,17 @@ namespace Owl
             m_ColorAttachments.resize(m_ColorAttachmentSpecifications.size());
             Utils::CreateTexture(multisample, m_ColorAttachments.data(), m_ColorAttachments.size());
 
-            for (size_t i = 0; i < m_ColorAttachments.size(); i++)
+            for (uint32_t i = 0; i < m_ColorAttachments.size(); i++)
             {
                 Utils::BindTexture(multisample, m_ColorAttachments[i]);
                 switch (m_ColorAttachmentSpecifications[i].TextureFormat)
                 {
                 case FramebufferTextureFormat::RGBA8:
-                    Utils::AttachColorTexture(m_ColorAttachments[i], m_Specification.Samples, GL_RGBA8,
+                    Utils::AttachColorTexture(m_ColorAttachments[i], m_Specification.Samples, GL_RGBA8, GL_RGBA,
+                                              m_Specification.Width, m_Specification.Height, i);
+                    break;
+                case FramebufferTextureFormat::RED_INTEGER:
+                    Utils::AttachColorTexture(m_ColorAttachments[i], m_Specification.Samples, GL_R32I, GL_RED_INTEGER,
                                               m_Specification.Width, m_Specification.Height, i);
                     break;
                 default:
