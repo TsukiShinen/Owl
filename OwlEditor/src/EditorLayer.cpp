@@ -31,39 +31,6 @@ namespace OwlEditor
 
     	m_EditorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
 
-#if 0
-    	m_SquareEntity = m_ActiveScene->CreateEntity("Square");
-    	m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{0.0f, 1.0f, 0.0f, 1.0f});
-
-    	m_MainCameraEntity = m_ActiveScene->CreateEntity("Main Camera");
-    	m_MainCameraEntity.AddComponent<CameraComponent>();
-
-    	m_SecondCameraEntity= m_ActiveScene->CreateEntity("Second Camera");
-    	auto& secondCameraComponent = m_SecondCameraEntity.AddComponent<CameraComponent>();
-		secondCameraComponent.Primary = false;
-
-    	class CameraController : public ScriptableEntity
-    	{
-    	public:
-    		void OnUpdate(DeltaTime pDeltaTime) override
-		    {
-    			auto& translation = GetComponent<TransformComponent>().Translation;
-    			float speed = 5.0f;
-
-    			if (Input::IsKeyPressed(Key::A))
-    				translation.x -= speed * pDeltaTime;
-    			if (Input::IsKeyPressed(Key::D))
-    				translation.x += speed * pDeltaTime;
-    			if (Input::IsKeyPressed(Key::W))
-    				translation.y += speed * pDeltaTime;
-    			if (Input::IsKeyPressed(Key::S))
-    				translation.y -= speed * pDeltaTime;
-    		}
-    	};
-    	
-    	m_MainCameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
-#endif
-
     	m_HierarchyPanel.SetContext(m_ActiveScene);
 
     	SceneSerializer sceneSerializer(m_ActiveScene);
@@ -222,7 +189,11 @@ namespace OwlEditor
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 		ImGui::Begin("Viewport");
-    	auto viewportOffset = ImGui::GetCursorPos();
+		const auto viewportMinRegion = ImGui::GetWindowContentRegionMin();
+		const auto viewportMaxRegion = ImGui::GetWindowContentRegionMax();
+		const auto viewportOffset = ImGui::GetWindowPos();
+    	m_ViewportBounds[0] = { viewportMinRegion.x + viewportOffset.x, viewportMinRegion.y + viewportOffset.y };
+    	m_ViewportBounds[1] = { viewportMaxRegion.x + viewportOffset.x, viewportMaxRegion.y + viewportOffset.y };
 
 		m_ViewportFocused = ImGui::IsWindowFocused();
 		m_ViewportHovered = ImGui::IsWindowHovered();
@@ -233,22 +204,13 @@ namespace OwlEditor
     	
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererId();
 		ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-
-    	auto windowSize = ImGui::GetWindowSize();
-    	auto minBound = ImGui::GetWindowPos();
-    	minBound.x += viewportOffset.x;
-    	minBound.y += viewportOffset.y;
-
-    	ImVec2 maxBound = { minBound.x + windowSize.x, minBound.y + windowSize.y };
-    	m_ViewportBounds[0] = { minBound.x, minBound.y };
-    	m_ViewportBounds[1] = { maxBound.x, maxBound.y };
     	
 		// Gizmos
 		if (Entity selectedEntity = m_HierarchyPanel.GetSelectedEntity(); selectedEntity && m_GizmoType != -1)
     	{
     		ImGuizmo::SetOrthographic(false);
 			ImGuizmo::SetDrawlist();
-			ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, ImGui::GetWindowWidth(), ImGui::GetWindowHeight());
+			ImGuizmo::SetRect(m_ViewportBounds[0].x, m_ViewportBounds[0].y, m_ViewportBounds[1].x - m_ViewportBounds[0].x, m_ViewportBounds[1].y - m_ViewportBounds[0].y);
 
 			// Camera
 
@@ -293,6 +255,7 @@ namespace OwlEditor
 
     	EventDispatcher dispatcher(pEvent);
     	dispatcher.Dispatch<KeyPressedEvent>(OWL_BIND_EVENT_FN(EditorLayer::OnKeyPressed));
+    	dispatcher.Dispatch<MouseButtonPressedEvent>(OWL_BIND_EVENT_FN(EditorLayer::OnMouseButtonPressed));
     }
 
     bool EditorLayer::OnKeyPressed(const KeyPressedEvent& pEvent)
@@ -346,6 +309,15 @@ namespace OwlEditor
     			break;
     		}
     	}
+    }
+
+    bool EditorLayer::OnMouseButtonPressed(const MouseButtonPressedEvent& pEvent)
+    {
+    	if (pEvent.GetMouseButton() == Mouse::ButtonLeft)
+    		if (m_ViewportHovered && !ImGuizmo::IsOver() && !Input::IsKeyPressed(Key::LeftAlt))
+    			m_HierarchyPanel.SetSelectedEntity(m_HoveredEntity);
+
+    	return false;
     }
 
     void EditorLayer::NewScene()

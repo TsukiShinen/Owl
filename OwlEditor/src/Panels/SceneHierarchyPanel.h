@@ -18,6 +18,7 @@ namespace OwlEditor
         void OnImGuiRender();
         
         [[nodiscard]] Entity GetSelectedEntity() const { return m_SelectionContext; }
+        void SetSelectedEntity(Entity pEntity) { m_SelectionContext = pEntity; }
     private:
         void DrawEntityNode(Entity pEntity);
         void DrawComponents(Entity pEntity);

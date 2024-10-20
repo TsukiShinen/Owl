@@ -25,6 +25,7 @@ namespace OwlEditor
         
     private:
         bool OnKeyPressed(const KeyPressedEvent& pEvent);
+        bool OnMouseButtonPressed(const MouseButtonPressedEvent& pEvent);
 
         void NewScene();
         void OpenScene();
@@ -36,9 +37,6 @@ namespace OwlEditor
         
         Ref<Scene> m_ActiveScene;
         std::filesystem::path m_ActiveScenePath;
-        Entity m_SquareEntity;
-        Entity m_MainCameraEntity;
-        Entity m_SecondCameraEntity;
 
         Entity m_HoveredEntity;
         

@@ -14,13 +14,8 @@
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/Assets/Shaders/Texture.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/Assets/Shaders/Texture.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OwlEditor/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/imgui.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -310,7 +305,7 @@
       <workItem from="1729282099880" duration="3132000" />
       <workItem from="1729413443939" duration="1498000" />
       <workItem from="1729433407659" duration="5243000" />
-      <workItem from="1729447388343" duration="1616000" />
+      <workItem from="1729447388343" duration="2397000" />
     </task>
     <servers />
   </component>
