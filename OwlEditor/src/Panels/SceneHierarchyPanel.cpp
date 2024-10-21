@@ -11,7 +11,7 @@
   #define _CRT_SECURE_NO_WARNINGS
 #endif
 
-namespace OwlEditor
+namespace Owl
 {
     SceneHierarchyPanel::SceneHierarchyPanel(const Ref<Scene>& pContext)
     {

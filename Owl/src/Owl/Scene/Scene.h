@@ -35,6 +35,6 @@ namespace Owl
 
         friend class Entity;
         friend class SceneSerializer;
-        friend class OwlEditor::SceneHierarchyPanel;
+        friend class SceneHierarchyPanel;
     };
 }

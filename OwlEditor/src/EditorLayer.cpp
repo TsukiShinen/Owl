@@ -8,7 +8,7 @@
 #include "Owl/Math/Math.h"
 #include "Owl/Utils/PlatformUtils.h"
 
-namespace OwlEditor
+namespace Owl
 {
     EditorLayer::EditorLayer()
         : Layer("Sandbox2D"), m_CameraController(1280.0f / 780.0f)
@@ -18,8 +18,6 @@ namespace OwlEditor
     void EditorLayer::OnAttach()
     {
         OWL_PROFILE_FUNCTION();
-	
-        m_CheckerboardTexture = Texture2D::Create("Assets/Textures/Checkerboard.png");
 
         FramebufferSpecification framebufferSpecification;
     	framebufferSpecification.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RED_INTEGER, FramebufferTextureFormat::Depth };
@@ -184,6 +182,7 @@ namespace OwlEditor
     	ImGui::Text("Hovered Entity: %s", name.c_str());
     	
     	m_HierarchyPanel.OnImGuiRender();
+    	m_ContentBrowserPanel.OnImGuiRender();
 
 		auto stats = Renderer2D::GetStats();
 		ImGui::Text("Renderer2D Stats:");

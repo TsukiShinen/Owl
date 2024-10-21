@@ -5,10 +5,9 @@
 #include "Owl/Scene/Entity.h"
 #include "Owl/Scene/SceneSerializer.h"
 #include "Panels/SceneHierarchyPanel.h"
+#include "Panels/ContentBrowserPanel.h"
 
-using namespace Owl;
-
-namespace OwlEditor
+namespace Owl
 {
     class EditorLayer : public Layer
     {
@@ -43,21 +42,17 @@ namespace OwlEditor
         bool m_PrimaryCamera;
 
         EditorCamera m_EditorCamera;
-	
-        Ref<Texture2D> m_CheckerboardTexture;
         
         bool m_ViewportFocused = false,  m_ViewportHovered = false;
         glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
         glm::vec2 m_ViewportBounds[2];
         
         Ref<Framebuffer> m_Framebuffer;
-	
-        glm::vec4 m_SquareColor = {1.0f, 1.0f, 1.0f, 1.0f};
-        float m_SquareRotation = 0.0f;
 
         int m_GizmoType = -1;
 
         SceneHierarchyPanel m_HierarchyPanel;
+        ContentBrowserPanel m_ContentBrowserPanel;
     };
     
 }

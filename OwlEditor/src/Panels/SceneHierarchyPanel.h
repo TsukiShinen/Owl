@@ -3,9 +3,7 @@
 #include "Owl/Scene/Entity.h"
 #include "Owl/Scene/Scene.h"
 
-using namespace Owl;
-
-namespace OwlEditor
+namespace Owl
 {
     class SceneHierarchyPanel
     {

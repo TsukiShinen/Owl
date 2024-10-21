@@ -3,7 +3,7 @@
 
 #include "EditorLayer.h"
 
-namespace OwlEditor
+namespace Owl
 {
     class OwlEditor : public Application
     {
@@ -19,7 +19,7 @@ namespace OwlEditor
     
 }
 
-Application* Owl::CreateApplication(ApplicationCommandLineArgs pArgs)
+Owl::Application* Owl::CreateApplication(ApplicationCommandLineArgs pArgs)
 {
-    return new OwlEditor::OwlEditor(pArgs);
+    return new OwlEditor(pArgs);
 }
