@@ -108,6 +108,13 @@ namespace Owl
 		UploadUniformFloat(pName, pValue);
 	}
 
+	void OpenGlShader::SetFloat2(const std::string& pName, const glm::vec2& pValue)
+	{
+		OWL_PROFILE_FUNCTION();
+		
+		UploadUniformFloat2(pName, pValue);
+	}
+
 	void OpenGlShader::UploadUniformInt(const std::string& pName, const int pValue) const
 	{
 		const GLint location = glGetUniformLocation(m_RendererID, pName.c_str());
