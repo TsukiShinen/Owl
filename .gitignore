@@ -16,5 +16,7 @@ Intermediates/
 
 # Directories
 scripts/__pycache__
+Owl/vendor/VulkanSDK
+OwlEditor/Assets/cache
 
 OwlProfile-**.json

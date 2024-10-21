@@ -28,6 +28,7 @@ void Owl::SceneCamera::SetPerspective(const float pVerticalFov, const float pNea
 
 void Owl::SceneCamera::SetViewportSize(const uint32_t pWidth, const uint32_t pHeight)
 {
+    OWL_CORE_ASSERT(pWidth > 0 && pHeight > 0);
     m_AspectRatio = static_cast<float>(pWidth) / static_cast<float>(pHeight);
     RecalculateProjection();
 }

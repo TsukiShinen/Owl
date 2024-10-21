@@ -4,14 +4,14 @@
 #include "Owl/Core/Base.h"
 #include "Owl/Debug/Instrumentor.h"
 
-extern Owl::Application* Owl::CreateApplication();
+extern Owl::Application* Owl::CreateApplication(ApplicationCommandLineArgs pArgs);
 
 inline int main(int pArgc, char** pArgv)
 {
 	Owl::Log::Init();
 
 	OWL_PROFILE_BEGIN_SESSION("Startup", "OwlProfile-Startup.json");
-	const auto app = Owl::CreateApplication();
+	const auto app = Owl::CreateApplication({pArgc, pArgv});
 	OWL_PROFILE_END_SESSION();
 	
 	OWL_PROFILE_BEGIN_SESSION("Runtime", "OwlProfile-Runtime.json");

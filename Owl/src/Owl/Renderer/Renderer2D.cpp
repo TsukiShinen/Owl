@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "RenderCommand.h"
 #include "Shader.h"
+#include "UniformBuffer.h"
 #include "VertexArray.h"
 #include "glm/gtc/matrix_transform.hpp"
 
@@ -43,6 +44,13 @@ namespace Owl
 		glm::vec4 QuadVertexPositions[4];
 		
 		Renderer2D::Statistics Stats;
+
+		struct CameraData
+		{
+			glm::mat4 ViewProjection;
+		};
+		CameraData CameraBuffer;
+		Ref<UniformBuffer> CameraUniformBuffer;
 	};
 
 	static Renderer2DData s_Data;
@@ -95,8 +103,6 @@ namespace Owl
 			samplers[i] = i;
 		
 		s_Data.TextureShader = Shader::Create("Assets/Shaders/Texture.glsl");
-		s_Data.TextureShader->Bind();
-		s_Data.TextureShader->SetIntArray("u_Texture", samplers);
 
 		s_Data.TextureSlots[0] = s_Data.WhiteTexture;
 		
@@ -104,6 +110,8 @@ namespace Owl
 		s_Data.QuadVertexPositions[1] = {  0.5f, -0.5f, 0.0f, 1.0f };
 		s_Data.QuadVertexPositions[2] = {  0.5f,  0.5f, 0.0f, 1.0f };
 		s_Data.QuadVertexPositions[3] = { -0.5f,  0.5f, 0.0f, 1.0f };
+
+		s_Data.CameraUniformBuffer = UniformBuffer::Create(sizeof(Renderer2DData::CameraData), 0);
 	}
 
 	void Renderer2D::Shutdown()
@@ -116,11 +124,9 @@ namespace Owl
 	void Renderer2D::BeginScene(const Camera& pCamera, const glm::mat4& pTransform)
 	{
 		OWL_PROFILE_FUNCTION();
-
-		const glm::mat4 viewProj = pCamera.GetProjection() * glm::inverse(pTransform);
 		
-		s_Data.TextureShader->Bind();
-		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
+		s_Data.CameraBuffer.ViewProjection = pCamera.GetProjection() * glm::inverse(pTransform);
+		s_Data.CameraUniformBuffer->SetData(&s_Data.CameraBuffer, sizeof(Renderer2DData::CameraData));
 
 		StartBatch();
 	}
@@ -128,11 +134,9 @@ namespace Owl
 	void Renderer2D::BeginScene(const EditorCamera& pCamera)
 	{
 		OWL_PROFILE_FUNCTION();
-
-		const glm::mat4 viewProj = pCamera.GetViewProjection();
 		
-		s_Data.TextureShader->Bind();
-		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
+		s_Data.CameraBuffer.ViewProjection = pCamera.GetViewProjection();
+		s_Data.CameraUniformBuffer->SetData(&s_Data.CameraBuffer, sizeof(Renderer2DData::CameraData));
 
 		StartBatch();
 	}
@@ -166,6 +170,7 @@ namespace Owl
 		for (uint32_t i = 0; i < s_Data.TextureSlotIndex; ++i)
 			s_Data.TextureSlots[i]->Bind(i);
 		
+		s_Data.TextureShader->Bind();
 		RenderCommand::DrawIndexed(s_Data.QuadVertexArray, s_Data.QuadIndexCount);
 		s_Data.Stats.DrawCalls++;
 	}

@@ -13,9 +13,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Timer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/UniformBuffer.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/UniformBuffer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlUniformBuffer.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlUniformBuffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/imgui.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dependencies.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Dependencies.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/premake5.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/premake5.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/EntryPoint.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/EntryPoint.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneCamera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneCamera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/Assets/Shaders/Texture.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/Assets/Shaders/Texture.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/Setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/Setup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -306,6 +322,7 @@
       <workItem from="1729413443939" duration="1498000" />
       <workItem from="1729433407659" duration="5243000" />
       <workItem from="1729447388343" duration="2397000" />
+      <workItem from="1729508649987" duration="2896000" />
     </task>
     <servers />
   </component>

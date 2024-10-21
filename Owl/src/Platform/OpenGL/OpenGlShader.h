@@ -42,10 +42,20 @@ namespace Owl
 	private:
 		static std::string ReadFile(const std::string& pFilePath);
 		static std::unordered_map<GLenum, std::string> PreProcess(const std::string& pSource);
-		void Compile(const std::unordered_map<GLenum, std::string>& pShaderSources);
+
+		void CompileOrGetVulkanBinaries(const std::unordered_map<GLenum, std::string>& pShaderSources);
+		void CompileOrGetOpenGlBinaries();
+		void CreateProgram();
+		void Reflect(GLenum pStage, const std::vector<uint32_t>& pShaderData);
 
 	private:
-		uint32_t m_RendererID;
+		uint32_t m_RendererId;
+		std::string m_FilePath;
 		std::string m_Name;
+
+		std::unordered_map<GLenum, std::vector<uint32_t>> m_VulkanSpirv;
+		std::unordered_map<GLenum, std::vector<uint32_t>> m_OpenGlSpirv;
+		
+		std::unordered_map<GLenum, std::string> m_OpenGLSourceCode;
 	};
 }

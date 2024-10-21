@@ -29,6 +29,13 @@ namespace OwlEditor
 
     	m_ActiveScene = CreateRef<Scene>();
 
+        if (const auto commandLineArgs = Application::Get().GetCommandLineArgs(); commandLineArgs.Count > 1)
+    	{
+		    const auto sceneFilePath = commandLineArgs[1];
+    		SceneSerializer serializer(m_ActiveScene);
+    		serializer.Deserialize(sceneFilePath);
+    	}
+
     	m_EditorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
 
     	m_HierarchyPanel.SetContext(m_ActiveScene);

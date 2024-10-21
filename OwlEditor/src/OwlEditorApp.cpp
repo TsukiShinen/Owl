@@ -5,11 +5,11 @@
 
 namespace OwlEditor
 {
-    class OwlEditor : public Owl::Application
+    class OwlEditor : public Application
     {
     public:
-        OwlEditor()
-            : Owl::Application("Owl Editor")
+        OwlEditor(ApplicationCommandLineArgs pArgs)
+            : Application("Owl Editor", pArgs)
         {
             PushLayer(new EditorLayer());
         }
@@ -19,7 +19,7 @@ namespace OwlEditor
     
 }
 
-Owl::Application* Owl::CreateApplication()
+Application* Owl::CreateApplication(ApplicationCommandLineArgs pArgs)
 {
-    return new OwlEditor::OwlEditor();
+    return new OwlEditor::OwlEditor(pArgs);
 }

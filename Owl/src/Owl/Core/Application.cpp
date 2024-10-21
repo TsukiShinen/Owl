@@ -10,7 +10,8 @@ namespace Owl
 {
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application(const std::string& pName)
+	Application::Application(const std::string& pName, const ApplicationCommandLineArgs pArgs)
+		: m_CommandLineArgs(pArgs)
 	{
 		OWL_PROFILE_FUNCTION();
 		

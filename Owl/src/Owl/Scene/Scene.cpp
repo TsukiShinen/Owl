@@ -137,7 +137,8 @@ namespace Owl
     template <>
     void Scene::OnComponentAdded<CameraComponent>(Entity pEntity, CameraComponent& pComponent)
     {
-        pComponent.Camera.SetViewportSize(m_ViewportWidth, m_ViewportHeight);
+        if (m_ViewportWidth > 0 && m_ViewportHeight > 0)
+            pComponent.Camera.SetViewportSize(m_ViewportWidth, m_ViewportHeight);
     }
     
     template <>

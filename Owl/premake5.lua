@@ -19,7 +19,7 @@ project "Owl"
 		"vendor/glm/glm/**.hpp",
 		"vendor/glm/glm/**.inl",
 		"vendor/ImGuizmo/ImGuizmo.h",
-		"vendor/ImGuizmo/ImGuizmo.cpp",
+		"vendor/ImGuizmo/ImGuizmo.cpp"
     }
 
 	defines
@@ -39,7 +39,8 @@ project "Owl"
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
 		"%{IncludeDir.entt}",
-		"%{IncludeDir.yaml_cpp}"
+		"%{IncludeDir.yaml_cpp}",
+		"%{IncludeDir.VulkanSDK}"
     }
 
 	links {
@@ -60,13 +61,31 @@ project "Owl"
 		defines "OWL_DEBUG"
 		runtime "Debug"
 		symbols "on"
+		links
+		{
+			"%{Library.ShaderC_Debug}",
+			"%{Library.SPIRV_Cross_Debug}",
+			"%{Library.SPIRV_Cross_GLSL_Debug}"
+		}
 
 	filter "configurations:Release"
 		defines "OWL_RELEASE"
 		runtime "Release"
 		optimize "on"
+		links
+		{
+			"%{Library.ShaderC_Release}",
+			"%{Library.SPIRV_Cross_Release}",
+			"%{Library.SPIRV_Cross_GLSL_Release}"
+		}
 
 	filter "configurations:Dist"
 		defines "OWL_DIST"
 		runtime "Release"
-		optimize "on"
+		optimize "on"		
+		links
+		{
+			"%{Library.ShaderC_Release}",
+			"%{Library.SPIRV_Cross_Release}",
+			"%{Library.SPIRV_Cross_GLSL_Release}"
+		}

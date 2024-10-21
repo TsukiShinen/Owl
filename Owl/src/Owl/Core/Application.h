@@ -10,10 +10,21 @@ int main(int argc, char** argv);
 
 namespace Owl
 {
+	struct ApplicationCommandLineArgs
+	{
+		int Count = 0;
+		char** Args = nullptr;
+
+		const char* operator[](const int pIndex) const {
+			OWL_CORE_ASSERT(pIndex < Count)
+			return Args[pIndex];
+		}
+	};
+	
 	class Application
 	{
 	public:
-		Application(const std::string& pName = "Owl App");
+		Application(const std::string& pName = "Owl App", ApplicationCommandLineArgs pArgs = ApplicationCommandLineArgs());
 		virtual ~Application();
 
 		void OnEvent(Event& pEvent);
@@ -29,11 +40,15 @@ namespace Owl
 
 		static Application& Get() { return *s_Instance; }
 
+		ApplicationCommandLineArgs GetCommandLineArgs() const { return m_CommandLineArgs; }
 	private:
 		void Run();
 		
 		bool OnWindowClose(const WindowCloseEvent& pEvent);
 		bool OnWindowResize(const WindowResizeEvent& pEvent);
+
+	private:
+		ApplicationCommandLineArgs m_CommandLineArgs;
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_IsRunning = true;
@@ -47,5 +62,5 @@ namespace Owl
 	};
 
 	// To be defined in client
-	Application* CreateApplication();
+	Application* CreateApplication(ApplicationCommandLineArgs pArgs);
 }
