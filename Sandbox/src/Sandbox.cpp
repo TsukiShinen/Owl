@@ -12,7 +12,7 @@
 class Sandbox : public Owl::Application
 {
 public:
-	Sandbox()
+	Sandbox(Owl::ApplicationCommandLineArgs pArgs)
 	{
 		// PushLayer(new ExampleLayer());
 		PushLayer(new EditorLayer());
@@ -21,7 +21,7 @@ public:
 	~Sandbox() override = default;
 };
 
-Owl::Application* Owl::CreateApplication()
+Owl::Application* Owl::CreateApplication(ApplicationCommandLineArgs pArgs)
 {
-	return new Sandbox();
+	return new Sandbox(pArgs);
 }
