@@ -15,6 +15,10 @@
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/imgui.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/src/Panels/ContentBrowserPanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/Panels/ContentBrowserPanel.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +29,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Owl/vendor/imgui/backends/imgui_impl_opengl3.h" root0="SKIP_HIGHLIGHTING" />
@@ -353,7 +363,8 @@
       <workItem from="1729529396525" duration="5397000" />
       <workItem from="1729615131561" duration="184000" />
       <workItem from="1729623423651" duration="2240000" />
-      <workItem from="1729625845833" duration="310000" />
+      <workItem from="1729625845833" duration="482000" />
+      <workItem from="1730359323638" duration="2334000" />
     </task>
     <servers />
   </component>

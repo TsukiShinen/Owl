@@ -28,6 +28,7 @@ namespace Owl
 
         void NewScene();
         void OpenScene();
+        void OpenScene(const std::filesystem::path& pPath);
         void SaveScene();
         void SaveSceneAs();
 

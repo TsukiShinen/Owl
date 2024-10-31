@@ -10,6 +10,8 @@
 
 namespace Owl
 {
+	extern const std::filesystem::path g_AssetPath;
+	
     EditorLayer::EditorLayer()
         : Layer("Sandbox2D"), m_CameraController(1280.0f / 780.0f)
     {
@@ -210,6 +212,17 @@ namespace Owl
     	
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererId();
 		ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+
+		if (ImGui::BeginDragDropTarget())
+		{
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
+			{
+				const auto path = static_cast<const wchar_t*>(payload->Data);
+				OpenScene(g_AssetPath / path);
+			}
+			
+			ImGui::EndDragDropTarget();
+		}
     	
 		// Gizmos
 		if (Entity selectedEntity = m_HierarchyPanel.GetSelectedEntity(); selectedEntity && m_GizmoType != -1)
@@ -340,16 +353,19 @@ namespace Owl
     void EditorLayer::OpenScene()
     {
     	if (const auto filepath = FileDialogs::OpenFile("Owl Scene (*.owl)\0*.owl\0"))
-    	{
-    		m_ActiveScene = CreateRef<Scene>();
-    		m_ActiveScene->SetViewportResize(static_cast<uint32_t>(m_ViewportSize.x), static_cast<uint32_t>(m_ViewportSize.y));
-    		m_HierarchyPanel.SetContext(m_ActiveScene);
-					
-    		SceneSerializer sceneSerializer(m_ActiveScene);
-    		sceneSerializer.Deserialize(*filepath);
-						
-    		m_ActiveScenePath = *filepath;
-    	}
+			OpenScene(filepath.value());
+    }
+
+    void EditorLayer::OpenScene(const std::filesystem::path& pPath)
+    {
+    	m_ActiveScene = CreateRef<Scene>();
+    	m_ActiveScene->SetViewportResize(static_cast<uint32_t>(m_ViewportSize.x), static_cast<uint32_t>(m_ViewportSize.y));
+    	m_HierarchyPanel.SetContext(m_ActiveScene);
+    	
+    	SceneSerializer sceneSerializer(m_ActiveScene);
+    	sceneSerializer.Deserialize(pPath.string());
+    	
+    	m_ActiveScenePath = pPath.string();
     }
 
     void EditorLayer::SaveScene()
