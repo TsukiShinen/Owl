@@ -325,7 +325,10 @@ namespace Owl
 	void Renderer2D::DrawSprite(const glm::mat4& pTransform, const SpriteRendererComponent& pSpriteRendererComponent,
 	                            const int pEntityId)
 	{
-		DrawQuad(pTransform, pSpriteRendererComponent.Color, pEntityId);
+		if (pSpriteRendererComponent.Texture)
+			DrawQuad(pTransform, pSpriteRendererComponent.Texture, pSpriteRendererComponent.TilingFactor, pSpriteRendererComponent.Color, pEntityId);
+		else
+			DrawQuad(pTransform, pSpriteRendererComponent.Color, pEntityId);
 	}
 
 	Renderer2D::Statistics Renderer2D::GetStats()

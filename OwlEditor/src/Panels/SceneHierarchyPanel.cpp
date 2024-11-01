@@ -13,6 +13,8 @@
 
 namespace Owl
 {
+	extern const std::filesystem::path g_AssetPath;
+    
     SceneHierarchyPanel::SceneHierarchyPanel(const Ref<Scene>& pContext)
     {
         SetContext(pContext);
@@ -300,6 +302,20 @@ namespace Owl
         DrawComponent<SpriteRendererComponent>("Sprite Renderer", pEntity, [](auto& pComponent)
         {
             ImGui::ColorEdit4("Color", glm::value_ptr(pComponent.Color));
+
+            ImGui::Button("Texture", ImVec2(100.0f, 0.0f));
+            if (ImGui::BeginDragDropTarget())
+            {
+                if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
+                {
+                    const auto path = static_cast<const wchar_t*>(payload->Data);
+                    const auto texturePath = std::filesystem::path(g_AssetPath / path);
+                    pComponent.Texture = Texture2D::Create(texturePath.string());
+                }
+                ImGui::EndDragDropTarget();
+            }
+            
+            ImGui::DragFloat("TilingFactor", &pComponent.TilingFactor, 0.1f, 0.0f, 100.0f);
         });
     }
 }
