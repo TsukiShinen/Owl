@@ -2,6 +2,9 @@
 
 #include "Base.h"
 
+#define GLM_ENABLE_EXPERIMENTAL
+#include "glm/gtx/string_cast.hpp"
+
 // This ignores all warnings raised inside External headers
 #pragma warning(push, 0)
 #include <spdlog/spdlog.h>
@@ -22,6 +25,22 @@ namespace Owl
 		static Ref<spdlog::logger> s_CoreLogger;
 		static Ref<spdlog::logger> s_ClientLogger;
 	};
+}
+
+template<typename OStream, glm::length_t L, typename T, glm::qualifier Q>
+OStream& operator<<(OStream& pOs, const glm::vec<L, T, Q>& pVector)
+{
+	return pOs << glm::to_string(pVector);
+}
+template<typename OStream, glm::length_t C, glm::length_t R, typename T, glm::qualifier Q>
+OStream& operator<<(OStream& pOs, const glm::mat<C, R, T, Q>& pMatrix)
+{
+	return pOs << glm::to_string(pMatrix);
+}
+template<typename OStream, typename T, glm::qualifier Q>
+OStream& operator<<(OStream& pOs, glm::qua<T, Q> pQuaternion)
+{
+	return pOs << glm::to_string(pQuaternion);
 }
 
 // Core Log Macro

@@ -21,6 +21,9 @@ namespace Owl
     {
         OWL_PROFILE_FUNCTION();
 
+    	m_IconPlay = Texture2D::Create("Resources/Icons/PlayButton.png");
+    	m_IconStop = Texture2D::Create("Resources/Icons/StopButton.png");
+
         FramebufferSpecification framebufferSpecification;
     	framebufferSpecification.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RED_INTEGER, FramebufferTextureFormat::Depth };
         framebufferSpecification.Width = 1280;
@@ -64,22 +67,36 @@ namespace Owl
     		m_EditorCamera.SetViewportSize(m_ViewportSize.x, m_ViewportSize.y);
     		m_ActiveScene->SetViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
     	}
-    	
+
+    	// Update
     	if (m_ViewportFocused)
-    	{
     		m_CameraController.OnUpdate(pDeltaTime);
-    		m_EditorCamera.OnUpdate(pDeltaTime);
-    	}
+    	
+    	m_EditorCamera.OnUpdate(pDeltaTime);
 
-
+		// Render
         Renderer2D::ResetStats();
         m_Framebuffer->Bind();
         RenderCommand::SetClearColor({.1f, .1f, .1f, 1});
         RenderCommand::Clear();
 
-    	m_Framebuffer->ClearAttachment(1, -1); 
+    	// Clear entity id attachment
+    	m_Framebuffer->ClearAttachment(1, -1);
 
-    	m_ActiveScene->OnUpdateEditor(pDeltaTime, m_EditorCamera);
+    	// Update scene
+	    switch (m_SceneState)
+    	{
+		    case SceneState::Edit:
+			    {
+		    		m_ActiveScene->OnUpdateEditor(pDeltaTime, m_EditorCamera);
+				    break;
+			    }
+		    case SceneState::Play:
+			    {
+		    		m_ActiveScene->OnUpdateRuntime(pDeltaTime);
+				    break;
+			    }
+	    }
 
     	auto [mx, my] = ImGui::GetMousePos();
     	mx -= m_ViewportBounds[0].x;
@@ -264,6 +281,8 @@ namespace Owl
 		ImGui::End();
 		ImGui::PopStyleVar();
 
+		Ui_Toolbar();
+    	
 		ImGui::End();
 	}
 
@@ -388,5 +407,44 @@ namespace Owl
     		SceneSerializer sceneSerializer(m_ActiveScene);
     		sceneSerializer.Serialize(*filepath);
     	}
+    }
+
+    void EditorLayer::OnScenePlay()
+    {
+    	m_SceneState = SceneState::Play;
+    }
+
+    void EditorLayer::OnSceneStop()
+    {
+    	m_SceneState = SceneState::Edit;
+    }
+
+    void EditorLayer::Ui_Toolbar()
+    {
+    	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 2));
+    	ImGui::PushStyleVar(ImGuiStyleVar_ItemInnerSpacing, ImVec2(0, 0));
+    	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
+    	auto& colors = ImGui::GetStyle().Colors;
+    	const auto& buttonHovered = colors[ImGuiCol_ButtonHovered];
+    	ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(buttonHovered.x, buttonHovered.y, buttonHovered.z, 0.5f));
+    	const auto& buttonActive = colors[ImGuiCol_ButtonActive];
+    	ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(buttonActive.x, buttonActive.y, buttonActive.z, 0.5f));
+    	
+    	ImGui::Begin("##toolbar", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+
+	    const float size = ImGui::GetWindowHeight() - 4.0f;
+	    const Ref<Texture2D> icon = m_SceneState == SceneState::Edit ? m_IconPlay : m_IconStop;
+    	ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 0.5f));
+		if (ImGui::ImageButton((ImTextureID)icon->GetRendererID(), ImVec2(size, size), ImVec2(0, 0), ImVec2(1, 1), 0))
+		{
+			if (m_SceneState == SceneState::Edit)
+				OnScenePlay();
+			else if (m_SceneState == SceneState::Play)
+				OnSceneStop();
+		}
+    	ImGui::PopStyleVar(2);
+    	ImGui::PopStyleColor(3);
+    	
+    	ImGui::End();
     }
 }

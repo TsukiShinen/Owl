@@ -32,6 +32,11 @@ namespace Owl
         void SaveScene();
         void SaveSceneAs();
 
+        void OnScenePlay();
+        void OnSceneStop();
+
+        // Ui Panels
+        void Ui_Toolbar();
     private:
         OrthographicCameraController m_CameraController;
         
@@ -52,8 +57,18 @@ namespace Owl
 
         int m_GizmoType = -1;
 
+        // Panels
         SceneHierarchyPanel m_HierarchyPanel;
         ContentBrowserPanel m_ContentBrowserPanel;
+        
+        enum class SceneState
+        {
+            Edit = 0, Play = 1
+        };
+        SceneState m_SceneState = SceneState::Edit;
+
+        // Editor resources
+        Ref<Texture2D> m_IconPlay, m_IconStop;
     };
     
 }
