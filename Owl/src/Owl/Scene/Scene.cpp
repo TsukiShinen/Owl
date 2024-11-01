@@ -92,7 +92,7 @@ namespace Owl
         Renderer2D::EndScene();
     }
 
-    void Scene::SetViewportResize(const uint32_t pWidth, const uint32_t pHeight)
+    void Scene::OnViewportResize(const uint32_t pWidth, const uint32_t pHeight)
     {
         m_ViewportWidth = pWidth;
         m_ViewportHeight = pHeight;

@@ -58,7 +58,7 @@ namespace Owl
         int m_GizmoType = -1;
 
         // Panels
-        SceneHierarchyPanel m_HierarchyPanel;
+        SceneHierarchyPanel m_SceneHierarchyPanel;
         ContentBrowserPanel m_ContentBrowserPanel;
         
         enum class SceneState

@@ -41,7 +41,7 @@ namespace Owl
 
     	m_EditorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
 
-    	m_HierarchyPanel.SetContext(m_ActiveScene);
+    	m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 
     	SceneSerializer sceneSerializer(m_ActiveScene);
     	sceneSerializer.Deserialize("Assets/Scenes/Example.owl");
@@ -65,7 +65,7 @@ namespace Owl
     		m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
     		m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
     		m_EditorCamera.SetViewportSize(m_ViewportSize.x, m_ViewportSize.y);
-    		m_ActiveScene->SetViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+    		m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
     	}
 
     	// Update
@@ -200,7 +200,7 @@ namespace Owl
 		const std::string name = m_HoveredEntity ?  m_HoveredEntity.GetComponent<TagComponent>().Tag : "None";
     	ImGui::Text("Hovered Entity: %s", name.c_str());
     	
-    	m_HierarchyPanel.OnImGuiRender();
+    	m_SceneHierarchyPanel.OnImGuiRender();
     	m_ContentBrowserPanel.OnImGuiRender();
 
 		auto stats = Renderer2D::GetStats();
@@ -242,7 +242,7 @@ namespace Owl
 		}
     	
 		// Gizmos
-		if (Entity selectedEntity = m_HierarchyPanel.GetSelectedEntity(); selectedEntity && m_GizmoType != -1)
+		if (Entity selectedEntity = m_SceneHierarchyPanel.GetSelectedEntity(); selectedEntity && m_GizmoType != -1)
     	{
     		ImGuizmo::SetOrthographic(false);
 			ImGuizmo::SetDrawlist();
@@ -357,7 +357,7 @@ namespace Owl
     {
     	if (pEvent.GetMouseButton() == Mouse::ButtonLeft)
     		if (m_ViewportHovered && !ImGuizmo::IsOver() && !Input::IsKeyPressed(Key::LeftAlt))
-    			m_HierarchyPanel.SetSelectedEntity(m_HoveredEntity);
+    			m_SceneHierarchyPanel.SetSelectedEntity(m_HoveredEntity);
 
     	return false;
     }
@@ -365,8 +365,8 @@ namespace Owl
     void EditorLayer::NewScene()
     {
     	m_ActiveScene = CreateRef<Scene>();
-    	m_ActiveScene->SetViewportResize(static_cast<uint32_t>(m_ViewportSize.x), static_cast<uint32_t>(m_ViewportSize.y));
-    	m_HierarchyPanel.SetContext(m_ActiveScene);
+    	m_ActiveScene->OnViewportResize(static_cast<uint32_t>(m_ViewportSize.x), static_cast<uint32_t>(m_ViewportSize.y));
+    	m_SceneHierarchyPanel.SetContext(m_ActiveScene);
     }
 
     void EditorLayer::OpenScene()
@@ -377,14 +377,20 @@ namespace Owl
 
     void EditorLayer::OpenScene(const std::filesystem::path& pPath)
     {
-    	m_ActiveScene = CreateRef<Scene>();
-    	m_ActiveScene->SetViewportResize(static_cast<uint32_t>(m_ViewportSize.x), static_cast<uint32_t>(m_ViewportSize.y));
-    	m_HierarchyPanel.SetContext(m_ActiveScene);
-    	
-    	SceneSerializer sceneSerializer(m_ActiveScene);
-    	sceneSerializer.Deserialize(pPath.string());
-    	
-    	m_ActiveScenePath = pPath.string();
+    	if (pPath.extension().string() != ".owl")
+    	{
+    		OWL_WARN("Could not load {0} - not a scene file", pPath.filename().string());
+    		return;
+    	}
+		
+    	Ref<Scene> newScene = CreateRef<Scene>();
+    	SceneSerializer serializer(newScene);
+    	if (serializer.Deserialize(pPath.string()))
+    	{
+    		m_ActiveScene = newScene;
+    		m_ActiveScene->OnViewportResize(static_cast<uint32_t>(m_ViewportSize.x), static_cast<uint32_t>(m_ViewportSize.y));
+    		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+    	}
     }
 
     void EditorLayer::SaveScene()

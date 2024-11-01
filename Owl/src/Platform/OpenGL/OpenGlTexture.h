@@ -20,6 +20,8 @@ namespace Owl
 		void SetData(void* pData, uint32_t pSize) override;
 
 		void Bind(uint32_t pSlot = 0) const override;
+
+		bool IsLoaded() const override { return m_IsLoaded; }
 		
 		bool operator==(const Texture& other) const override
 		{
@@ -28,6 +30,7 @@ namespace Owl
 
 	private:
 		std::string m_Path;
+		bool m_IsLoaded = false;
 		uint32_t m_Width, m_Height;
 		uint32_t m_RendererId;
 		GLenum m_InternalFormat, m_DataFormat;

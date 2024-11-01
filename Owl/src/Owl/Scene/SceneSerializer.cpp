@@ -209,7 +209,16 @@ namespace Owl
 
     bool SceneSerializer::Deserialize(const std::filesystem::path& pFilepath)
     {
-		YAML::Node data = YAML::LoadFile(pFilepath.string());
+		YAML::Node data;
+		try
+		{
+			data = YAML::LoadFile(pFilepath.string());
+		}
+		catch (YAML::ParserException e)
+		{
+			return false;
+		}
+		
 		if (!data["Scene"])
 			return false;
 

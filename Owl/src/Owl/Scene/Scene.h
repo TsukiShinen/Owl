@@ -23,7 +23,7 @@ namespace Owl
 
         void OnUpdateRuntime(DeltaTime pDeltaTime);
         void OnUpdateEditor(DeltaTime pDeltaTime, const EditorCamera& pCamera);
-        void SetViewportResize(uint32_t pWidth, uint32_t pHeight);
+        void OnViewportResize(uint32_t pWidth, uint32_t pHeight);
 
         [[nodiscard]] Entity GetPrimaryCameraEntity();
     private:

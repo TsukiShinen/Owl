@@ -310,7 +310,11 @@ namespace Owl
                 {
                     const auto path = static_cast<const wchar_t*>(payload->Data);
                     const auto texturePath = std::filesystem::path(g_AssetPath / path);
-                    pComponent.Texture = Texture2D::Create(texturePath.string());
+                    Ref<Texture2D> texture = Texture2D::Create(texturePath.string());
+                    if (texture->IsLoaded())
+                        pComponent.Texture = texture;
+                    else
+                        OWL_WARN("Could not load texture {0}", texturePath.filename().string());
                 }
                 ImGui::EndDragDropTarget();
             }

@@ -18,6 +18,8 @@ namespace Owl
 
 		virtual void Bind(uint32_t pSlot = 0) const = 0;
 
+		virtual bool IsLoaded() const = 0;
+
 		virtual bool operator==(const Texture&) const = 0;
 	};
 
