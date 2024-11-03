@@ -16,3 +16,6 @@
 [submodule "Owl/vendor/ImGuizmo"]
 	path = Owl/vendor/ImGuizmo
 	url = https://github.com/CedricGuillemet/ImGuizmo.git
+[submodule "Owl/vendor/Box2D"]
+	path = Owl/vendor/Box2D
+	url = https://github.com/thecherno/box2d

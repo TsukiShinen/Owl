@@ -5,14 +5,27 @@
 #include "Entity.h"
 #include "Owl/Renderer/Renderer2D.h"
 
+#include "box2d/box2d.h"
+
 namespace Owl
 {
-    Scene::Scene()
+    static b2BodyType Rigidbody2DTypeToBox2DBody(const Rigidbody2DComponent::BodyType pBodyType)
     {
-    }
+        switch (pBodyType)
+        {
+            case Rigidbody2DComponent::BodyType::Static: return b2_staticBody;
+            case Rigidbody2DComponent::BodyType::Dynamic: return b2_dynamicBody;
+            case Rigidbody2DComponent::BodyType::Kinematic: return b2_kinematicBody;
+        }
 
+        OWL_CORE_ASSERT(false, "Unknown body type")
+        return b2_staticBody;
+    }
+    
     Scene::~Scene()
     {
+        delete m_PhysicsWorld;
+        m_PhysicsWorld = nullptr;
     }
 
     Entity Scene::CreateEntity(const std::string& pName)
@@ -30,6 +43,50 @@ namespace Owl
         m_Registry.destroy(pEntity);
     }
 
+    void Scene::OnRuntimeStart()
+    {
+        m_PhysicsWorld = new b2World({ 0.0f, -9.8f });
+        const auto view = m_Registry.view<Rigidbody2DComponent>();
+        for (const auto e : view)
+        {
+            Entity entity = { e, this };
+            const auto& transform = entity.GetComponent<TransformComponent>();
+            auto& rigidbody2d = entity.GetComponent<Rigidbody2DComponent>();
+
+            // Rigidbody
+            b2BodyDef bodyDef;
+            bodyDef.type = Rigidbody2DTypeToBox2DBody(rigidbody2d.Type);
+            bodyDef.position.Set(transform.Translation.x, transform.Translation.y);
+            bodyDef.angle = transform.Rotation.z;
+			
+            b2Body* body = m_PhysicsWorld->CreateBody(&bodyDef);
+            body->SetFixedRotation(rigidbody2d.FixedRotation);
+            rigidbody2d.RuntimeBody = body;
+
+            // Box Collider
+            if (entity.HasComponent<BoxCollider2DComponent>())
+            {
+                const auto& boxCollider2D = entity.GetComponent<BoxCollider2DComponent>();
+                
+                b2PolygonShape boxShape;
+                boxShape.SetAsBox(boxCollider2D.Size.x * transform.Scale.x, boxCollider2D.Size.y * transform.Scale.y);
+                
+                b2FixtureDef fixtureDef;
+                fixtureDef.shape = &boxShape;
+                fixtureDef.density = boxCollider2D.Density;
+                fixtureDef.friction = boxCollider2D.Friction;
+                fixtureDef.restitution = boxCollider2D.Restitution;
+                fixtureDef.restitutionThreshold = boxCollider2D.RestitutionThreshold;
+                
+                body->CreateFixture(&fixtureDef);
+            }
+        }
+    }
+
+    void Scene::OnRuntimeStop()
+    {
+    }
+
     void Scene::OnUpdateRuntime(DeltaTime pDeltaTime)
     {
         // Update scripts
@@ -45,8 +102,30 @@ namespace Owl
                 pNsc.Instance->OnUpdate(pDeltaTime);
             });
         }
+
+        // Physics
+        {
+            constexpr int32_t velocityIterations = 6;
+            constexpr int32_t positionIterations = 2;
+            m_PhysicsWorld->Step(pDeltaTime, velocityIterations, positionIterations);
+            
+            // Retrieve transform from Box2D
+            const auto view = m_Registry.view<Rigidbody2DComponent>();
+            for (const auto e : view)
+            {
+                Entity entity = { e, this };
+                auto& transform = entity.GetComponent<TransformComponent>();
+                const auto& rb2d = entity.GetComponent<Rigidbody2DComponent>();
+                
+                const auto body = static_cast<b2Body*>(rb2d.RuntimeBody);
+                const auto& position = body->GetPosition();
+                transform.Translation.x = position.x;
+                transform.Translation.y = position.y;
+                transform.Rotation.z = body->GetAngle();
+            }
+        }
         
-        // Render sprites
+        // Render 2D
         Camera* mainCamera = nullptr;
         glm::mat4 cameraTransform;
         auto view = m_Registry.view<TransformComponent, CameraComponent>();
@@ -148,6 +227,16 @@ namespace Owl
     
     template <>
     void Scene::OnComponentAdded<NativeScriptComponent>(Entity pEntity, NativeScriptComponent& pComponent)
+    {
+    }
+    
+    template <>
+    void Scene::OnComponentAdded<Rigidbody2DComponent>(Entity pEntity, Rigidbody2DComponent& pComponent)
+    {
+    }
+    
+    template <>
+    void Scene::OnComponentAdded<BoxCollider2DComponent>(Entity pEntity, BoxCollider2DComponent& pComponent)
     {
     }
 }

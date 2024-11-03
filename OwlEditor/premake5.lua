@@ -18,6 +18,7 @@ project "OwlEditor"
 		"%{wks.location}/Owl/vendor/spdlog/include",
 		"%{wks.location}/Owl/src",
 		"%{wks.location}/Owl/vendor",
+		"%{IncludeDir.Box2D}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.entt}"
 	}

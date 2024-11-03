@@ -208,22 +208,40 @@ namespace Owl
 
         if (ImGui::BeginPopup("AddComponent"))
         {
-            if (ImGui::MenuItem("Camera"))
+            if (!m_SelectionContext.HasComponent<CameraComponent>())
             {
-                if (!m_SelectionContext.HasComponent<CameraComponent>())
+                if (ImGui::MenuItem("Camera"))
+                {
                     m_SelectionContext.AddComponent<CameraComponent>();
-                else
-                    OWL_CORE_WARN("This entity already has the Camera Component!");
-                ImGui::CloseCurrentPopup();
+                    ImGui::CloseCurrentPopup();
+                }
             }
-                
-            if (ImGui::MenuItem("Sprite Renderer"))
+
+            if (!m_SelectionContext.HasComponent<SpriteRendererComponent>())
             {
-                if (!m_SelectionContext.HasComponent<SpriteRendererComponent>())
+                if (ImGui::MenuItem("Sprite Renderer"))
+                {
                     m_SelectionContext.AddComponent<SpriteRendererComponent>();
-                else
-                    OWL_CORE_WARN("This entity already has the Sprite Rendere rComponent!");
-                ImGui::CloseCurrentPopup();
+                    ImGui::CloseCurrentPopup();
+                }
+            }
+
+            if (!m_SelectionContext.HasComponent<Rigidbody2DComponent>())
+            {
+                if (ImGui::MenuItem("Rigidbody 2D"))
+                {
+                    m_SelectionContext.AddComponent<Rigidbody2DComponent>();
+                    ImGui::CloseCurrentPopup();
+                }
+            }
+
+            if (!m_SelectionContext.HasComponent<BoxCollider2DComponent>())
+            {
+                if (ImGui::MenuItem("Box Collider 2D"))
+                {
+                    m_SelectionContext.AddComponent<BoxCollider2DComponent>();
+                    ImGui::CloseCurrentPopup();
+                }
             }
                 
             ImGui::EndPopup();
@@ -320,6 +338,41 @@ namespace Owl
             }
             
             ImGui::DragFloat("TilingFactor", &pComponent.TilingFactor, 0.1f, 0.0f, 100.0f);
+        });
+        
+        DrawComponent<Rigidbody2DComponent>("Rigidbody 2D", pEntity, [](auto& pComponent)
+        {
+            const char* bodyTypeStrings[] = { "Static", "Dynamic", "Kinematic" };
+            const char* currentBodyTypeString = bodyTypeStrings[static_cast<int>(pComponent.Type)];
+            if (ImGui::BeginCombo("Body Type", currentBodyTypeString))
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    const bool isSelected = currentBodyTypeString == bodyTypeStrings[i];
+                    if (ImGui::Selectable(bodyTypeStrings[i], isSelected))
+                    {
+                        currentBodyTypeString = bodyTypeStrings[i];
+                        pComponent.Type = static_cast<Rigidbody2DComponent::BodyType>(i);
+                    }
+                    
+                    if (isSelected)
+                        ImGui::SetItemDefaultFocus();
+                }
+
+                ImGui::EndCombo();
+            }
+
+            ImGui::Checkbox("Fixed Rotation", &pComponent.FixedRotation);
+        });
+        
+        DrawComponent<BoxCollider2DComponent>("Box Collider 2D", pEntity, [](auto& pComponent)
+        {
+            ImGui::DragFloat2("Offset", glm::value_ptr(pComponent.Offset));
+            ImGui::DragFloat2("Size", glm::value_ptr(pComponent.Size));
+            ImGui::DragFloat("Density", &pComponent.Density);
+            ImGui::DragFloat("Friction", &pComponent.Friction, 0.01f, 0.0f, 1.0f);
+            ImGui::DragFloat("Restitution", &pComponent.Restitution, 0.01f, 0.0f, 1.0f);
+            ImGui::DragFloat("Restitution Threshold", &pComponent.RestitutionThreshold);
         });
     }
 }

@@ -21,6 +21,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 group "Dependencies"
 	include "vendor/premake"
+	include "Owl/vendor/Box2D"
 	include "Owl/vendor/GLFW"
 	include "Owl/vendor/Glad"
 	include "Owl/vendor/ImGui"
