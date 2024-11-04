@@ -20,21 +20,21 @@ namespace Owl
 	WindowsWindow::WindowsWindow(const WindowProps& pProps)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		Init(pProps);
 	}
 
 	WindowsWindow::~WindowsWindow()
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		Shutdown();
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		glfwPollEvents();
 		m_Context->SwapBuffer();
 	}
@@ -42,7 +42,7 @@ namespace Owl
 	void WindowsWindow::SetVSync(const bool pEnabled)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		if (pEnabled)
 			glfwSwapInterval(1);
 		else
@@ -59,7 +59,7 @@ namespace Owl
 	void WindowsWindow::Init(const WindowProps& pProps)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		m_Data.Title = pProps.Title;
 		m_Data.Width = pProps.Width;
 		m_Data.Height = pProps.Height;
@@ -69,23 +69,23 @@ namespace Owl
 		if (s_GlfwWindowCount == 0)
 		{
 			OWL_PROFILE_SCOPE("glfwInit");
-			
+
 			OWL_CORE_INFO("Initializing GLFW");
 			const int success = glfwInit();
 			OWL_CORE_ASSERT(success, "Could not initialize GLFW!")
 			glfwSetErrorCallback(GLFWErrorCallback);
 		}
-#if defined(OWL_DEBUG)
+		#if defined(OWL_DEBUG)
 		if (Renderer::GetApi() == RendererApi::Api::OpenGl)
 			glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
-#endif
+		#endif
 
 		m_Window = glfwCreateWindow(static_cast<int>(m_Data.Width), static_cast<int>(m_Data.Height),
 		                            m_Data.Title.c_str(), nullptr, nullptr);
 		++s_GlfwWindowCount;
 		{
 			OWL_PROFILE_SCOPE("glfwCreateWindow");
-			
+
 			m_Context = CreateScope<OpenGLContext>(m_Window);
 			m_Context->Init();
 		}
@@ -117,25 +117,25 @@ namespace Owl
 
 			switch (pAction)
 			{
-			case GLFW_PRESS:
-				{
-					KeyPressedEvent event(pKey, 0);
-					data.EventCallback(event);
-					break;
-				}
-			case GLFW_RELEASE:
-				{
-					KeyReleasedEvent event(pKey);
-					data.EventCallback(event);
-					break;
-				}
-			case GLFW_REPEAT:
-				{
-					KeyPressedEvent event(pKey, 1);
-					data.EventCallback(event);
-					break;
-				}
-			default: ;
+				case GLFW_PRESS:
+					{
+						KeyPressedEvent event(pKey, 0);
+						data.EventCallback(event);
+						break;
+					}
+				case GLFW_RELEASE:
+					{
+						KeyReleasedEvent event(pKey);
+						data.EventCallback(event);
+						break;
+					}
+				case GLFW_REPEAT:
+					{
+						KeyPressedEvent event(pKey, 1);
+						data.EventCallback(event);
+						break;
+					}
+				default: ;
 			}
 		});
 
@@ -145,19 +145,19 @@ namespace Owl
 
 			switch (pAction)
 			{
-			case GLFW_PRESS:
-				{
-					MouseButtonPressedEvent event(pButton);
-					data.EventCallback(event);
-					break;
-				}
-			case GLFW_RELEASE:
-				{
-					MouseButtonReleasedEvent event(pButton);
-					data.EventCallback(event);
-					break;
-				}
-			default: ;
+				case GLFW_PRESS:
+					{
+						MouseButtonPressedEvent event(pButton);
+						data.EventCallback(event);
+						break;
+					}
+				case GLFW_RELEASE:
+					{
+						MouseButtonReleasedEvent event(pButton);
+						data.EventCallback(event);
+						break;
+					}
+				default: ;
 			}
 		});
 
@@ -181,7 +181,7 @@ namespace Owl
 	void WindowsWindow::Shutdown()
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		glfwDestroyWindow(m_Window);
 
 		if (--s_GlfwWindowCount == 0)

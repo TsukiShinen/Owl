@@ -10,11 +10,11 @@ namespace Owl
 	{
 		switch (Renderer::GetApi())
 		{
-		case RendererApi::Api::None:
-			OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported!")
-			return nullptr;
-		case RendererApi::Api::OpenGl:
-			return CreateRef<OpenGlVertexBuffer>(pSize);
+			case RendererApi::Api::None:
+				OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported!")
+				return nullptr;
+			case RendererApi::Api::OpenGl:
+				return CreateRef<OpenGlVertexBuffer>(pSize);
 		}
 
 		OWL_CORE_ASSERT(false, "Unknow RendererApi!")
@@ -25,11 +25,11 @@ namespace Owl
 	{
 		switch (Renderer::GetApi())
 		{
-		case RendererApi::Api::None:
-			OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported!")
-			return nullptr;
-		case RendererApi::Api::OpenGl:
-			return CreateRef<OpenGlVertexBuffer>(pVertices, pSize);
+			case RendererApi::Api::None:
+				OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported!")
+				return nullptr;
+			case RendererApi::Api::OpenGl:
+				return CreateRef<OpenGlVertexBuffer>(pVertices, pSize);
 		}
 
 		OWL_CORE_ASSERT(false, "Unknow RendererApi!")
@@ -40,11 +40,11 @@ namespace Owl
 	{
 		switch (Renderer::GetApi())
 		{
-		case RendererApi::Api::None:
-			OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported !")
-			return nullptr;
-		case RendererApi::Api::OpenGl:
-			return CreateRef<OpenGlIndexBuffer>(pIndices, pCount);
+			case RendererApi::Api::None:
+				OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported !")
+				return nullptr;
+			case RendererApi::Api::OpenGl:
+				return CreateRef<OpenGlIndexBuffer>(pIndices, pCount);
 		}
 
 		OWL_CORE_ASSERT(false, "Unknow RendererApi!")

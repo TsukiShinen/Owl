@@ -13,7 +13,7 @@ namespace Owl
 
 		void OnUpdate(DeltaTime pDeltaTime);
 		void OnEvent(Event& pEvent);
-		
+
 		void OnResize(float pWidth, float pHeight);
 
 		OrthographicCamera& GetCamera() { return m_Camera; }

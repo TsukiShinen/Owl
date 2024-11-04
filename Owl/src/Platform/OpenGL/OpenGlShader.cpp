@@ -23,59 +23,59 @@ namespace Owl
 			OWL_CORE_ASSERT(false, "Unknown shader type!")
 			return 0;
 		}
-		
+
 		static shaderc_shader_kind GLShaderStageToShaderC(const GLenum pStage)
 		{
 			switch (pStage)
 			{
-			case GL_VERTEX_SHADER:   return shaderc_glsl_vertex_shader;
-			case GL_FRAGMENT_SHADER: return shaderc_glsl_fragment_shader;
+				case GL_VERTEX_SHADER: return shaderc_glsl_vertex_shader;
+				case GL_FRAGMENT_SHADER: return shaderc_glsl_fragment_shader;
 			}
 			OWL_CORE_ASSERT(false)
 			return static_cast<shaderc_shader_kind>(0);
 		}
-		
+
 		static const char* GLShaderStageToString(const GLenum pStage)
 		{
 			switch (pStage)
 			{
-			case GL_VERTEX_SHADER:   return "GL_VERTEX_SHADER";
-			case GL_FRAGMENT_SHADER: return "GL_FRAGMENT_SHADER";
+				case GL_VERTEX_SHADER: return "GL_VERTEX_SHADER";
+				case GL_FRAGMENT_SHADER: return "GL_FRAGMENT_SHADER";
 			}
 			OWL_CORE_ASSERT(false)
 			return nullptr;
 		}
-		
+
 		static const char* GetCacheDirectory()
 		{
 			// TODO: make sure the assets directory is valid
 			return "assets/cache/shader/opengl";
 		}
-		
+
 		static void CreateCacheDirectoryIfNeeded()
 		{
 			std::string cacheDirectory = GetCacheDirectory();
 			if (!std::filesystem::exists(cacheDirectory))
 				std::filesystem::create_directories(cacheDirectory);
 		}
-		
+
 		static const char* GLShaderStageCachedOpenGLFileExtension(const uint32_t pStage)
 		{
 			switch (pStage)
 			{
-			case GL_VERTEX_SHADER:    return ".cached_opengl.vert";
-			case GL_FRAGMENT_SHADER:  return ".cached_opengl.frag";
+				case GL_VERTEX_SHADER: return ".cached_opengl.vert";
+				case GL_FRAGMENT_SHADER: return ".cached_opengl.frag";
 			}
 			OWL_CORE_ASSERT(false);
 			return "";
 		}
-		
+
 		static const char* GLShaderStageCachedVulkanFileExtension(const uint32_t pStage)
 		{
 			switch (pStage)
 			{
-			case GL_VERTEX_SHADER:    return ".cached_vulkan.vert";
-			case GL_FRAGMENT_SHADER:  return ".cached_vulkan.frag";
+				case GL_VERTEX_SHADER: return ".cached_vulkan.vert";
+				case GL_FRAGMENT_SHADER: return ".cached_vulkan.frag";
 			}
 			OWL_CORE_ASSERT(false)
 			return "";
@@ -86,9 +86,9 @@ namespace Owl
 		: m_FilePath(pFilePath)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		Utils::CreateCacheDirectoryIfNeeded();
-		
+
 		const std::string source = ReadFile(pFilePath);
 		const auto shaderSources = PreProcess(source);
 		{
@@ -116,7 +116,7 @@ namespace Owl
 		std::unordered_map<GLenum, std::string> sources;
 		sources[GL_VERTEX_SHADER] = pVertexSource;
 		sources[GL_FRAGMENT_SHADER] = pFragmentSource;
-		
+
 		CompileOrGetVulkanBinaries(sources);
 		CompileOrGetOpenGlBinaries();
 		CreateProgram();
@@ -125,49 +125,49 @@ namespace Owl
 	OpenGlShader::~OpenGlShader()
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		glDeleteProgram(m_RendererId);
 	}
 
 	void OpenGlShader::Bind() const
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		glUseProgram(m_RendererId);
 	}
 
 	void OpenGlShader::UnBind() const
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		glUseProgram(0);
 	}
 
 	void OpenGlShader::SetMat4(const std::string& pName, const glm::mat4& pValue)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		UploadUniformMat4(pName, pValue);
 	}
 
 	void OpenGlShader::SetFloat4(const std::string& pName, const glm::vec4& pValue)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		UploadUniformFloat4(pName, pValue);
 	}
 
 	void OpenGlShader::SetFloat3(const std::string& pName, const glm::vec3& pValue)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		UploadUniformFloat3(pName, pValue);
 	}
 
 	void OpenGlShader::SetInt(const std::string& pName, const int pValue)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		UploadUniformInt(pName, pValue);
 	}
 
@@ -181,14 +181,14 @@ namespace Owl
 	void OpenGlShader::SetFloat(const std::string& pName, float pValue)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		UploadUniformFloat(pName, pValue);
 	}
 
 	void OpenGlShader::SetFloat2(const std::string& pName, const glm::vec2& pValue)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		UploadUniformFloat2(pName, pValue);
 	}
 
@@ -243,7 +243,7 @@ namespace Owl
 	std::string OpenGlShader::ReadFile(const std::string& pFilePath)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		std::string result;
 		std::ifstream in(pFilePath, std::ios::in | std::ios::binary);
 		if (in)
@@ -258,9 +258,7 @@ namespace Owl
 				in.close();
 			}
 			else
-			{
 				OWL_CORE_ERROR("Could not read from file '{0}'", pFilePath);
-			}
 		}
 		else
 			OWL_CORE_ERROR("Could not open file '{0}'", pFilePath);
@@ -271,7 +269,7 @@ namespace Owl
 	std::unordered_map<GLenum, std::string> OpenGlShader::PreProcess(const std::string& pSource)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		std::unordered_map<GLenum, std::string> shaderSources;
 
 		const auto typeToken = "#type";
@@ -290,8 +288,8 @@ namespace Owl
 			pos = pSource.find(typeToken, nextLinePos);
 
 			shaderSources[Utils::ShaderTypeFromString(type)] = pos == std::string::npos
-				                                            ? pSource.substr(nextLinePos)
-				                                            : pSource.substr(nextLinePos, pos - nextLinePos);
+				                                                   ? pSource.substr(nextLinePos)
+				                                                   : pSource.substr(nextLinePos, pos - nextLinePos);
 		}
 
 		return shaderSources;
@@ -303,7 +301,7 @@ namespace Owl
 
 		shaderc::CompileOptions options;
 		options.SetTargetEnvironment(shaderc_target_env_vulkan, shaderc_env_version_vulkan_1_2);
-		if (constexpr bool optimize = true)
+		if (constexpr auto optimize = true)
 			options.SetOptimizationLevel(shaderc_optimization_level_performance);
 
 		std::filesystem::path cacheDirectory = Utils::GetCacheDirectory();
@@ -313,7 +311,9 @@ namespace Owl
 		for (auto&& [stage, source] : pShaderSources)
 		{
 			std::filesystem::path shaderFilePath = m_FilePath;
-			std::filesystem::path cachedPath = cacheDirectory / (shaderFilePath.filename().string() + Utils::GLShaderStageCachedVulkanFileExtension(stage));
+			std::filesystem::path cachedPath =
+				cacheDirectory / (shaderFilePath.filename().string() +
+				                  Utils::GLShaderStageCachedVulkanFileExtension(stage));
 
 			std::ifstream in(cachedPath, std::ios::in | std::ios::binary);
 			if (in.is_open())
@@ -329,7 +329,8 @@ namespace Owl
 			else
 			{
 				shaderc::Compiler compiler;
-				shaderc::SpvCompilationResult module = compiler.CompileGlslToSpv(source, Utils::GLShaderStageToShaderC(stage), m_FilePath.c_str(), options);
+				shaderc::SpvCompilationResult module = compiler.CompileGlslToSpv(
+					source, Utils::GLShaderStageToShaderC(stage), m_FilePath.c_str(), options);
 				if (module.GetCompilationStatus() != shaderc_compilation_status_success)
 				{
 					OWL_CORE_ERROR(module.GetErrorMessage());
@@ -348,7 +349,7 @@ namespace Owl
 			}
 		}
 
-		for (auto&& [stage, data]: shaderData)
+		for (auto&& [stage, data] : shaderData)
 			Reflect(stage, data);
 	}
 
@@ -358,7 +359,7 @@ namespace Owl
 
 		shaderc::CompileOptions options;
 		options.SetTargetEnvironment(shaderc_target_env_opengl, shaderc_env_version_opengl_4_5);
-		if (constexpr bool optimize = false)
+		if (constexpr auto optimize = false)
 			options.SetOptimizationLevel(shaderc_optimization_level_performance);
 
 		std::filesystem::path cacheDirectory = Utils::GetCacheDirectory();
@@ -368,7 +369,9 @@ namespace Owl
 		for (auto&& [stage, spirv] : m_VulkanSpirv)
 		{
 			std::filesystem::path shaderFilePath = m_FilePath;
-			std::filesystem::path cachedPath = cacheDirectory / (shaderFilePath.filename().string() + Utils::GLShaderStageCachedOpenGLFileExtension(stage));
+			std::filesystem::path cachedPath =
+				cacheDirectory / (shaderFilePath.filename().string() +
+				                  Utils::GLShaderStageCachedOpenGLFileExtension(stage));
 
 			std::ifstream in(cachedPath, std::ios::in | std::ios::binary);
 			if (in.is_open())
@@ -388,7 +391,8 @@ namespace Owl
 				m_OpenGLSourceCode[stage] = glslCompiler.compile();
 				auto& source = m_OpenGLSourceCode[stage];
 
-				shaderc::SpvCompilationResult module = compiler.CompileGlslToSpv(source, Utils::GLShaderStageToShaderC(stage), m_FilePath.c_str());
+				shaderc::SpvCompilationResult module = compiler.CompileGlslToSpv(
+					source, Utils::GLShaderStageToShaderC(stage), m_FilePath.c_str());
 				if (module.GetCompilationStatus() != shaderc_compilation_status_success)
 				{
 					OWL_CORE_ERROR(module.GetErrorMessage());

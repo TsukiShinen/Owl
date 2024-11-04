@@ -3,25 +3,33 @@
 
 namespace Owl
 {
-    class ScriptableEntity
-    {
-    public:
-        virtual ~ScriptableEntity() = default;
-        
-        template<typename T>
-        T& GetComponent()
-        {
-            return m_Entity.GetComponent<T>();
-        }
+	class ScriptableEntity
+	{
+	public:
+		virtual ~ScriptableEntity() = default;
 
-    protected:
-        virtual void OnCreate() {}
-        virtual void OnDestroy() {}
-        virtual void OnUpdate(DeltaTime pDeltaTime) {}
-        
-    private:
-        Entity m_Entity;
-        
-        friend class Scene;
-    };
+		template <typename T>
+		T& GetComponent()
+		{
+			return m_Entity.GetComponent<T>();
+		}
+
+	protected:
+		virtual void OnCreate()
+		{
+		}
+
+		virtual void OnDestroy()
+		{
+		}
+
+		virtual void OnUpdate(DeltaTime pDeltaTime)
+		{
+		}
+
+	private:
+		Entity m_Entity;
+
+		friend class Scene;
+	};
 }

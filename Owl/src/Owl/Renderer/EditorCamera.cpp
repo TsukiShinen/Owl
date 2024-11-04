@@ -10,10 +10,11 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/quaternion.hpp>
 
-namespace Owl {
-
+namespace Owl
+{
 	EditorCamera::EditorCamera(float pFov, float pAspectRatio, float pNearClip, float pFarClip)
-		: m_FOV(pFov), m_AspectRatio(pAspectRatio), m_NearClip(pNearClip), m_FarClip(pFarClip), Camera(glm::perspective(glm::radians(pFov), pAspectRatio, pNearClip, pFarClip))
+		: Camera(glm::perspective(glm::radians(pFov), pAspectRatio, pNearClip, pFarClip)), m_FOV(pFov),
+		  m_AspectRatio(pAspectRatio), m_NearClip(pNearClip), m_FarClip(pFarClip)
 	{
 		UpdateView();
 	}
@@ -30,8 +31,8 @@ namespace Owl {
 		m_Position = CalculatePosition();
 
 		glm::quat orientation = GetOrientation();
-		m_ViewMatrix = glm::translate(glm::mat4(1.0f), m_Position) * glm::toMat4(orientation);
-		m_ViewMatrix = glm::inverse(m_ViewMatrix);
+		m_ViewMatrix = translate(glm::mat4(1.0f), m_Position) * toMat4(orientation);
+		m_ViewMatrix = inverse(m_ViewMatrix);
 	}
 
 	std::pair<float, float> EditorCamera::PanSpeed() const
@@ -42,7 +43,7 @@ namespace Owl {
 		float y = std::min(m_ViewportHeight / 1000.0f, 2.4f); // max = 2.4f
 		float yFactor = 0.0366f * (y * y) - 0.1778f * y + 0.3021f;
 
-		return { xFactor, yFactor };
+		return {xFactor, yFactor};
 	}
 
 	float EditorCamera::RotationSpeed() const
@@ -63,7 +64,7 @@ namespace Owl {
 	{
 		if (Input::IsKeyPressed(Key::LeftAlt))
 		{
-			const glm::vec2& mouse{ Input::GetMouseX(), Input::GetMouseY() };
+			const glm::vec2& mouse{Input::GetMouseX(), Input::GetMouseY()};
 			glm::vec2 delta = (mouse - m_InitialMousePosition) * 0.003f;
 			m_InitialMousePosition = mouse;
 
@@ -118,17 +119,17 @@ namespace Owl {
 
 	glm::vec3 EditorCamera::GetUpDirection() const
 	{
-		return glm::rotate(GetOrientation(), glm::vec3(0.0f, 1.0f, 0.0f));
+		return rotate(GetOrientation(), glm::vec3(0.0f, 1.0f, 0.0f));
 	}
 
 	glm::vec3 EditorCamera::GetRightDirection() const
 	{
-		return glm::rotate(GetOrientation(), glm::vec3(1.0f, 0.0f, 0.0f));
+		return rotate(GetOrientation(), glm::vec3(1.0f, 0.0f, 0.0f));
 	}
 
 	glm::vec3 EditorCamera::GetForwardDirection() const
 	{
-		return glm::rotate(GetOrientation(), glm::vec3(0.0f, 0.0f, -1.0f));
+		return rotate(GetOrientation(), glm::vec3(0.0f, 0.0f, -1.0f));
 	}
 
 	glm::vec3 EditorCamera::CalculatePosition() const
@@ -140,5 +141,4 @@ namespace Owl {
 	{
 		return glm::quat(glm::vec3(-m_Pitch, -m_Yaw, 0.0f));
 	}
-
 }

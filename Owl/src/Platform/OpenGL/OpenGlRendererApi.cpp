@@ -6,38 +6,42 @@
 namespace Owl
 {
 	void OpenGlMessageCallback(
-			unsigned pSource,
-			unsigned pType,
-			unsigned pId,
-			unsigned pSeverity,
-			int pLength,
-			const char* pMessage,
-			const void* pUserParam)
+		unsigned pSource,
+		unsigned pType,
+		unsigned pId,
+		unsigned pSeverity,
+		int pLength,
+		const char* pMessage,
+		const void* pUserParam)
 	{
 		switch (pSeverity)
 		{
-		case GL_DEBUG_SEVERITY_HIGH:         OWL_CORE_CRITICAL(pMessage); return;
-		case GL_DEBUG_SEVERITY_MEDIUM:       OWL_CORE_ERROR(pMessage); return;
-		case GL_DEBUG_SEVERITY_LOW:          OWL_CORE_WARN(pMessage); return;
-		case GL_DEBUG_SEVERITY_NOTIFICATION: OWL_CORE_TRACE(pMessage); return;
-		default: ;
+			case GL_DEBUG_SEVERITY_HIGH: OWL_CORE_CRITICAL(pMessage);
+				return;
+			case GL_DEBUG_SEVERITY_MEDIUM: OWL_CORE_ERROR(pMessage);
+				return;
+			case GL_DEBUG_SEVERITY_LOW: OWL_CORE_WARN(pMessage);
+				return;
+			case GL_DEBUG_SEVERITY_NOTIFICATION: OWL_CORE_TRACE(pMessage);
+				return;
+			default: ;
 		}
 
 		OWL_CORE_ASSERT(false, "Unknown severity level!")
 	}
-	
+
 	void OpenGlRendererApi::Init()
 	{
 		OWL_PROFILE_FUNCTION();
-		
-#ifdef OWL_DEBUG
+
+		#ifdef OWL_DEBUG
 		glEnable(GL_DEBUG_OUTPUT);
 		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 		glDebugMessageCallback(OpenGlMessageCallback, nullptr);
 
 		glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, nullptr, GL_FALSE);
-#endif
-		
+		#endif
+
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 

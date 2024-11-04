@@ -5,21 +5,20 @@
 
 namespace Owl
 {
-    class OwlEditor : public Application
-    {
-    public:
-        OwlEditor(ApplicationCommandLineArgs pArgs)
-            : Application("Owl Editor", pArgs)
-        {
-            PushLayer(new EditorLayer());
-        }
+	class OwlEditor : public Application
+	{
+	public:
+		OwlEditor(ApplicationCommandLineArgs pArgs)
+			: Application("Owl Editor", pArgs)
+		{
+			PushLayer(new EditorLayer());
+		}
 
-        ~OwlEditor() override = default;
-    };
-    
+		~OwlEditor() override = default;
+	};
 }
 
 Owl::Application* Owl::CreateApplication(ApplicationCommandLineArgs pArgs)
 {
-    return new OwlEditor(pArgs);
+	return new OwlEditor(pArgs);
 }

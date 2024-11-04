@@ -10,7 +10,7 @@ namespace Owl
 	{
 	public:
 		static bool IsKeyPressed(KeyCode pKeyCode);
-		
+
 		static bool IsMouseButtonPressed(MouseCode pMouseCode);
 		static std::pair<float, float> GetMousePosition();
 		static float GetMouseX();

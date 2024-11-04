@@ -10,11 +10,11 @@ namespace Owl
 	{
 		switch (Renderer::GetApi())
 		{
-		case RendererApi::Api::None:
-			OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported!")
-			return nullptr;
-		case RendererApi::Api::OpenGl:
-			return CreateRef<OpenGlTexture2D>(pWidth, pHeight);
+			case RendererApi::Api::None:
+				OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported!")
+				return nullptr;
+			case RendererApi::Api::OpenGl:
+				return CreateRef<OpenGlTexture2D>(pWidth, pHeight);
 		}
 
 		OWL_CORE_ASSERT(false, "Unknow RendererApi!")
@@ -25,11 +25,11 @@ namespace Owl
 	{
 		switch (Renderer::GetApi())
 		{
-		case RendererApi::Api::None:
-			OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported!")
-			return nullptr;
-		case RendererApi::Api::OpenGl:
-			return CreateRef<OpenGlTexture2D>(pPath);
+			case RendererApi::Api::None:
+				OWL_CORE_ASSERT(false, "RendererApi::None is currently not supported!")
+				return nullptr;
+			case RendererApi::Api::OpenGl:
+				return CreateRef<OpenGlTexture2D>(pPath);
 		}
 
 		OWL_CORE_ASSERT(false, "Unknow RendererApi!")

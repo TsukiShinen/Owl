@@ -13,11 +13,11 @@ inline int main(int pArgc, char** pArgv)
 	OWL_PROFILE_BEGIN_SESSION("Startup", "OwlProfile-Startup.json");
 	const auto app = Owl::CreateApplication({pArgc, pArgv});
 	OWL_PROFILE_END_SESSION();
-	
+
 	OWL_PROFILE_BEGIN_SESSION("Runtime", "OwlProfile-Runtime.json");
 	app->Run();
 	OWL_PROFILE_END_SESSION();
-	
+
 	OWL_PROFILE_BEGIN_SESSION("Shutdown", "OwlProfile-Shutdown.json");
 	delete app;
 	OWL_PROFILE_END_SESSION();

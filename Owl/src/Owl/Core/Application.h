@@ -15,16 +15,18 @@ namespace Owl
 		int Count = 0;
 		char** Args = nullptr;
 
-		const char* operator[](const int pIndex) const {
+		const char* operator[](const int pIndex) const
+		{
 			OWL_CORE_ASSERT(pIndex < Count)
 			return Args[pIndex];
 		}
 	};
-	
+
 	class Application
 	{
 	public:
-		Application(const std::string& pName = "Owl App", ApplicationCommandLineArgs pArgs = ApplicationCommandLineArgs());
+		Application(const std::string& pName = "Owl App",
+		            ApplicationCommandLineArgs pArgs = ApplicationCommandLineArgs());
 		virtual ~Application();
 
 		void OnEvent(Event& pEvent);
@@ -41,13 +43,13 @@ namespace Owl
 		static Application& Get() { return *s_Instance; }
 
 		ApplicationCommandLineArgs GetCommandLineArgs() const { return m_CommandLineArgs; }
+
 	private:
 		void Run();
-		
+
 		bool OnWindowClose(const WindowCloseEvent& pEvent);
 		bool OnWindowResize(const WindowResizeEvent& pEvent);
 
-	private:
 		ApplicationCommandLineArgs m_CommandLineArgs;
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
@@ -56,7 +58,6 @@ namespace Owl
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f;
 
-	private:
 		static Application* s_Instance;
 		friend int ::main(int argc, char** argv);
 	};

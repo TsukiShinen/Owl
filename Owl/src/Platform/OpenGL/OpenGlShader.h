@@ -19,15 +19,15 @@ namespace Owl
 
 		void Bind() const override;
 		void UnBind() const override;
-		
+
 		void SetInt(const std::string& pName, int pValue) override;
 		void SetIntArray(const std::string& pName, std::span<int> pValues) override;
 		void SetFloat(const std::string& pName, float pValue) override;
-		void SetFloat2(const std::string& pName,const glm::vec2& pValue) override;
-		void SetFloat3(const std::string& pName,const glm::vec3& pValue) override;
+		void SetFloat2(const std::string& pName, const glm::vec2& pValue) override;
+		void SetFloat3(const std::string& pName, const glm::vec3& pValue) override;
 		void SetFloat4(const std::string& pName, const glm::vec4& pValue) override;
 		void SetMat4(const std::string& pName, const glm::mat4& pValue) override;
-		
+
 		void UploadUniformInt(const std::string& pName, int pValue) const;
 
 		void UploadUniformFloat(const std::string& pName, float pValue) const;
@@ -48,14 +48,13 @@ namespace Owl
 		void CreateProgram();
 		void Reflect(GLenum pStage, const std::vector<uint32_t>& pShaderData);
 
-	private:
 		uint32_t m_RendererId;
 		std::string m_FilePath;
 		std::string m_Name;
 
 		std::unordered_map<GLenum, std::vector<uint32_t>> m_VulkanSpirv;
 		std::unordered_map<GLenum, std::vector<uint32_t>> m_OpenGlSpirv;
-		
+
 		std::unordered_map<GLenum, std::string> m_OpenGLSourceCode;
 	};
 }

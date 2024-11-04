@@ -10,17 +10,17 @@ namespace Owl
 		: m_Width(pWidth), m_Height(pHeight)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		m_InternalFormat = GL_RGBA8;
 		m_DataFormat = GL_RGBA;
 
 		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererId);
 		glTextureStorage2D(m_RendererId, 1, m_InternalFormat, static_cast<GLsizei>(m_Width),
-						   static_cast<GLsizei>(m_Height));
+		                   static_cast<GLsizei>(m_Height));
 
 		glTextureParameteri(m_RendererId, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTextureParameteri(m_RendererId, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		
+
 		glTextureParameteri(m_RendererId, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTextureParameteri(m_RendererId, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	}
@@ -29,7 +29,7 @@ namespace Owl
 		: m_Path(std::move(pPath))
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		int width, height, channels;
 		stbi_set_flip_vertically_on_load(1);
 		stbi_uc* data = nullptr;
@@ -58,7 +58,7 @@ namespace Owl
 
 			m_InternalFormat = internalFormat;
 			m_DataFormat = dataFormat;
-		
+
 			OWL_CORE_ASSERT(internalFormat & dataFormat, "Format not supported!")
 
 			glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererId);
@@ -67,7 +67,7 @@ namespace Owl
 
 			glTextureParameteri(m_RendererId, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glTextureParameteri(m_RendererId, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-			
+
 			glTextureParameteri(m_RendererId, GL_TEXTURE_WRAP_S, GL_REPEAT);
 			glTextureParameteri(m_RendererId, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
@@ -81,23 +81,23 @@ namespace Owl
 	OpenGlTexture2D::~OpenGlTexture2D()
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		glDeleteTextures(1, &m_RendererId);
 	}
 
 	void OpenGlTexture2D::SetData(void* pData, const uint32_t pSize)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		OWL_CORE_ASSERT(pSize == m_Width * m_Height * (m_DataFormat == GL_RGBA ? 4 : 3), "Data must be entire texture!")
 		glTextureSubImage2D(m_RendererId, 0, 0, 0, static_cast<GLsizei>(m_Width), static_cast<GLsizei>(m_Height),
-							m_DataFormat, GL_UNSIGNED_BYTE, pData);
+		                    m_DataFormat, GL_UNSIGNED_BYTE, pData);
 	}
 
 	void OpenGlTexture2D::Bind(const uint32_t pSlot) const
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		glBindTextureUnit(pSlot, m_RendererId);
 	}
 }

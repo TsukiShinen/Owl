@@ -12,7 +12,7 @@ namespace Owl
 	void Renderer::Init()
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		RenderCommand::Init();
 		Renderer2D::Init();
 	}

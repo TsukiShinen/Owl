@@ -15,7 +15,7 @@ namespace Owl
 	void OrthographicCameraController::OnUpdate(const DeltaTime pDeltaTime)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		if (Input::IsKeyPressed(Key::A))
 		{
 			m_CameraPosition.x -= cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * pDeltaTime;
@@ -57,7 +57,7 @@ namespace Owl
 	void OrthographicCameraController::OnEvent(Event& pEvent)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		EventDispatcher dispatcher(pEvent);
 		dispatcher.Dispatch<MouseScrolledEvent>(OWL_BIND_EVENT_FN(OnMouseScrolled));
 		dispatcher.Dispatch<WindowResizeEvent>(OWL_BIND_EVENT_FN(OnWindowResized));
@@ -72,7 +72,7 @@ namespace Owl
 	bool OrthographicCameraController::OnMouseScrolled(const MouseScrolledEvent& pEvent)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		m_ZoomLevel -= pEvent.GetYOffset() * 0.25f;
 		m_ZoomLevel = std::max(m_ZoomLevel, 0.25f);
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
@@ -83,7 +83,7 @@ namespace Owl
 	bool OrthographicCameraController::OnWindowResized(const WindowResizeEvent& pEvent)
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		OnResize(static_cast<float>(pEvent.GetWidth()), static_cast<float>(pEvent.GetHeight()));
 		return false;
 	}

@@ -5,17 +5,17 @@
 
 namespace Owl
 {
-    class ContentBrowserPanel
-    {
-    public:
-        ContentBrowserPanel();
+	class ContentBrowserPanel
+	{
+	public:
+		ContentBrowserPanel();
 
-        void OnImGuiRender();
-    private:
-        std::filesystem::path m_CurrentDirectory;
+		void OnImGuiRender();
 
-        Ref<Texture2D> m_DirectoryIcon;
-        Ref<Texture2D> m_FileIcon;
-    };
-    
+	private:
+		std::filesystem::path m_CurrentDirectory;
+
+		Ref<Texture2D> m_DirectoryIcon;
+		Ref<Texture2D> m_FileIcon;
+	};
 }

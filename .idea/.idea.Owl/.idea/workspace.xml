@@ -15,15 +15,76 @@
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Application.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Assert.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Assert.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Base.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Base.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/EntryPoint.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/EntryPoint.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Input.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Input.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/LayerStack.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/LayerStack.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Log.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Log.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/OrthographicCameraController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/OrthographicCameraController.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/OrthographicCameraController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/OrthographicCameraController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Timer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Timer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/UUID.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/UUID.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/UUID.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/UUID.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Window.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Window.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Core/Window.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Core/Window.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Debug/Instrumentor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Debug/Instrumentor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Events/Event.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Events/Event.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/ImGui/ImGuiLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/ImGui/ImGuiLayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/ImGui/ImGuiLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/ImGui/ImGuiLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Math/Math.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Math/Math.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Math/Math.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Math/Math.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Buffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Buffer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Buffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Buffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Camera.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/EditorCamera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/EditorCamera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/EditorCamera.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/EditorCamera.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Framebuffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Framebuffer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Framebuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Framebuffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/OrthographicCamera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/OrthographicCamera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Shader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Shader.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Texture.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Texture.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/UniformBuffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/UniformBuffer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/UniformBuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/UniformBuffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/VertexArray.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/VertexArray.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Components.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Components.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Entity.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Entity.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Entity.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Entity.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneCamera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneCamera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneCamera.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneCamera.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneSerializer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneSerializer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/Assets/Scenes/Example.owl" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/Assets/Scenes/Example.owl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/Assets/Scenes/Physics2D.owl" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/Assets/Scenes/Physics2D.owl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/Assets/Scenes/PinkCube.owl" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/Assets/Scenes/PinkCube.owl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/imgui.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneSerializer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneSerializer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/ScriptableEntity.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/ScriptableEntity.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Utils/PlatformUtils.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Utils/PlatformUtils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGLBuffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGLBuffer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGLContext.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGLContext.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlFramebuffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlFramebuffer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlFramebuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlFramebuffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlShader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlTexture.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlTexture.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlTexture.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlTexture.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlUniformBuffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlUniformBuffer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlUniformBuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlUniformBuffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlVertexArray.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlVertexArray.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsPlatformUtils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsPlatformUtils.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/Windows/WindowsWindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/src/OwlEditorApp.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/OwlEditorApp.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/src/Panels/ContentBrowserPanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/Panels/ContentBrowserPanel.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/src/Panels/ContentBrowserPanel.h" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/Panels/ContentBrowserPanel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/src/Panels/SceneHierarchyPanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/Panels/SceneHierarchyPanel.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/src/Panels/SceneHierarchyPanel.h" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/Panels/SceneHierarchyPanel.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,35 +95,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.38.33130/include/xutility" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Owl/src/Owl/Core/Application.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Owl/src/Owl/Scene/Components.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Owl/src/Owl/Scene/Entity.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Owl/src/Owl/Scene/SceneSerializer.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Owl/vendor/imgui/backends/imgui_impl_opengl3.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Owl/vendor/yaml-cpp/src/parse.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/OwlEditor/src/OwlEditorApp.cpp" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -398,6 +440,7 @@
       <workItem from="1730648660056" duration="1383000" />
       <workItem from="1730651964602" duration="2035000" />
       <workItem from="1730704695933" duration="632000" />
+      <workItem from="1730706925597" duration="570000" />
     </task>
     <servers />
   </component>

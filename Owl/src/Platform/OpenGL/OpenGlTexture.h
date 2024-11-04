@@ -22,7 +22,7 @@ namespace Owl
 		void Bind(uint32_t pSlot = 0) const override;
 
 		bool IsLoaded() const override { return m_IsLoaded; }
-		
+
 		bool operator==(const Texture& other) const override
 		{
 			return m_RendererId == ((OpenGlTexture2D&)other).m_RendererId;

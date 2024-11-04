@@ -15,7 +15,7 @@ namespace Owl
 	void OpenGLContext::Init()
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		glfwMakeContextCurrent(m_WindowHandle);
 		const int status = gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress));
 		OWL_CORE_ASSERT(status, "Failed to initialize Glad!")
@@ -29,7 +29,7 @@ namespace Owl
 	void OpenGLContext::SwapBuffer()
 	{
 		OWL_PROFILE_FUNCTION();
-		
+
 		glfwSwapBuffers(m_WindowHandle);
 	}
 }

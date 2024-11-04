@@ -27,17 +27,19 @@ namespace Owl
 	};
 }
 
-template<typename OStream, glm::length_t L, typename T, glm::qualifier Q>
+template <typename OStream, glm::length_t L, typename T, glm::qualifier Q>
 OStream& operator<<(OStream& pOs, const glm::vec<L, T, Q>& pVector)
 {
 	return pOs << glm::to_string(pVector);
 }
-template<typename OStream, glm::length_t C, glm::length_t R, typename T, glm::qualifier Q>
+
+template <typename OStream, glm::length_t C, glm::length_t R, typename T, glm::qualifier Q>
 OStream& operator<<(OStream& pOs, const glm::mat<C, R, T, Q>& pMatrix)
 {
 	return pOs << glm::to_string(pMatrix);
 }
-template<typename OStream, typename T, glm::qualifier Q>
+
+template <typename OStream, typename T, glm::qualifier Q>
 OStream& operator<<(OStream& pOs, glm::qua<T, Q> pQuaternion)
 {
 	return pOs << glm::to_string(pQuaternion);

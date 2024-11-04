@@ -1,10 +1,8 @@
 ﻿#pragma once
 #include "glm/glm.hpp"
 
-namespace Owl
+namespace Owl::Math
 {
-    namespace Math
-    {
-        bool DecomposeTransform(const glm::mat4& pTransform, glm::vec3& pTranslation, glm::vec3& pRotation, glm::vec3& pScale);
-    }
+	bool DecomposeTransform(const glm::mat4& pTransform, glm::vec3& pTranslation, glm::vec3& pRotation,
+	                        glm::vec3& pScale);
 }

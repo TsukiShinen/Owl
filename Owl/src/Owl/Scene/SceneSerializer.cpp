@@ -7,8 +7,9 @@
 #define YAML_CPP_STATIC_DEFINE  
 #include <yaml-cpp/yaml.h>
 
-namespace YAML {
-	template<>
+namespace YAML
+{
+	template <>
 	struct convert<glm::vec2>
 	{
 		static Node encode(const glm::vec2& pRhs)
@@ -30,8 +31,8 @@ namespace YAML {
 			return true;
 		}
 	};
-	
-	template<>
+
+	template <>
 	struct convert<glm::vec3>
 	{
 		static Node encode(const glm::vec3& pRhs)
@@ -56,7 +57,7 @@ namespace YAML {
 		}
 	};
 
-	template<>
+	template <>
 	struct convert<glm::vec4>
 	{
 		static Node encode(const glm::vec4& pRhs)
@@ -111,33 +112,34 @@ namespace Owl
 	{
 		switch (bodyType)
 		{
-			case Rigidbody2DComponent::BodyType::Static:    return "Static";
-			case Rigidbody2DComponent::BodyType::Dynamic:   return "Dynamic";
+			case Rigidbody2DComponent::BodyType::Static: return "Static";
+			case Rigidbody2DComponent::BodyType::Dynamic: return "Dynamic";
 			case Rigidbody2DComponent::BodyType::Kinematic: return "Kinematic";
 		}
-		
+
 		OWL_CORE_ASSERT(false, "Unknown body type");
 		return {};
 	}
+
 	static Rigidbody2DComponent::BodyType RigidBody2DBodyTypeFromString(const std::string& bodyTypeString)
 	{
-		if (bodyTypeString == "Static")    return Rigidbody2DComponent::BodyType::Static;
-		if (bodyTypeString == "Dynamic")   return Rigidbody2DComponent::BodyType::Dynamic;
+		if (bodyTypeString == "Static") return Rigidbody2DComponent::BodyType::Static;
+		if (bodyTypeString == "Dynamic") return Rigidbody2DComponent::BodyType::Dynamic;
 		if (bodyTypeString == "Kinematic") return Rigidbody2DComponent::BodyType::Kinematic;
-	
+
 		OWL_CORE_ASSERT(false, "Unknown body type");
 		return Rigidbody2DComponent::BodyType::Static;
 	}
-	
-    SceneSerializer::SceneSerializer(const Ref<Scene>& pScene)
-        : m_Scene(pScene)
-    {
-    }
 
-    static void SerializeEntity(YAML::Emitter& pOut, Entity pEntity)
-    {
+	SceneSerializer::SceneSerializer(const Ref<Scene>& pScene)
+		: m_Scene(pScene)
+	{
+	}
+
+	static void SerializeEntity(YAML::Emitter& pOut, Entity pEntity)
+	{
 		OWL_CORE_ASSERT(pEntity.HasComponent<IdComponent>())
-		
+
 		pOut << YAML::BeginMap; // Entity
 		pOut << YAML::Key << "Entity" << YAML::Value << pEntity.GetUuid();
 
@@ -175,7 +177,7 @@ namespace Owl
 
 			pOut << YAML::Key << "Camera" << YAML::Value;
 			pOut << YAML::BeginMap; // Camera
-			pOut << YAML::Key << "ProjectionType" << YAML::Value << (int)camera.GetProjectionType();
+			pOut << YAML::Key << "ProjectionType" << YAML::Value << static_cast<int>(camera.GetProjectionType());
 			pOut << YAML::Key << "PerspectiveFOV" << YAML::Value << camera.GetPerspectiveVerticalFov();
 			pOut << YAML::Key << "PerspectiveNear" << YAML::Value << camera.GetPerspectiveNearClip();
 			pOut << YAML::Key << "PerspectiveFar" << YAML::Value << camera.GetPerspectiveFarClip();
@@ -210,7 +212,7 @@ namespace Owl
 			pOut << YAML::Key << "FixedRotation" << YAML::Value << rb2dComponent.FixedRotation;
 			pOut << YAML::EndMap; // Rigidbody2DComponent
 		}
-		
+
 		if (pEntity.HasComponent<BoxCollider2DComponent>())
 		{
 			pOut << YAML::Key << "BoxCollider2DComponent";
@@ -226,37 +228,37 @@ namespace Owl
 		}
 
 		pOut << YAML::EndMap; // Entity
-    }
+	}
 
-    void SceneSerializer::Serialize(const std::filesystem::path& pFilepath)
-    {
-        YAML::Emitter out;
-        out << YAML::BeginMap;
-        out << YAML::Key << "Scene" << YAML::Value << "Untitled";
-        out << YAML::Key << "Entities" << YAML::Value << YAML::BeginSeq;
-        m_Scene->m_Registry.each([&](auto entityID)
-        {
-            Entity entity = { entityID, m_Scene.get() };
-            if (!entity)
-                return;
+	void SceneSerializer::Serialize(const std::filesystem::path& pFilepath)
+	{
+		YAML::Emitter out;
+		out << YAML::BeginMap;
+		out << YAML::Key << "Scene" << YAML::Value << "Untitled";
+		out << YAML::Key << "Entities" << YAML::Value << YAML::BeginSeq;
+		m_Scene->m_Registry.each([&](auto entityID)
+		{
+			Entity entity = {entityID, m_Scene.get()};
+			if (!entity)
+				return;
 
-            SerializeEntity(out, entity);
-        });
-        out << YAML::EndSeq;
-        out << YAML::EndMap;
+			SerializeEntity(out, entity);
+		});
+		out << YAML::EndSeq;
+		out << YAML::EndMap;
 
-        std::ofstream fout(pFilepath);
-        fout << out.c_str();
-    }
+		std::ofstream fout(pFilepath);
+		fout << out.c_str();
+	}
 
-    void SceneSerializer::SerializeBinary(const std::filesystem::path& pFilepath)
-    {
-        // Not Implemented
-        OWL_CORE_ASSERT(false)
-    }
+	void SceneSerializer::SerializeBinary(const std::filesystem::path& pFilepath)
+	{
+		// Not Implemented
+		OWL_CORE_ASSERT(false)
+	}
 
-    bool SceneSerializer::Deserialize(const std::filesystem::path& pFilepath)
-    {
+	bool SceneSerializer::Deserialize(const std::filesystem::path& pFilepath)
+	{
 		YAML::Node data;
 		try
 		{
@@ -266,7 +268,7 @@ namespace Owl
 		{
 			return false;
 		}
-		
+
 		if (!data["Scene"])
 			return false;
 
@@ -277,7 +279,7 @@ namespace Owl
 		{
 			for (auto entity : entities)
 			{
-				uint64_t uuid = entity["Entity"].as<uint64_t>();
+				auto uuid = entity["Entity"].as<uint64_t>();
 
 				std::string name;
 				if (auto tagComponent = entity["TagComponent"])
@@ -301,7 +303,8 @@ namespace Owl
 					auto& cc = deserializedEntity.AddComponent<CameraComponent>();
 
 					auto cameraProps = cameraComponent["Camera"];
-					cc.Camera.SetProjectionType(static_cast<SceneCamera::ProjectionType>(cameraProps["ProjectionType"].as<int>()));
+					cc.Camera.SetProjectionType(
+						static_cast<SceneCamera::ProjectionType>(cameraProps["ProjectionType"].as<int>()));
 
 					cc.Camera.SetPerspectiveVerticalFov(cameraProps["PerspectiveFOV"].as<float>());
 					cc.Camera.SetPerspectiveNearClip(cameraProps["PerspectiveNear"].as<float>());
@@ -327,7 +330,7 @@ namespace Owl
 					rb2d.Type = RigidBody2DBodyTypeFromString(rigidbody2DComponent["BodyType"].as<std::string>());
 					rb2d.FixedRotation = rigidbody2DComponent["FixedRotation"].as<bool>();
 				}
-				
+
 				if (auto boxCollider2DComponent = entity["BoxCollider2DComponent"])
 				{
 					auto& bc2d = deserializedEntity.AddComponent<BoxCollider2DComponent>();
@@ -342,12 +345,12 @@ namespace Owl
 		}
 
 		return true;
-    }
+	}
 
-    bool SceneSerializer::DeserializeBinary(const std::filesystem::path& pFilepath)
-    {
-        // Not Implemented
-        OWL_CORE_ASSERT(false)
-        return false;
-    }
+	bool SceneSerializer::DeserializeBinary(const std::filesystem::path& pFilepath)
+	{
+		// Not Implemented
+		OWL_CORE_ASSERT(false)
+		return false;
+	}
 }

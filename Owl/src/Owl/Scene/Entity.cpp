@@ -3,9 +3,8 @@
 
 namespace Owl
 {
-    Entity::Entity(const entt::entity pHandle, Scene* pScene)
-        : m_EntityHandle(pHandle), m_Scene(pScene)
-    {
-        
-    }
+	Entity::Entity(const entt::entity pHandle, Scene* pScene)
+		: m_EntityHandle(pHandle), m_Scene(pScene)
+	{
+	}
 }
