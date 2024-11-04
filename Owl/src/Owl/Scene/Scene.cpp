@@ -29,6 +29,59 @@ namespace Owl
 		m_PhysicsWorld = nullptr;
 	}
 
+	template<typename Component>
+	static void CopyComponent(entt::registry& pDst, entt::registry& pSrc, const std::unordered_map<Uuid, entt::entity> pEnttMap)
+	{
+		auto view = pSrc.view<Component>();
+		for (auto e : view)
+		{
+			auto uuid = pSrc.get<IdComponent>(e).Id;
+			OWL_CORE_ASSERT(pEnttMap.find(uuid) != pEnttMap.end())
+			auto dstEnttId = pEnttMap.at(uuid);
+			
+			auto& component = pSrc.get<Component>(e);
+			pDst.emplace_or_replace<Component>(dstEnttId, component);
+		}
+	}
+
+
+	template<typename Component>
+	static void CopyComponentIfExists(Entity pDst, Entity pSrc)
+	{
+		if (pSrc.HasComponent<Component>())
+			pDst.AddOrReplaceComponent<Component>(pSrc.GetComponent<Component>());
+	}
+
+	Ref<Scene> Scene::Copy(Ref<Scene> pOther)
+	{
+		Ref<Scene> newScene = CreateRef<Scene>();
+		
+		newScene->m_ViewportWidth = pOther->m_ViewportWidth;
+		newScene->m_ViewportHeight = pOther->m_ViewportHeight;
+
+		std::unordered_map<Uuid, entt::entity> enttMap;
+		
+		auto& srcSceneRegistry = pOther->m_Registry;
+		auto& dstSceneRegistry = newScene->m_Registry;
+		auto idView = srcSceneRegistry.view<IdComponent>();
+		for (auto e : idView)
+		{
+			auto uuid = srcSceneRegistry.get<IdComponent>(e).Id;
+			const auto& name = srcSceneRegistry.get<TagComponent>(e).Tag;
+			const auto newEntity = newScene->CreateEntityWithUuid(uuid, name);
+			enttMap[uuid] = newEntity;
+		}
+		
+		CopyComponent<TransformComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
+		CopyComponent<SpriteRendererComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
+		CopyComponent<CameraComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
+		CopyComponent<NativeScriptComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
+		CopyComponent<Rigidbody2DComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
+		CopyComponent<BoxCollider2DComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
+		
+		return newScene;
+	}
+
 	Entity Scene::CreateEntity(const std::string& pName)
 	{
 		return CreateEntityWithUuid(Uuid(), pName);
@@ -111,6 +164,7 @@ namespace Owl
 		}
 
 		// Physics
+		if (m_PhysicsWorld)
 		{
 			constexpr auto velocityIterations = 6;
 			constexpr auto positionIterations = 2;
@@ -193,6 +247,19 @@ namespace Owl
 
 			cameraComponent.Camera.SetViewportSize(pWidth, pHeight);
 		}
+	}
+
+	void Scene::DuplicateEntity(Entity pEntity)
+	{
+		std::string name = pEntity.GetName();
+		auto newEntity = CreateEntity(name);
+		
+		CopyComponentIfExists<TransformComponent>(newEntity, pEntity);
+		CopyComponentIfExists<SpriteRendererComponent>(newEntity, pEntity);
+		CopyComponentIfExists<CameraComponent>(newEntity, pEntity);
+		CopyComponentIfExists<NativeScriptComponent>(newEntity, pEntity);
+		CopyComponentIfExists<Rigidbody2DComponent>(newEntity, pEntity);
+		CopyComponentIfExists<BoxCollider2DComponent>(newEntity, pEntity);
 	}
 
 	Entity Scene::GetPrimaryCameraEntity()

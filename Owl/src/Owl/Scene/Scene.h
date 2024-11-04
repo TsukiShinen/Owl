@@ -16,6 +16,8 @@ namespace Owl
 	public:
 		Scene() = default;
 		~Scene();
+		
+		static Ref<Scene> Copy(Ref<Scene> pOther);
 
 		Entity CreateEntity(const std::string& pName = std::string());
 		Entity CreateEntityWithUuid(Uuid pUuid, const std::string& pName = std::string());
@@ -27,6 +29,8 @@ namespace Owl
 		void OnUpdateRuntime(DeltaTime pDeltaTime);
 		void OnUpdateEditor(DeltaTime pDeltaTime, const EditorCamera& pCamera);
 		void OnViewportResize(uint32_t pWidth, uint32_t pHeight);
+
+		void DuplicateEntity(Entity pEntity);
 
 		[[nodiscard]] Entity GetPrimaryCameraEntity();
 

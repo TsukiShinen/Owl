@@ -22,6 +22,14 @@ namespace Owl
 			m_Scene->OnComponentAdded<T>(*this, component);
 			return component;
 		}
+		
+		template <typename T, typename... Args>
+		T& AddOrReplaceComponent(Args&&... pArgs)
+		{
+			T& component = m_Scene->m_Registry.emplace_or_replace<T>(m_EntityHandle, std::forward<Args>(pArgs)...);
+			m_Scene->OnComponentAdded<T>(*this, component);
+			return component;
+		}
 
 		template <typename T>
 		T& GetComponent()
@@ -48,6 +56,7 @@ namespace Owl
 		operator uint32_t() const { return static_cast<uint32_t>(m_EntityHandle); }
 
 		Uuid GetUuid() { return GetComponent<IdComponent>().Id; }
+		const std::string& GetName() { return GetComponent<TagComponent>().Tag; }
 
 		bool operator ==(const Entity& pOther) const
 		{

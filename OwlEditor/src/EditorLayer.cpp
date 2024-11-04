@@ -45,9 +45,11 @@ namespace Owl
 
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 
+		// TODO : TO REMOVE
 		SceneSerializer sceneSerializer(m_ActiveScene);
 		sceneSerializer.Deserialize("Assets/Scenes/Example.owl");
-		m_ActiveScenePath = "Assets/Scenes/Example.owl";
+		m_EditorScenePath = "Assets/Scenes/Example.owl";
+		m_EditorScene = m_ActiveScene;
 	}
 
 	void EditorLayer::OnDetach()
@@ -329,9 +331,19 @@ namespace Owl
 			case Key::S:
 				{
 					if (control)
-						SaveScene();
-					if (control && shift)
-						SaveSceneAs();
+					{
+						if (shift)
+							SaveSceneAs();
+						else
+							SaveScene();
+					}
+					break;
+				}
+			// Scene Commands
+			case Key::D:
+				{
+					if (control)
+						OnDuplicateEntity();
 					break;
 				}
 			// Gizmos
@@ -375,10 +387,15 @@ namespace Owl
 
 	void EditorLayer::NewScene()
 	{
-		m_ActiveScene = CreateRef<Scene>();
-		m_ActiveScene->OnViewportResize(static_cast<uint32_t>(m_ViewportSize.x),
+		if (m_SceneState != SceneState::Edit)
+			return;
+		
+		m_EditorScene = CreateRef<Scene>();
+		m_EditorScene->OnViewportResize(static_cast<uint32_t>(m_ViewportSize.x),
 		                                static_cast<uint32_t>(m_ViewportSize.y));
-		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+		m_SceneHierarchyPanel.SetContext(m_EditorScene);
+		m_ActiveScene = m_EditorScene;
+		m_EditorScenePath = std::filesystem::path();
 	}
 
 	void EditorLayer::OpenScene()
@@ -389,6 +406,9 @@ namespace Owl
 
 	void EditorLayer::OpenScene(const std::filesystem::path& pPath)
 	{
+		if (m_SceneState != SceneState::Edit)
+			OnSceneStop();
+		
 		if (pPath.extension().string() != ".owl")
 		{
 			OWL_WARN("Could not load {0} - not a scene file", pPath.filename().string());
@@ -399,19 +419,25 @@ namespace Owl
 		SceneSerializer serializer(newScene);
 		if (serializer.Deserialize(pPath.string()))
 		{
-			m_ActiveScene = newScene;
-			m_ActiveScene->OnViewportResize(static_cast<uint32_t>(m_ViewportSize.x),
+			m_EditorScene = newScene;
+			m_EditorScene->OnViewportResize(static_cast<uint32_t>(m_ViewportSize.x),
 			                                static_cast<uint32_t>(m_ViewportSize.y));
-			m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+			m_SceneHierarchyPanel.SetContext(m_EditorScene);
+			
+			m_ActiveScene = m_EditorScene;
+			m_EditorScenePath = pPath;
 		}
 	}
 
 	void EditorLayer::SaveScene()
 	{
-		if (!m_ActiveScenePath.empty())
+		if (m_SceneState != SceneState::Edit)
+			OnSceneStop();
+		
+		if (!m_EditorScenePath.empty())
 		{
-			SceneSerializer sceneSerializer(m_ActiveScene);
-			sceneSerializer.Serialize(m_ActiveScenePath);
+			SceneSerializer sceneSerializer(m_EditorScene);
+			sceneSerializer.Serialize(m_EditorScenePath);
 		}
 		else
 			SaveSceneAs();
@@ -419,23 +445,43 @@ namespace Owl
 
 	void EditorLayer::SaveSceneAs()
 	{
+		if (m_SceneState != SceneState::Edit)
+			OnSceneStop();
+		
 		if (const auto filepath = FileDialogs::SaveFile("Owl Scene (*.owl)\0*.owl\0"))
 		{
-			SceneSerializer sceneSerializer(m_ActiveScene);
+			SceneSerializer sceneSerializer(m_EditorScene);
 			sceneSerializer.Serialize(*filepath);
 		}
 	}
 
 	void EditorLayer::OnScenePlay()
 	{
-		m_ActiveScene->OnRuntimeStart();
 		m_SceneState = SceneState::Play;
+		
+		m_ActiveScene = Scene::Copy(m_EditorScene);
+		m_ActiveScene->OnRuntimeStart();
+
+		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 	}
 
 	void EditorLayer::OnSceneStop()
 	{
-		m_ActiveScene->OnRuntimeStop();
 		m_SceneState = SceneState::Edit;
+		
+		m_ActiveScene->OnRuntimeStop();
+		m_ActiveScene = m_EditorScene;
+		
+		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+	}
+
+	void EditorLayer::OnDuplicateEntity()
+	{
+		if (m_SceneState != SceneState::Edit)
+			return;
+
+		if (const auto selectedEntity = m_SceneHierarchyPanel.GetSelectedEntity())
+			m_EditorScene->DuplicateEntity(selectedEntity);
 	}
 
 	void EditorLayer::Ui_Toolbar()

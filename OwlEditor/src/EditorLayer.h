@@ -35,16 +35,17 @@ namespace Owl
 		void OnScenePlay();
 		void OnSceneStop();
 
+		void OnDuplicateEntity();
+
 		// Ui Panels
 		void Ui_Toolbar();
 		OrthographicCameraController m_CameraController;
 
 		Ref<Scene> m_ActiveScene;
-		std::filesystem::path m_ActiveScenePath;
+		Ref<Scene> m_EditorScene;
+		std::filesystem::path m_EditorScenePath;
 
 		Entity m_HoveredEntity;
-
-		bool m_PrimaryCamera;
 
 		EditorCamera m_EditorCamera;
 

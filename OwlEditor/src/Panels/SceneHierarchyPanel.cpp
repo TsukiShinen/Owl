@@ -29,31 +29,30 @@ namespace Owl
 	void SceneHierarchyPanel::OnImGuiRender()
 	{
 		ImGui::Begin("Scene Hierarchy");
-
-		m_Context->m_Registry.each([&](auto pEntityId)
+		if (m_Context)
 		{
-			Entity entity{pEntityId, m_Context.get()};
-			DrawEntityNode(entity);
-		});
+			m_Context->m_Registry.each([&](auto pEntityId)
+			{
+				Entity entity{pEntityId, m_Context.get()};
+				DrawEntityNode(entity);
+			});
 
-		if (ImGui::IsMouseDown(0) && ImGui::IsWindowHovered())
-			m_SelectionContext = {};
+			if (ImGui::IsMouseDown(0) && ImGui::IsWindowHovered())
+				m_SelectionContext = {};
 
-		if (ImGui::BeginPopupContextWindow(nullptr, 1 | ImGuiPopupFlags_NoOpenOverItems))
-		{
-			if (ImGui::MenuItem("Create Empty Entity"))
-				m_Context->CreateEntity("New Entity");
+			if (ImGui::BeginPopupContextWindow(nullptr, 1 | ImGuiPopupFlags_NoOpenOverItems))
+			{
+				if (ImGui::MenuItem("Create Empty Entity"))
+					m_Context->CreateEntity("New Entity");
 
-			ImGui::EndPopup();
+				ImGui::EndPopup();
+			}
 		}
-
 		ImGui::End();
 
 		ImGui::Begin("Properties");
-
 		if (m_SelectionContext)
 			DrawComponents(m_SelectionContext);
-
 		ImGui::End();
 	}
 
