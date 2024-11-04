@@ -2,6 +2,7 @@
 
 #include "entt.hpp"
 #include "Owl/Core/DeltaTime.h"
+#include "Owl/Core/UUID.h"
 #include "Owl/Renderer/EditorCamera.h"
 
 class b2World;
@@ -16,6 +17,7 @@ namespace Owl
         ~Scene();
 
         Entity CreateEntity(const std::string& pName = std::string());
+        Entity CreateEntityWithUuid(Uuid pUuid, const std::string& pName = std::string());
         void Destroy(Entity pEntity);
 
         void OnRuntimeStart();

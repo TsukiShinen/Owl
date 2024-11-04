@@ -1,6 +1,7 @@
 ﻿#include "opch.h"
 #include "Scene.h"
 
+#include "ScriptableEntity.h"
 #include "Components.h"
 #include "Entity.h"
 #include "Owl/Renderer/Renderer2D.h"
@@ -30,9 +31,15 @@ namespace Owl
 
     Entity Scene::CreateEntity(const std::string& pName)
     {
+        return CreateEntityWithUuid(Uuid(), pName);
+    }
+
+    Entity Scene::CreateEntityWithUuid(Uuid pUuid, const std::string& pName)
+    {
         Entity entity{m_Registry.create(), this};
-    	entity.AddComponent<TransformComponent>();
-    	auto& tag = entity.AddComponent<TagComponent>();
+        entity.AddComponent<IdComponent>(pUuid);
+        entity.AddComponent<TransformComponent>();
+        auto& tag = entity.AddComponent<TagComponent>();
         tag.Tag = pName.empty() ? "Entity" : pName;
         
         return entity;
@@ -201,6 +208,11 @@ namespace Owl
     void Scene::OnComponentAdded(Entity pEntity, T& pComponent)
     {
 		static_assert(sizeof(T) == 0);
+    }
+    
+    template <>
+    void Scene::OnComponentAdded<IdComponent>(Entity pEntity, IdComponent& pComponent)
+    {
     }
     
     template <>

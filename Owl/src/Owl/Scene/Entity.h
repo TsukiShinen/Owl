@@ -1,7 +1,9 @@
 ﻿#pragma once
 #include <entt.hpp>
 
+#include "Components.h"
 #include "Scene.h"
+#include "Owl/Core/UUID.h"
 
 namespace Owl
 {
@@ -12,7 +14,7 @@ namespace Owl
         Entity(entt::entity pHandle, Scene* pScene);
         Entity(const Entity& pEntity) = default;
 
-        template<typename T, typename ... Args>
+        template<typename T, typename... Args>
         T& AddComponent(Args&&... pArgs)
         {
             OWL_CORE_ASSERT(!HasComponent<T>(), "Entity already has component!")
@@ -44,6 +46,8 @@ namespace Owl
         operator bool() const { return m_EntityHandle != entt::null; }
         operator entt::entity() const { return m_EntityHandle; }
         operator uint32_t() const { return static_cast<uint32_t>(m_EntityHandle); }
+
+        Uuid GetUuid() { return GetComponent<IdComponent>().Id; }
         
         bool operator ==(const Entity& pOther) const { return m_EntityHandle == pOther.m_EntityHandle && m_Scene == pOther.m_Scene; }
         bool operator !=(const Entity& pOther) const { return !(*this == pOther); }

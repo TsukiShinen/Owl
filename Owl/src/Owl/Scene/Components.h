@@ -1,18 +1,28 @@
 ﻿#pragma once
 
-#include <glm/glm.hpp>
 
-#include "ScriptableEntity.h"
+#include "Owl/Core/UUID.h"
+#include "Owl/Renderer/Texture.h"
+#include "Owl/Scene/SceneCamera.h"
+
+#include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
 #define GLM_ENABLE_EXPERIMENTAL
 #include "glm/gtx/quaternion.hpp"
-#include "Owl/Renderer/Texture.h"
-
-#include "Owl/Scene/SceneCamera.h"
 
 namespace Owl
 {
+    struct IdComponent
+    {
+        Uuid Id;
+        
+        IdComponent() = default;
+        IdComponent(const IdComponent&) = default;
+        IdComponent(const Uuid pId)
+            : Id(pId) {}
+    };
+    
     struct TagComponent
     {
         std::string Tag;
@@ -66,6 +76,7 @@ namespace Owl
         CameraComponent(const CameraComponent&) = default;
     };
 
+    class ScriptableEntity;
     struct NativeScriptComponent
     {
         ScriptableEntity* Instance = nullptr;

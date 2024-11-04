@@ -136,8 +136,10 @@ namespace Owl
 
     static void SerializeEntity(YAML::Emitter& pOut, Entity pEntity)
     {
+		OWL_CORE_ASSERT(pEntity.HasComponent<IdComponent>())
+		
 		pOut << YAML::BeginMap; // Entity
-		pOut << YAML::Key << "Entity" << YAML::Value << "12837192831273"; // TODO: Entity ID goes here
+		pOut << YAML::Key << "Entity" << YAML::Value << pEntity.GetUuid();
 
 		if (pEntity.HasComponent<TagComponent>())
 		{
@@ -275,7 +277,7 @@ namespace Owl
 		{
 			for (auto entity : entities)
 			{
-				uint64_t uuid = entity["Entity"].as<uint64_t>(); // TODO
+				uint64_t uuid = entity["Entity"].as<uint64_t>();
 
 				std::string name;
 				if (auto tagComponent = entity["TagComponent"])
@@ -283,7 +285,7 @@ namespace Owl
 
 				OWL_CORE_TRACE("Deserialized entity with ID = {0}, name = {1}", uuid, name);
 
-				Entity deserializedEntity = m_Scene->CreateEntity(name);
+				Entity deserializedEntity = m_Scene->CreateEntityWithUuid(uuid, name);
 
 				if (auto transformComponent = entity["TransformComponent"])
 				{

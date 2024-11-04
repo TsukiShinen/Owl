@@ -14,22 +14,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Owl/vendor/Box2D" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dependencies.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Dependencies.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Owl.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/premake5.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/premake5.lua" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Components.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Components.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Entity.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Entity.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneSerializer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneSerializer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OwlEditor/Assets/Scenes/Example.owl" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/Assets/Scenes/Example.owl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/Assets/Scenes/Physics2D.owl" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/Assets/Scenes/Physics2D.owl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OwlEditor/Assets/Scenes/PinkCube.owl" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/Assets/Scenes/PinkCube.owl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OwlEditor/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/imgui.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/premake5.lua" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/premake5.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/EditorLayer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/src/Panels/SceneHierarchyPanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/Panels/SceneHierarchyPanel.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/premake5.lua" beforeDir="false" afterPath="$PROJECT_DIR$/premake5.lua" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +34,34 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.38.33130/include/xutility" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Owl/vendor/imgui/backends/imgui_impl_opengl3.h" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
@@ -372,7 +394,10 @@
       <workItem from="1730489736151" duration="4249000" />
       <workItem from="1730543221417" duration="533000" />
       <workItem from="1730544342261" duration="9558000" />
-      <workItem from="1730625291609" duration="3465000" />
+      <workItem from="1730625291609" duration="4061000" />
+      <workItem from="1730648660056" duration="1383000" />
+      <workItem from="1730651964602" duration="2035000" />
+      <workItem from="1730704695933" duration="632000" />
     </task>
     <servers />
   </component>
