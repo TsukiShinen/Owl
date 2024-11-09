@@ -203,6 +203,19 @@ namespace Owl
 			pOut << YAML::EndMap; // SpriteRendererComponent
 		}
 
+		if (pEntity.HasComponent<CircleRendererComponent>())
+		{
+			pOut << YAML::Key << "CircleRendererComponent";
+			pOut << YAML::BeginMap; // CircleRendererComponent
+
+			auto& circleRendererComponent = pEntity.GetComponent<CircleRendererComponent>();
+			pOut << YAML::Key << "Color" << YAML::Value << circleRendererComponent.Color;
+			pOut << YAML::Key << "Thickness" << YAML::Value << circleRendererComponent.Thickness;
+			pOut << YAML::Key << "Fade" << YAML::Value << circleRendererComponent.Fade;
+
+			pOut << YAML::EndMap; // CircleRendererComponent
+		}
+
 		if (pEntity.HasComponent<Rigidbody2DComponent>())
 		{
 			pOut << YAML::Key << "Rigidbody2DComponent";
@@ -322,6 +335,14 @@ namespace Owl
 				{
 					auto& src = deserializedEntity.AddComponent<SpriteRendererComponent>();
 					src.Color = spriteRendererComponent["Color"].as<glm::vec4>();
+				}
+
+				if (auto circleRendererComponent = entity["CircleRendererComponent"])
+				{
+					auto& crc = deserializedEntity.AddComponent<CircleRendererComponent>();
+					crc.Color = circleRendererComponent["Color"].as<glm::vec4>();
+					crc.Thickness = circleRendererComponent["Thickness"].as<float>();
+					crc.Fade = circleRendererComponent["Fade"].as<float>();
 				}
 
 				if (auto rigidbody2DComponent = entity["Rigidbody2DComponent"])

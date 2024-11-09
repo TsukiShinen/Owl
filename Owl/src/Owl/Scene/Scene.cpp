@@ -74,6 +74,7 @@ namespace Owl
 		
 		CopyComponent<TransformComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
 		CopyComponent<SpriteRendererComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
+		CopyComponent<CircleRendererComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
 		CopyComponent<CameraComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
 		CopyComponent<NativeScriptComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
 		CopyComponent<Rigidbody2DComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
@@ -205,13 +206,26 @@ namespace Owl
 		{
 			Renderer2D::BeginScene(*mainCamera, cameraTransform);
 
-			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
-			for (auto entity : group)
+			// Render Sprites
 			{
-				auto [transformComponent, spriteComponent] = group.get<
-					TransformComponent, SpriteRendererComponent>(entity);
+				auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+				for (auto entity : group)
+				{
+					auto [transformComponent, spriteComponent] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
-				Renderer2D::DrawSprite(transformComponent.GetTransform(), spriteComponent, static_cast<int>(entity));
+					Renderer2D::DrawSprite(transformComponent.GetTransform(), spriteComponent, static_cast<int>(entity));
+				}
+			}
+		
+			// Render Circles
+			{
+				auto view = m_Registry.view<TransformComponent, CircleRendererComponent>();
+				for (auto entity : view)
+				{
+					auto [transformComponent, circleComponent] = view.get<TransformComponent, CircleRendererComponent>(entity);
+
+					Renderer2D::DrawCircle(transformComponent.GetTransform(), circleComponent.Color, circleComponent.Thickness, circleComponent.Fade, static_cast<int>(entity));
+				}
 			}
 
 			Renderer2D::EndScene();
@@ -222,12 +236,26 @@ namespace Owl
 	{
 		Renderer2D::BeginScene(pCamera);
 
-		auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
-		for (auto entity : group)
+		// Render Sprites
 		{
-			auto [transformComponent, spriteComponent] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+			for (auto entity : group)
+			{
+				auto [transformComponent, spriteComponent] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
-			Renderer2D::DrawSprite(transformComponent.GetTransform(), spriteComponent, static_cast<int>(entity));
+				Renderer2D::DrawSprite(transformComponent.GetTransform(), spriteComponent, static_cast<int>(entity));
+			}
+		}
+		
+		// Render Circles
+		{
+			auto view = m_Registry.view<TransformComponent, CircleRendererComponent>();
+			for (auto entity : view)
+			{
+				auto [transformComponent, circleComponent] = view.get<TransformComponent, CircleRendererComponent>(entity);
+
+				Renderer2D::DrawCircle(transformComponent.GetTransform(), circleComponent.Color, circleComponent.Thickness, circleComponent.Fade, static_cast<int>(entity));
+			}
 		}
 
 		Renderer2D::EndScene();
@@ -256,6 +284,7 @@ namespace Owl
 		
 		CopyComponentIfExists<TransformComponent>(newEntity, pEntity);
 		CopyComponentIfExists<SpriteRendererComponent>(newEntity, pEntity);
+		CopyComponentIfExists<CircleRendererComponent>(newEntity, pEntity);
 		CopyComponentIfExists<CameraComponent>(newEntity, pEntity);
 		CopyComponentIfExists<NativeScriptComponent>(newEntity, pEntity);
 		CopyComponentIfExists<Rigidbody2DComponent>(newEntity, pEntity);
@@ -302,6 +331,11 @@ namespace Owl
 
 	template <>
 	void Scene::OnComponentAdded<SpriteRendererComponent>(Entity pEntity, SpriteRendererComponent& pComponent)
+	{
+	}
+
+	template <>
+	void Scene::OnComponentAdded<CircleRendererComponent>(Entity pEntity, CircleRendererComponent& pComponent)
 	{
 	}
 

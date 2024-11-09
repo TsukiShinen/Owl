@@ -43,6 +43,8 @@ namespace Owl
 		                            const Ref<Texture2D>& pTexture, float pTilingFactor,
 		                            const glm::vec4& pTintColor = {1.0f, 1.0f, 1.0f, 1.0f});
 
+		static void DrawCircle(const glm::mat4& pTransform, const glm::vec4& pColor, float pThickness = 1.0f, float pFade = 0.005f, int pEntityId = -1);
+		
 		static void DrawSprite(const glm::mat4& pTransform, const SpriteRendererComponent& pSpriteRendererComponent,
 		                       int pEntityId);
 
