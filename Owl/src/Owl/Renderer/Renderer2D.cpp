@@ -33,6 +33,15 @@ namespace Owl
 		// Editor-Only
 		int EntityId = 0;
 	};
+	
+	struct LineVertex
+	{
+		glm::vec3 Position;
+		glm::vec4 Color;
+
+		// Editor-Only
+		int EntityId = 0;
+	};
 
 	struct Renderer2DData
 	{
@@ -49,6 +58,10 @@ namespace Owl
 		Ref<VertexArray> CircleVertexArray;
 		Ref<VertexBuffer> CircleVertexBuffer;
 		Ref<Shader> CircleShader;
+		
+		Ref<VertexArray> LineVertexArray;
+		Ref<VertexBuffer> LineVertexBuffer;
+		Ref<Shader> LineShader;
 
 		uint32_t QuadIndexCount = 0;
 		QuadVertex* QuadVertexBufferBase = nullptr;
@@ -57,6 +70,12 @@ namespace Owl
 		uint32_t CircleIndexCount = 0;
 		CircleVertex* CircleVertexBufferBase = nullptr;
 		CircleVertex* CircleVertexBufferPtr = nullptr;
+		
+		uint32_t LineVertexCount = 0;
+		LineVertex* LineVertexBufferBase = nullptr;
+		LineVertex* LineVertexBufferPtr = nullptr;
+
+		float LineWidth = 2.0f;
 
 		std::array<Ref<Texture2D>, k_MaxTextureSlots> TextureSlots;
 		uint32_t TextureSlotIndex = 1; // 0 = WhiteTexture
@@ -132,6 +151,18 @@ namespace Owl
 		s_Data.CircleVertexArray->SetIndexBuffer(quadIndexBuffer);
 		s_Data.CircleVertexBufferBase = new CircleVertex[s_Data.k_MaxVertices];
 
+		// Lines
+		s_Data.LineVertexArray = VertexArray::Create();
+
+		s_Data.LineVertexBuffer = VertexBuffer::Create(s_Data.k_MaxVertices * sizeof(LineVertex));
+		s_Data.LineVertexBuffer->SetLayout({
+			{ShaderDataType::Float3, "in_Position"},
+			{ShaderDataType::Float4, "in_Color"},
+			{ShaderDataType::Int, "in_EntityId"}
+		});
+		s_Data.LineVertexArray->AddVertexBuffer(s_Data.LineVertexBuffer);
+		s_Data.LineVertexBufferBase = new LineVertex[s_Data.k_MaxVertices];
+
 		s_Data.WhiteTexture = Texture2D::Create(1, 1);
 		auto whiteTextureData = 0xffffffff;
 		s_Data.WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
@@ -142,6 +173,7 @@ namespace Owl
 
 		s_Data.QuadShader = Shader::Create("Assets/Shaders/Renderer2D_Quad.glsl");
 		s_Data.CircleShader = Shader::Create("Assets/Shaders/Renderer2D_Circle.glsl");
+		s_Data.LineShader = Shader::Create("Assets/Shaders/Renderer2D_Line.glsl");
 
 		s_Data.TextureSlots[0] = s_Data.WhiteTexture;
 
@@ -225,6 +257,19 @@ namespace Owl
 			RenderCommand::DrawIndexed(s_Data.CircleVertexArray, s_Data.CircleIndexCount);
 			s_Data.Stats.DrawCalls++;
 		}
+
+		if (s_Data.LineVertexCount)
+		{
+			const auto dataSize = static_cast<uint32_t>(
+			reinterpret_cast<uint8_t*>(s_Data.LineVertexBufferPtr) - reinterpret_cast<uint8_t*>(s_Data.
+				LineVertexBufferBase));
+			s_Data.LineVertexBuffer->SetData(s_Data.LineVertexBufferBase, dataSize);
+			
+			s_Data.LineShader->Bind();
+			RenderCommand::SetLineWidth(s_Data.LineWidth);
+			RenderCommand::DrawLines(s_Data.LineVertexArray, s_Data.LineVertexCount);
+			s_Data.Stats.DrawCalls++;
+		}
 	}
 
 	void Renderer2D::StartBatch()
@@ -234,6 +279,9 @@ namespace Owl
 		
 		s_Data.CircleIndexCount = 0;
 		s_Data.CircleVertexBufferPtr = s_Data.CircleVertexBufferBase;
+
+		s_Data.LineVertexCount = 0;
+		s_Data.LineVertexBufferPtr = s_Data.LineVertexBufferBase;
 
 		s_Data.TextureSlotIndex = 1;
 	}
@@ -388,9 +436,7 @@ namespace Owl
 	{
 		OWL_PROFILE_FUNCTION();
 		
-		// TODO: implement for circles
-		// if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
-		// 	NextBatch();
+		// TODO: Batch for Circles
 		
 		for (size_t i = 0; i < 4; i++)
 		{
@@ -406,6 +452,52 @@ namespace Owl
 		s_Data.Stats.QuadCount++;
 	}
 
+	void Renderer2D::DrawLine(const glm::vec3& pPoint0, const glm::vec3& pPoint1, const glm::vec4& pColor,
+		int pEntityId)
+	{
+		OWL_PROFILE_FUNCTION();
+
+		// TODO: Batch for Lines
+
+		s_Data.LineVertexBufferPtr->Position = pPoint0;
+		s_Data.LineVertexBufferPtr->Color = pColor;
+		s_Data.LineVertexBufferPtr->EntityId = pEntityId;
+		s_Data.LineVertexBufferPtr++;
+		
+		s_Data.LineVertexBufferPtr->Position = pPoint1;
+		s_Data.LineVertexBufferPtr->Color = pColor;
+		s_Data.LineVertexBufferPtr->EntityId = pEntityId;
+		s_Data.LineVertexBufferPtr++;
+
+		s_Data.LineVertexCount += 2;
+	}
+
+	void Renderer2D::DrawRect(const glm::vec3& pPosition, const glm::vec2& pSize, const glm::vec4& pColor,
+		int pEntityId)
+	{
+		glm::vec3 p0 = glm::vec3(pPosition.x - pSize.x * 0.5f, pPosition.y - pSize.y * 0.5f, pPosition.z);
+		glm::vec3 p1 = glm::vec3(pPosition.x + pSize.x * 0.5f, pPosition.y - pSize.y * 0.5f, pPosition.z);
+		glm::vec3 p2 = glm::vec3(pPosition.x + pSize.x * 0.5f, pPosition.y + pSize.y * 0.5f, pPosition.z);
+		glm::vec3 p3 = glm::vec3(pPosition.x - pSize.x * 0.5f, pPosition.y + pSize.y * 0.5f, pPosition.z);
+		
+		DrawLine(p0, p1, pColor, pEntityId);
+		DrawLine(p1, p2, pColor, pEntityId);
+		DrawLine(p2, p3, pColor, pEntityId);
+		DrawLine(p3, p0, pColor, pEntityId);
+	}
+
+	void Renderer2D::DrawRect(const glm::mat4& pTransform, const glm::vec4& pColor, int pEntityId)
+	{
+		glm::vec3 lineVertices[4];
+		for (size_t i = 0; i < 4; i++)
+			lineVertices[i] = pTransform * s_Data.QuadVertexPositions[i];
+		
+		DrawLine(lineVertices[0], lineVertices[1], pColor, pEntityId); 
+		DrawLine(lineVertices[1], lineVertices[2], pColor, pEntityId);
+		DrawLine(lineVertices[2], lineVertices[3], pColor, pEntityId);
+		DrawLine(lineVertices[3], lineVertices[0], pColor, pEntityId);
+	}
+
 	void Renderer2D::DrawSprite(const glm::mat4& pTransform, const SpriteRendererComponent& pSpriteRendererComponent,
 	                            const int pEntityId)
 	{
@@ -418,6 +510,15 @@ namespace Owl
 			DrawQuad(pTransform, pSpriteRendererComponent.Color, pEntityId);
 	}
 
+	float Renderer2D::GetLineWidth()
+	{
+		return s_Data.LineWidth;
+	}
+
+	void Renderer2D::SetLineWidth(const float pWidth)
+	{
+		s_Data.LineWidth = pWidth;
+	}
 	Renderer2D::Statistics Renderer2D::GetStats()
 	{
 		return s_Data.Stats;

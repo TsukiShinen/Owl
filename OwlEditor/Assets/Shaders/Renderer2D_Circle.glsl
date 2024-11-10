@@ -6,7 +6,7 @@ layout(location = 1) in vec3 in_LocalPosition;
 layout(location = 2) in vec4 in_Color;
 layout(location = 3) in float in_Thickness;
 layout(location = 4) in float in_Fade;
-layout(location = 5) in int in_EntityID;
+layout(location = 5) in int in_EntityId;
 
 layout(std140, binding = 0) uniform Camera
 {
@@ -22,7 +22,7 @@ struct VertexOutput
 };
 
 layout (location = 0) out VertexOutput Output;
-layout (location = 4) out flat int v_EntityID;
+layout (location = 4) out flat int v_EntityId;
 
 void main()
 {
@@ -31,7 +31,7 @@ void main()
 	Output.Thickness = in_Thickness;
 	Output.Fade = in_Fade;
 
-	v_EntityID = in_EntityID;
+	v_EntityId = in_EntityId;
 
 	gl_Position = u_ViewProjection * vec4(in_WorldPosition, 1.0);
 }
@@ -40,7 +40,7 @@ void main()
 #version 450 core
 
 layout(location = 0) out vec4 out_Color;
-layout(location = 1) out int out_EntityID;
+layout(location = 1) out int out_EntityId;
 
 struct VertexOutput
 {
@@ -51,7 +51,7 @@ struct VertexOutput
 };
 
 layout (location = 0) in VertexOutput Input;
-layout (location = 4) in flat int v_EntityID;
+layout (location = 4) in flat int v_EntityId;
 
 void main()
 {
@@ -67,5 +67,5 @@ void main()
     out_Color = Input.Color;
 	out_Color.a *= circle;
 
-	out_EntityID = v_EntityID;
+	out_EntityId = v_EntityId;
 }

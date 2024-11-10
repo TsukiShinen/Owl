@@ -39,7 +39,7 @@ void main()
 #version 450 core
 
 layout(location = 0) out vec4 out_Color;
-layout(location = 1) out int out_Index;
+layout(location = 1) out int out_EntityId;
 
 struct VertexOutput
 {
@@ -94,5 +94,5 @@ void main()
 	}
 	out_Color = texColor;
 
-	out_Index = v_EntityId;
+	out_EntityId = v_EntityId;
 }

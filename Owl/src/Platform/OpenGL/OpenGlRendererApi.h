@@ -13,5 +13,8 @@ namespace Owl
 		void Clear() override;
 
 		void DrawIndexed(const Ref<VertexArray>& pVertexArray, uint32_t pIndexCount = 0) override;
+		void DrawLines(const Ref<VertexArray>& pVertexArray, uint32_t pVertexCount) override;
+		
+		void SetLineWidth(float pWidth) override;
 	};
 }

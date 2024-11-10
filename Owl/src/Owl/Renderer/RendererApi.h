@@ -21,6 +21,9 @@ namespace Owl
 		virtual void Clear() = 0;
 
 		virtual void DrawIndexed(const Ref<VertexArray>& pVertexArray, uint32_t pIndexCount = 0) = 0;
+		virtual void DrawLines(const Ref<VertexArray>& pVertexArray, uint32_t pVertexCount) = 0;
+
+		virtual void SetLineWidth(float pWidth) = 0;
 
 		static Api GetApi() { return s_Api; }
 

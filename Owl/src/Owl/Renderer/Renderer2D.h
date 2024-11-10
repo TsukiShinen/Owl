@@ -44,9 +44,17 @@ namespace Owl
 		                            const glm::vec4& pTintColor = {1.0f, 1.0f, 1.0f, 1.0f});
 
 		static void DrawCircle(const glm::mat4& pTransform, const glm::vec4& pColor, float pThickness = 1.0f, float pFade = 0.005f, int pEntityId = -1);
+
+		static void DrawLine(const glm::vec3& pPoint0, const glm::vec3& pPoint1, const glm::vec4& pColor, int pEntityId = -1);
+		
+		static void DrawRect(const glm::vec3& pPosition, const glm::vec2& pSize, const glm::vec4& pColor, int pEntityId = -1);
+		static void DrawRect(const glm::mat4& pTransform, const glm::vec4& pColor, int pEntityId = -1);
 		
 		static void DrawSprite(const glm::mat4& pTransform, const SpriteRendererComponent& pSpriteRendererComponent,
 		                       int pEntityId);
+
+		static float GetLineWidth();
+		static void SetLineWidth(float pWidth);
 
 		struct Statistics
 		{

@@ -31,6 +31,16 @@ namespace Owl
 			s_RendererApi->DrawIndexed(pVertexArray, pIndexCount);
 		}
 
+		static void DrawLines(const Ref<VertexArray>& pVertexArray, const uint32_t pVertexCount)
+		{
+			s_RendererApi->DrawLines(pVertexArray, pVertexCount);
+		}
+
+		static void SetLineWidth(float pWidth)
+		{
+			s_RendererApi->SetLineWidth(pWidth);
+		}
+
 	private:
 		static Scope<RendererApi> s_RendererApi;
 	};
