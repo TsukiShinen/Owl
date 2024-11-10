@@ -220,9 +220,11 @@ namespace Owl
 		{
 			pOut << YAML::Key << "Rigidbody2DComponent";
 			pOut << YAML::BeginMap; // Rigidbody2DComponent
+			
 			auto& rb2dComponent = pEntity.GetComponent<Rigidbody2DComponent>();
 			pOut << YAML::Key << "BodyType" << YAML::Value << RigidBody2DBodyTypeToString(rb2dComponent.Type);
 			pOut << YAML::Key << "FixedRotation" << YAML::Value << rb2dComponent.FixedRotation;
+			
 			pOut << YAML::EndMap; // Rigidbody2DComponent
 		}
 
@@ -230,6 +232,7 @@ namespace Owl
 		{
 			pOut << YAML::Key << "BoxCollider2DComponent";
 			pOut << YAML::BeginMap; // BoxCollider2DComponent
+			
 			auto& bc2dComponent = pEntity.GetComponent<BoxCollider2DComponent>();
 			pOut << YAML::Key << "Offset" << YAML::Value << bc2dComponent.Offset;
 			pOut << YAML::Key << "Size" << YAML::Value << bc2dComponent.Size;
@@ -237,7 +240,24 @@ namespace Owl
 			pOut << YAML::Key << "Friction" << YAML::Value << bc2dComponent.Friction;
 			pOut << YAML::Key << "Restitution" << YAML::Value << bc2dComponent.Restitution;
 			pOut << YAML::Key << "RestitutionThreshold" << YAML::Value << bc2dComponent.RestitutionThreshold;
+			
 			pOut << YAML::EndMap; // BoxCollider2DComponent
+		}
+
+		if (pEntity.HasComponent<CircleCollider2DComponent>())
+		{
+			pOut << YAML::Key << "CircleCollider2DComponent";
+			pOut << YAML::BeginMap; // CircleCollider2DComponent
+			
+			auto& cc2dComponent = pEntity.GetComponent<CircleCollider2DComponent>();
+			pOut << YAML::Key << "Offset" << YAML::Value << cc2dComponent.Offset;
+			pOut << YAML::Key << "Radius" << YAML::Value << cc2dComponent.Radius;
+			pOut << YAML::Key << "Density" << YAML::Value << cc2dComponent.Density;
+			pOut << YAML::Key << "Friction" << YAML::Value << cc2dComponent.Friction;
+			pOut << YAML::Key << "Restitution" << YAML::Value << cc2dComponent.Restitution;
+			pOut << YAML::Key << "RestitutionThreshold" << YAML::Value << cc2dComponent.RestitutionThreshold;
+			
+			pOut << YAML::EndMap; // CircleCollider2DComponent
 		}
 
 		pOut << YAML::EndMap; // Entity
@@ -361,6 +381,17 @@ namespace Owl
 					bc2d.Friction = boxCollider2DComponent["Friction"].as<float>();
 					bc2d.Restitution = boxCollider2DComponent["Restitution"].as<float>();
 					bc2d.RestitutionThreshold = boxCollider2DComponent["RestitutionThreshold"].as<float>();
+				}
+
+				if (auto circleCollider2DComponent = entity["CircleCollider2DComponent"])
+				{
+					auto& cc2d = deserializedEntity.AddComponent<CircleCollider2DComponent>();
+					cc2d.Offset = circleCollider2DComponent["Offset"].as<glm::vec2>();
+					cc2d.Radius = circleCollider2DComponent["Radius"].as<float>();
+					cc2d.Density = circleCollider2DComponent["Density"].as<float>();
+					cc2d.Friction = circleCollider2DComponent["Friction"].as<float>();
+					cc2d.Restitution = circleCollider2DComponent["Restitution"].as<float>();
+					cc2d.RestitutionThreshold = circleCollider2DComponent["RestitutionThreshold"].as<float>();
 				}
 			}
 		}

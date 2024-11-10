@@ -79,6 +79,7 @@ namespace Owl
 		CopyComponent<NativeScriptComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
 		CopyComponent<Rigidbody2DComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
 		CopyComponent<BoxCollider2DComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
+		CopyComponent<CircleCollider2DComponent>(dstSceneRegistry, srcSceneRegistry, enttMap);
 		
 		return newScene;
 	}
@@ -139,6 +140,25 @@ namespace Owl
 				fixtureDef.restitution = boxCollider2D.Restitution;
 				fixtureDef.restitutionThreshold = boxCollider2D.RestitutionThreshold;
 
+				body->CreateFixture(&fixtureDef);
+			}
+
+			// Circle Collider
+			if (entity.HasComponent<CircleCollider2DComponent>())
+			{
+				const auto& circleCollider2D = entity.GetComponent<CircleCollider2DComponent>();
+				
+				b2CircleShape circleShape;
+				circleShape.m_p.Set(circleCollider2D.Offset.x, circleCollider2D.Offset.y);
+				circleShape.m_radius = circleCollider2D.Radius;
+				
+				b2FixtureDef fixtureDef;
+				fixtureDef.shape = &circleShape;
+				fixtureDef.density = circleCollider2D.Density;
+				fixtureDef.friction = circleCollider2D.Friction;
+				fixtureDef.restitution = circleCollider2D.Restitution;
+				fixtureDef.restitutionThreshold = circleCollider2D.RestitutionThreshold;
+				
 				body->CreateFixture(&fixtureDef);
 			}
 		}
@@ -289,6 +309,7 @@ namespace Owl
 		CopyComponentIfExists<NativeScriptComponent>(newEntity, pEntity);
 		CopyComponentIfExists<Rigidbody2DComponent>(newEntity, pEntity);
 		CopyComponentIfExists<BoxCollider2DComponent>(newEntity, pEntity);
+		CopyComponentIfExists<CircleCollider2DComponent>(newEntity, pEntity);
 	}
 
 	Entity Scene::GetPrimaryCameraEntity()
@@ -351,6 +372,11 @@ namespace Owl
 
 	template <>
 	void Scene::OnComponentAdded<BoxCollider2DComponent>(Entity pEntity, BoxCollider2DComponent& pComponent)
+	{
+	}
+	
+	template<>
+	void Scene::OnComponentAdded<CircleCollider2DComponent>(Entity entity, CircleCollider2DComponent& component)
 	{
 	}
 }

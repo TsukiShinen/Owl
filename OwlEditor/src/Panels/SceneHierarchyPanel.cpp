@@ -248,6 +248,15 @@ namespace Owl
 				}
 			}
 
+			if (!m_SelectionContext.HasComponent<CircleCollider2DComponent>())
+			{
+				if (ImGui::MenuItem("Circle Collider 2D"))
+				{
+					m_SelectionContext.AddComponent<CircleCollider2DComponent>();
+					ImGui::CloseCurrentPopup();
+				}
+			}
+
 			ImGui::EndPopup();
 		}
 		ImGui::PopItemWidth();
@@ -380,6 +389,16 @@ namespace Owl
 		{
 			ImGui::DragFloat2("Offset", glm::value_ptr(pComponent.Offset));
 			ImGui::DragFloat2("Size", glm::value_ptr(pComponent.Size));
+			ImGui::DragFloat("Density", &pComponent.Density);
+			ImGui::DragFloat("Friction", &pComponent.Friction, 0.01f, 0.0f, 1.0f);
+			ImGui::DragFloat("Restitution", &pComponent.Restitution, 0.01f, 0.0f, 1.0f);
+			ImGui::DragFloat("Restitution Threshold", &pComponent.RestitutionThreshold);
+		});
+
+		DrawComponent<CircleCollider2DComponent>("Circle Collider 2D", pEntity, [](auto& pComponent)
+		{
+			ImGui::DragFloat2("Offset", glm::value_ptr(pComponent.Offset));
+			ImGui::DragFloat("Radius", &pComponent.Radius);
 			ImGui::DragFloat("Density", &pComponent.Density);
 			ImGui::DragFloat("Friction", &pComponent.Friction, 0.01f, 0.0f, 1.0f);
 			ImGui::DragFloat("Restitution", &pComponent.Restitution, 0.01f, 0.0f, 1.0f);

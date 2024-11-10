@@ -13,18 +13,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Owl/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Renderer/Renderer2D.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Components.h" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Components.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/Scene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneSerializer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Owl/Scene/SceneSerializer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Owl/src/Platform/OpenGL/OpenGlRendererApi.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/Assets/Shaders/Texture.glsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/imgui.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OwlEditor/src/Panels/SceneHierarchyPanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OwlEditor/src/Panels/SceneHierarchyPanel.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="110a2b8c-1f10-4aef-aefb-d4afa7aa637d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -413,6 +402,7 @@
       <workItem from="1731157654972" duration="3865000" />
       <workItem from="1731170684867" duration="1165000" />
       <workItem from="1731171884256" duration="2000" />
+      <workItem from="1731235340891" duration="2429000" />
     </task>
     <servers />
   </component>
